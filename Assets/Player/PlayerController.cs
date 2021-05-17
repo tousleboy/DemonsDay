@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     public bool combo = false;//アニメーション内で制御
     public bool comboFinisher = false;//アニメーション内で制御
     public int combocount = 1;
+    int maxcombo;
     public float comboInterval = 0.5f;
     //float pushTimes = 0.0f;
     //public bool high = false;
@@ -64,6 +65,8 @@ public class PlayerController : MonoBehaviour
         oldAnime = stopAnime;
         attackZone = transform.Find("AttackZone").gameObject;
         life = 3;
+        maxcombo = comboAnimes.Length;
+        Debug.Log(maxcombo);
         gameState = "playing";
     }
 
@@ -138,7 +141,7 @@ public class PlayerController : MonoBehaviour
                 else if(!comboFinisher)
                 {
                     Action(comboAnimes[combocount - 1], "attack");
-                    combocount += 1;
+                    combocount = Mathf.Min(combocount + 1, maxcombo);
                     //passedTimes = 0.0f;
                 }
                 else

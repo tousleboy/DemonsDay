@@ -9,7 +9,8 @@ public class CannonController : MonoBehaviour
     public float fireSpeedX = -4.0f;
     public float fireSpeedY = 0.0f;
     public float length = 8.0f;
-    public int damage = 1;
+    public int life = 3;
+    bool stop = false;
 
     GameObject player;
     GameObject gateObj;
@@ -26,6 +27,11 @@ public class CannonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(stop)
+        {
+            return;
+        }
+
         passedTimes += Time.deltaTime;
         if(CheckLength(player.transform.position))
         {
@@ -41,6 +47,20 @@ public class CannonController : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Attack")
+        {
+            life -= collision.gameObject.GetComponent<AttackManager>().val;
+            GetComponent<Renderer>().material.color = Color.red;
+            Invoke("ColorReset", 0.1f);
+        }
+        if(life <= 0)
+        {
+            StartCoroutine("Die");
+        }
+    }
+
     bool CheckLength(Vector2 targetPos)
     {
         bool ret = false;
@@ -50,5 +70,22 @@ public class CannonController : MonoBehaviour
             ret = true;
         }
         return ret;
+    }
+
+    void ColorReset()
+    {
+        GetComponent<Renderer>().material.color = Color.white;
+    }
+
+    IEnumerator Die()
+    {
+        GetComponent<BoxCollider2D>().enabled = false;
+        stop = true;
+        Quaternion now = transform.rotation;
+        while(Quaternion.Angle(now, transform.rotation) < 90)
+        {
+            transform.Rotate(new Vector3(0, 0, -1.5f));
+            yield return null;
+        }
     }
 }

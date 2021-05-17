@@ -19,9 +19,6 @@ public class ShellController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag !="Attack")
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }
