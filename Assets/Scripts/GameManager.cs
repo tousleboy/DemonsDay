@@ -55,10 +55,13 @@ public class GameManager : MonoBehaviour
             Boss = GameObject.FindGameObjectWithTag("Boss");
             if(Boss == null)
             {
-                PlayerController.gameState = "clear";
-                mainImage.GetComponent<Image>().sprite = gameClearSpr;
-                mainImage.SetActive(true);
+                PlayerController.gameState = "gameclear";
             }
+        }
+        if(PlayerController.gameState == "gameClear")
+        {
+            mainImage.GetComponent<Image>().sprite = gameClearSpr;
+            mainImage.SetActive(true);
         }
     }
 }

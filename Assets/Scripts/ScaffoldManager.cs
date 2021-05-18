@@ -23,7 +23,7 @@ public class ScaffoldManager : MonoBehaviour
         {
             return;
         }
-        if(rbody.velocity.y < 0)
+        if(rbody.velocity.y <= 0)
         {
             GetComponent<BoxCollider2D>().isTrigger = false;
             gameObject.layer = 8;

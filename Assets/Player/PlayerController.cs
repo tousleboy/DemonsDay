@@ -163,6 +163,7 @@ public class PlayerController : MonoBehaviour
         else if(Input.GetMouseButtonUp(1) || Input.GetKeyUp("k"))
         {
             blocking = false;
+            goBlock = false;
         }
 
         if(Input.GetAxisRaw("Vertical") < 0)
@@ -177,6 +178,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             ducking = false;
+            goDuck = false;
         }
     }
 
@@ -233,14 +235,6 @@ public class PlayerController : MonoBehaviour
                     if(goAttack)
                     {
                         goAttack = false;
-                    }
-                    if(goBlock)
-                    {
-                        goBlock = false;
-                    }
-                    if(goDuck)
-                    {
-                        goDuck = false;
                     }
                 }
                 else if(axisH == 0)
@@ -309,6 +303,10 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log(collision.gameObject.GetComponent<ItemData>().val + "yen get");
             Destroy(collision.gameObject);
+        }
+        if(collision.gameObject.tag == "Goal")
+        {
+            gameState = "gameClear";
         }
     }
 
