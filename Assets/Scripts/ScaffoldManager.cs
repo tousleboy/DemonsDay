@@ -23,10 +23,22 @@ public class ScaffoldManager : MonoBehaviour
         {
             return;
         }
-        if(rbody.velocity.y <= 0)
+        if(rbody.velocity.y <= 0 )//&& transform.position.y <= collision.gameObject.transform.position.y)
         {
             GetComponent<BoxCollider2D>().isTrigger = false;
             gameObject.layer = 8;
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            if(Input.GetButton("Jump") && Input.GetAxisRaw("Vertical") < 0)
+            {
+                GetComponent<BoxCollider2D>().isTrigger = true;
+                gameObject.layer = 0;
+            }
         }
     }
 

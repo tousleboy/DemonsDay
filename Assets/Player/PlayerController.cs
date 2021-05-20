@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
     GameObject attackZone;
 
     public static int life;
+    int maxLife;
     public int damage;
     public int diffence = 1;
     public bool damaged = false;
@@ -67,6 +68,7 @@ public class PlayerController : MonoBehaviour
         life = 3;
         maxcombo = comboAnimes.Length;
         Debug.Log(maxcombo);
+        maxLife = life;
         gameState = "playing";
     }
 
@@ -304,9 +306,14 @@ public class PlayerController : MonoBehaviour
             Debug.Log(collision.gameObject.GetComponent<ItemData>().val + "yen get");
             Destroy(collision.gameObject);
         }
+        if(collision.gameObject.tag == "Heal")
+        {
+           life = Mathf.Min(life + collision.gameObject.GetComponent<ItemData>().val, maxLife);
+           Destroy(collision.gameObject);
+        }
         if(collision.gameObject.tag == "Goal")
         {
-            gameState = "gameClear";
+            Goal();
         }
     }
 
@@ -357,5 +364,12 @@ public class PlayerController : MonoBehaviour
         damaged = true;
         oldAnime = damagedAnime;
         animator.Play(damagedAnime);
+    }
+
+    void Goal()
+    {
+        gameState = "gameclear";
+        animator.Play(stopAnime);
+        rbody.velocity = new Vector2(0, rbody.velocity.y);
     }
 }

@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
                 PlayerController.gameState = "gameclear";
             }
         }
-        if(PlayerController.gameState == "gameClear")
+        if(PlayerController.gameState == "gameclear")
         {
             mainImage.GetComponent<Image>().sprite = gameClearSpr;
             mainImage.SetActive(true);

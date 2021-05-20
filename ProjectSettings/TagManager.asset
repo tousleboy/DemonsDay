@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - Dead
   - Goal
+  - Heal
   layers:
   - Default
   - TransparentFX
