@@ -22,12 +22,16 @@ public class LesserEnemyController : MonoBehaviour
 
     public int enemyLife = 1;
     bool dead;
+
+    AudioSource soundPlayer;
+    public AudioClip punchHit;
     // Start is called before the first frame update
     void Start()
     {
        rbody = GetComponent<Rigidbody2D>();
        animator = GetComponent<Animator>();
        R = GetComponent<Renderer>();
+       soundPlayer = GetComponent<AudioSource>(); 
     }
 
     // Update is called once per frame
@@ -77,6 +81,7 @@ public class LesserEnemyController : MonoBehaviour
             enemyLife -= am.val;
             am.KnockBack(gameObject);
             Debug.Log("enemylife" + enemyLife);
+            soundPlayer.PlayOneShot(punchHit);
         }
         if(collision.gameObject.tag == "Player")
         {

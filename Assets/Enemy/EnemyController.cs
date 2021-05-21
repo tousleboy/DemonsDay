@@ -35,6 +35,11 @@ public class EnemyController : MonoBehaviour
     public bool high = false;
     public bool low = false;
 
+    AudioSource soundPlayer;
+    public AudioClip punch;
+    public AudioClip punchHit;
+    public AudioClip guardHit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +49,7 @@ public class EnemyController : MonoBehaviour
         nowAnime = stopAnime;
         oldAnime = stopAnime;
         attackZone = transform.Find("AttackZone").gameObject;
+        soundPlayer = GetComponent<AudioSource>(); 
     }
 
     // Update is called once per frame
@@ -121,10 +127,12 @@ public class EnemyController : MonoBehaviour
             if(high)
             {
                 am.state = "high";
+                soundPlayer.PlayOneShot(punch);
             }
             else if(low)
             {
                 am.state = "low";
+                soundPlayer.PlayOneShot(punch);
             }
         }
 
@@ -181,6 +189,7 @@ public class EnemyController : MonoBehaviour
 
     void Damaged()
     {
+        soundPlayer.PlayOneShot(punchHit);
         animator.Play(damagedAnime, 0, 0);
         oldAnime = damagedAnime;
     }

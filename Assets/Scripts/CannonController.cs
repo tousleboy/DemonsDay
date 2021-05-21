@@ -16,12 +16,16 @@ public class CannonController : MonoBehaviour
     GameObject gateObj;
     float passedTimes = 0;
 
+    AudioSource soundPlayer;
+    public AudioClip punchHit;
+
     // Start is called before the first frame update
     void Start()
     {
         Transform tr = transform.Find("gate");
         gateObj = tr.gameObject;
         player = GameObject.FindGameObjectWithTag("Player");
+        soundPlayer = GetComponent<AudioSource>(); 
     }
 
     // Update is called once per frame
@@ -52,6 +56,7 @@ public class CannonController : MonoBehaviour
         if(collision.gameObject.tag == "Attack")
         {
             life -= collision.gameObject.GetComponent<AttackManager>().val;
+            soundPlayer.PlayOneShot(punchHit);
             GetComponent<Renderer>().material.color = Color.red;
             Invoke("ColorReset", 0.1f);
         }

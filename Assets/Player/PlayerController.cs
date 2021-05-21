@@ -57,6 +57,11 @@ public class PlayerController : MonoBehaviour
 
     public static string gameState;
 
+    AudioSource soundPlayer;
+    public AudioClip punch;
+    public AudioClip punchHit;
+    public AudioClip guardHit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,6 +75,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log(maxcombo);
         maxLife = life;
         gameState = "playing";
+        soundPlayer = GetComponent<AudioSource>(); 
     }
 
     // Update is called once per frame
@@ -278,6 +284,7 @@ public class PlayerController : MonoBehaviour
             if(collisionState == "high" && blocking)
             {
                 damage -= diffence;
+                soundPlayer.PlayOneShot(guardHit);
             }
 
             life -= damage;
@@ -348,6 +355,7 @@ public class PlayerController : MonoBehaviour
         if(mode == "attack")
         {
             goAttack = true;
+            soundPlayer.PlayOneShot(punch);
         }
         if(mode == "block")
         {
@@ -362,6 +370,7 @@ public class PlayerController : MonoBehaviour
     void Damage()
     {
         damaged = true;
+        soundPlayer.PlayOneShot(punchHit);
         oldAnime = damagedAnime;
         animator.Play(damagedAnime);
     }
