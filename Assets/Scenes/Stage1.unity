@@ -4746,7 +4746,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7404245662279908064, guid: 28c6509cce481430f8378a2d85f219b5, type: 3}
       propertyPath: jump
-      value: 14
+      value: 13.5
       objectReference: {fileID: 0}
     - target: {fileID: 7404245662279908064, guid: 28c6509cce481430f8378a2d85f219b5, type: 3}
       propertyPath: howManyJump

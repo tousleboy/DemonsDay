@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public string stopAnime = "PlayerIdle";
     public string runAnime = "PlayerRun";
     public string jumpAnime = "PlayerJump";
+    public string jumpUpAnime = "PlayerJumpUp";
     public string[] comboAnimes;
     //public string jabAnime = "PlayerJab";
     public string blockAnime = "PlayerBlock";
@@ -257,7 +258,14 @@ public class PlayerController : MonoBehaviour
             else
             {
                 goAttack = false;
-                nowAnime = jumpAnime;
+                if(rbody.velocity.y > 0)
+                {
+                    nowAnime = jumpUpAnime;
+                }
+                else
+                {
+                    nowAnime = jumpAnime;
+                }
             }
         }
         else if(goAttack)

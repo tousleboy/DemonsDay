@@ -32,8 +32,11 @@ public class EnemyController : MonoBehaviour
     bool dead = false;
 
     GameObject attackZone;
+    AttackManager am;
+    BoxCollider2D abc;
     public bool high = false;
     public bool low = false;
+    bool isCalledFirst = true;
 
     AudioSource soundPlayer;
     public AudioClip punch;
@@ -49,6 +52,11 @@ public class EnemyController : MonoBehaviour
         nowAnime = stopAnime;
         oldAnime = stopAnime;
         attackZone = transform.Find("AttackZone").gameObject;
+        if(attackZone != null)
+        {
+            am = attackZone.GetComponent<AttackManager>();
+            abc = attackZone.GetComponent<BoxCollider2D>();
+        }
         soundPlayer = GetComponent<AudioSource>(); 
     }
 
@@ -123,16 +131,25 @@ public class EnemyController : MonoBehaviour
 
         if(attacking)
         {
-            AttackManager am = attackZone.GetComponent<AttackManager>();
             if(high)
             {
                 am.state = "high";
-                soundPlayer.PlayOneShot(punch);
             }
             else if(low)
             {
                 am.state = "low";
-                soundPlayer.PlayOneShot(punch);
+            }
+            if(abc.enabled == true)
+            {
+                if(isCalledFirst == true)
+                {
+                    soundPlayer.PlayOneShot(punch);
+                    isCalledFirst = false;
+                }
+            }
+            else
+            {
+                isCalledFirst = true;
             }
         }
 
