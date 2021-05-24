@@ -86,10 +86,11 @@ public class CannonController : MonoBehaviour
     {
         GetComponent<BoxCollider2D>().enabled = false;
         stop = true;
+        float speed = -200f;
         Quaternion now = transform.rotation;
         while(Quaternion.Angle(now, transform.rotation) < 90)
         {
-            transform.Rotate(new Vector3(0, 0, -1.5f));
+            transform.Rotate(new Vector3(0, 0, speed * Time.deltaTime));
             yield return null;
         }
     }

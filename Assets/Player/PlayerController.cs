@@ -63,6 +63,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip punchHit;
     public AudioClip guardHit;
 
+    public static string messages = "not recieved"; //recieve message from talk event. default should be "not recieved" 
+    public string texts = ""; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -92,6 +95,12 @@ public class PlayerController : MonoBehaviour
         }
 
         axisH = Input.GetAxisRaw("Horizontal");
+        //Debug.Log("texts" + texts +  " messages" + messages);
+        if(texts != "")
+        {
+            messages = texts;
+            texts = "";
+        }
         //passedTimes += Time.deltaTime;
 
         /*if(damage > 0)

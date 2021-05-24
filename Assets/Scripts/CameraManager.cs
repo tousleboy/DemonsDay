@@ -31,13 +31,14 @@ public class CameraManager : MonoBehaviour
             if(resetPos)
             {
                 float range = 0.1f;
+                float speed = 20f;
                 if(x - transform.position.x > range)
                 {
-                    transform.Translate(0.1f, 0, 0);
+                    transform.Translate(speed * Time.deltaTime, 0, 0);
                 }
                 else if(x - transform.position.x < range * -1)
                 {
-                    transform.Translate(-0.1f, 0, 0);
+                    transform.Translate(-1f * speed * Time.deltaTime, 0, 0);
                 }
                 else
                 {
