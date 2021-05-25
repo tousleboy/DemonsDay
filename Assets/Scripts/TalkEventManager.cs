@@ -30,7 +30,8 @@ public class TalkEventManager : MonoBehaviour
             return;
         }
         float playerX = player.transform.position.x;
-        if(transform.position.x - range <= playerX && transform.position.x + range >= playerX)
+        float playerY = player.transform.position.y;
+        if(transform.position.x - range <= playerX && transform.position.x + range >= playerX && playerY >= transform.position.y)
         {
             Invoke("SendTexts", delay);
             done = true;

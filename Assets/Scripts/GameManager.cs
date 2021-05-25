@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     Image lifeImage;
     Text message;
     GameObject Boss;
+    AudioSource soundPlayer;
+    public AudioClip piron;
+
 
     public bool bossIsGoal = true;
     public bool hsAlwaysActive = true;
@@ -26,13 +29,13 @@ public class GameManager : MonoBehaviour
     string messages;
     string nowMessages;
     string oldMessages;
-
     // Start is called before the first frame update
     void Start()
     {
         mainImage.SetActive(false);
         lifeImage = Life.GetComponent<Image>();
         message = text.GetComponent<Text>();
+        soundPlayer = headSet.GetComponent<AudioSource>();
 
         if(hsAlwaysActive == false)
         {
@@ -99,7 +102,8 @@ public class GameManager : MonoBehaviour
         for(i = 0; i < length; i++)
         {
             message.text = messages[i];
-            yield return new WaitForSeconds(messages[i].Length / 4);
+            soundPlayer.PlayOneShot(piron);
+            yield return new WaitForSeconds(messages[i].Length / 5.0f);
             if(recieved != nowMessages)
             {
                 yield break;
