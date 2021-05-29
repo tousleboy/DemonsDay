@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4795830114660136459}
   - component: {fileID: 8563640808300168518}
   - component: {fileID: 7510347829862594588}
+  - component: {fileID: 1553324691937119252}
   m_Layer: 5
   m_Name: HeadSet
   m_TagString: Untagged
@@ -36,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 265.49994, y: 839}
+  m_AnchoredPosition: {x: 94, y: 540}
   m_SizeDelta: {x: 444, y: 444}
   m_Pivot: {x: 0.5, y: 0.50000006}
 --- !u!222 &4795830114660136459
@@ -173,6 +174,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1553324691937119252
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356424796050001801}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 74e925381abad41728085a97754eebe3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &610632371622978000
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,6 +313,7 @@ MonoBehaviour:
   mainImage: {fileID: 610632372667700148}
   text: {fileID: 8589882763849856813}
   headSet: {fileID: 356424796050001801}
+  MoneyText: {fileID: 3702591234851473396}
   gameOverSpr: {fileID: 21300000, guid: c9a12541a5dda455690992255c2bec15, type: 3}
   gameClearSpr: {fileID: 21300000, guid: 47a90bfe25da44079a1daa36f867505a, type: 3}
   Life: {fileID: 610632372240890906}
@@ -817,8 +838,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 58.2}
-  m_SizeDelta: {x: 976.48315, y: 116.40045}
+  m_AnchoredPosition: {x: 0.00036621, y: 58.2}
+  m_SizeDelta: {x: 1920.0007, y: 116.40045}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3088003834159365449
 CanvasRenderer:
@@ -850,7 +871,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 32
+    m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0

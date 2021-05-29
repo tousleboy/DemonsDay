@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
     string collisionState;
 
     public static string gameState;
+    public static int score = 0;
 
     AudioSource soundPlayer;
     public AudioClip punch;
@@ -144,6 +145,7 @@ public class PlayerController : MonoBehaviour
             {
                 AttackManager am = attackZone.GetComponent<AttackManager>();
                 am.state = "high";
+                blocking = false;
 
                 if(IsInvoking("ComboReset"))
                 {
@@ -173,30 +175,29 @@ public class PlayerController : MonoBehaviour
             combocount = 1;
         }*/
 
-        if(Input.GetMouseButton(1) || Input.GetKey("k"))
+        if(Input.GetMouseButton(1) || Input.GetKeyDown("k"))
         {
-            Action(blockAnime, "block");
             blocking = true;
+            //Action(blockAnime, "block");
         }
         else if(Input.GetMouseButtonUp(1) || Input.GetKeyUp("k"))
         {
             blocking = false;
-            goBlock = false;
         }
-
+        
         if(Input.GetAxisRaw("Vertical") < 0)
         {
             if(!goAttack)
             {
-                Action(duckingAnime, "ducking");
+                //Action(duckingAnime, "ducking");
+                blocking = false;
+                ducking = true;
             }
-            ducking = true;
             //passedTimes = 0.0f;
         }
         else
         {
             ducking = false;
-            goDuck = false;
         }
     }
 
@@ -247,13 +248,31 @@ public class PlayerController : MonoBehaviour
         {
             if(onGround)
             {
-                if(goAttack || goBlock || goDuck)
+                if(goAttack)
                 {
                     nowAnime = actionAnime;
                     if(goAttack)
                     {
                         goAttack = false;
                     }
+                    if(goBlock)
+                    {
+                        goBlock = false;
+                        blocking = true;
+                    }
+                    if(goDuck)
+                    {
+                        goDuck = false;
+                        ducking = true;
+                    }
+                }
+                else if(blocking)
+                {
+                    nowAnime = blockAnime;
+                }
+                else if(ducking)
+                {
+                    nowAnime = duckingAnime;
                 }
                 else if(axisH == 0)
                 {
@@ -327,7 +346,8 @@ public class PlayerController : MonoBehaviour
         }
         if(collision.gameObject.tag == "Item")
         {
-            Debug.Log(collision.gameObject.GetComponent<ItemData>().val + "yen get");
+            //Debug.Log(collision.gameObject.GetComponent<ItemData>().val + "yen get");
+            score = collision.gameObject.GetComponent<ItemData>().val;
             Destroy(collision.gameObject);
         }
         if(collision.gameObject.tag == "Heal")
@@ -337,7 +357,9 @@ public class PlayerController : MonoBehaviour
         }
         if(collision.gameObject.tag == "Goal")
         {
-            Goal();
+            Wait();
+            float delay = 1.0f;
+            Invoke("Goal", delay);
         }
     }
 
@@ -390,6 +412,13 @@ public class PlayerController : MonoBehaviour
         soundPlayer.PlayOneShot(punchHit);
         oldAnime = damagedAnime;
         animator.Play(damagedAnime);
+    }
+
+    void Wait()
+    {
+        gameState = "waiting";
+        animator.Play(stopAnime);
+        rbody.velocity = new Vector2(0, rbody.velocity.y);
     }
 
     void Goal()

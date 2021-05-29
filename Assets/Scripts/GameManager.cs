@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject mainImage;
     public GameObject text;
     public GameObject headSet;
+    public GameObject MoneyText;
     public Sprite gameOverSpr;
     public Sprite gameClearSpr;
     public GameObject Life;
@@ -18,13 +19,17 @@ public class GameManager : MonoBehaviour
 
     Image lifeImage;
     Text message;
+    Text money;
     GameObject Boss;
     AudioSource soundPlayer;
+    Animator hsAnimator;
     public AudioClip piron;
 
 
     public bool bossIsGoal = true;
     public bool hsAlwaysActive = true;
+
+    static int score = 0;
 
     string messages;
     string nowMessages;
@@ -35,7 +40,9 @@ public class GameManager : MonoBehaviour
         mainImage.SetActive(false);
         lifeImage = Life.GetComponent<Image>();
         message = text.GetComponent<Text>();
+        money = MoneyText.GetComponent<Text>();
         soundPlayer = headSet.GetComponent<AudioSource>();
+        hsAnimator = headSet.GetComponent<Animator>();
 
         if(hsAlwaysActive == false)
         {
@@ -44,6 +51,8 @@ public class GameManager : MonoBehaviour
 
         nowMessages = PlayerController.messages;
         oldMessages = PlayerController.messages;
+
+        UpdateScore();
     }
 
     // Update is called once per frame
@@ -64,6 +73,13 @@ public class GameManager : MonoBehaviour
         else
         {
             lifeImage.sprite = lifeZero;
+        }
+
+        if(PlayerController.score != 0)
+        {
+            score += PlayerController.score;
+            PlayerController.score = 0;
+            UpdateScore();
         }
 
         nowMessages = PlayerController.messages;
@@ -93,6 +109,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void UpdateScore()
+    {
+        money.text = "¥" + score.ToString();
+    }
+
     IEnumerator StoryTeller()
     {
         string recieved = nowMessages;
@@ -101,6 +122,7 @@ public class GameManager : MonoBehaviour
         int i;
         for(i = 0; i < length; i++)
         {
+            hsAnimator.SetTrigger("Call");
             message.text = messages[i];
             soundPlayer.PlayOneShot(piron);
             yield return new WaitForSeconds(messages[i].Length / 5.0f);
