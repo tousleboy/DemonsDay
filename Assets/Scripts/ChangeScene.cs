@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class ChangeScene : MonoBehaviour
 {
     public string sceneName;
+    public float delay = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,11 @@ public class ChangeScene : MonoBehaviour
     }
 
     public void Load()
+    {
+        Invoke("GoNextScene", delay);
+    }
+
+    void GoNextScene()
     {
         SceneManager.LoadScene(sceneName);
     }

@@ -38,4 +38,23 @@ public class TitleManager : MonoBehaviour
         }
         button.SetActive(true);
     }
+
+    IEnumerator TurnOff()
+    {
+        float t = 0.0f;
+        float speed = 0.005f;
+        Button bt = button.GetComponent<Button>();
+        bt.interactable = false;
+        while(t <= 1.0f)
+        {
+            I.color = Color.Lerp(Color.white, Color.black, t);
+            t += speed;
+            yield return null;
+        }
+    }
+
+    public void StartTurnOff()
+    {
+        StartCoroutine("TurnOff");
+    }
 }
