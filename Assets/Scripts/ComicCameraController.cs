@@ -36,7 +36,7 @@ public class ComicCameraController : MonoBehaviour
         }
         if(Vector2.Distance(Anchor.transform.position, transform.position) > allowableRange)
         {
-            transform.position += (Vector3)direction * leaveSpeed;
+            transform.position += (Vector3)direction * leaveSpeed * Time.deltaTime;
         }
         else
         {

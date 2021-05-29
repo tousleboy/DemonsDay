@@ -29,11 +29,11 @@ public class TitleManager : MonoBehaviour
     IEnumerator TurnOn()
     {
         float t = 0.0f;
-        float speed = 0.005f;
+        float speed = 0.5f;
         while(t <= 1.0f)
         {
             I.color = Color.Lerp(Color.black, Color.white, t);
-            t += speed;
+            t += speed * Time.deltaTime;
             yield return null;
         }
         button.SetActive(true);
@@ -42,13 +42,13 @@ public class TitleManager : MonoBehaviour
     IEnumerator TurnOff()
     {
         float t = 0.0f;
-        float speed = 0.005f;
+        float speed = 0.5f;
         Button bt = button.GetComponent<Button>();
         bt.interactable = false;
         while(t <= 1.0f)
         {
             I.color = Color.Lerp(Color.white, Color.black, t);
-            t += speed;
+            t += speed * Time.deltaTime;
             yield return null;
         }
     }
