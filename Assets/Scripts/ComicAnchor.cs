@@ -5,6 +5,7 @@ using UnityEngine;
 public class ComicAnchor : MonoBehaviour
 {
     public float leaveSpeed =  20f;
+    public float waitTime = 0.0f;
     public AudioClip sound = null;
     public float soundDelay = 0.0f;
     public GameObject next;

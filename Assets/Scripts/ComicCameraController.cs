@@ -11,6 +11,7 @@ public class ComicCameraController : MonoBehaviour
     float allowableRange = 1.0f;
     Vector2 direction;
     bool comicEnd = false;
+    bool comicStop = false;
 
     AudioSource soundPlayer;
 
@@ -30,7 +31,7 @@ public class ComicCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(comicEnd)
+        if(comicEnd || comicStop)
         {
             return;
         }
@@ -52,6 +53,11 @@ public class ComicCameraController : MonoBehaviour
             }
             else
             {
+                if(ca.waitTime != 0.0f)
+                {
+                    comicStop = true;
+                    Invoke("Restart", ca.waitTime);
+                }
                 leaveSpeed =  ca.leaveSpeed;
                 Anchor = ca.next;
                 ca = Anchor.GetComponent<ComicAnchor>();
@@ -65,5 +71,10 @@ public class ComicCameraController : MonoBehaviour
     {
         Vector2 direction = targetPos - (Vector2)transform.position;
         return direction.normalized;
+    }
+
+    void Restart()
+    {
+        comicStop = false;
     }
 }
