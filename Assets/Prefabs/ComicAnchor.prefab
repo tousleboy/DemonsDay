@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ebd919d63ad462a80b22c2e200a893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leaveSpeed: 1
+  leaveSpeed: 20
+  waitTime: 0
   sound: {fileID: 0}
   soundDelay: 0
   next: {fileID: 0}
