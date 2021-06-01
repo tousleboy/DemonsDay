@@ -65,7 +65,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip guardHit;
 
     public static string messages = "not recieved"; //recieve message from talk event. default should be "not recieved" 
-    public string texts = ""; 
+    public string texts = "";
+
+    public static Vector3 SpawnPos = new Vector3(0, 0, 0);
 
     // Start is called before the first frame update
     void Start()
@@ -80,7 +82,13 @@ public class PlayerController : MonoBehaviour
         Debug.Log(maxcombo);
         maxLife = life;
         gameState = "playing";
-        soundPlayer = GetComponent<AudioSource>(); 
+        soundPlayer = GetComponent<AudioSource>();
+        
+        if(SpawnPos != new Vector3(0, 0, 0))
+        {
+            Teleport(SpawnPos);
+            SpawnPos = new Vector3(0, 0, 0);
+        }
     }
 
     // Update is called once per frame
@@ -141,7 +149,7 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0) || Input.GetKeyDown("j"))
         {
-            if(onGround)
+            if(onGround && !damaged)
             {
                 AttackManager am = attackZone.GetComponent<AttackManager>();
                 am.state = "high";
@@ -426,5 +434,10 @@ public class PlayerController : MonoBehaviour
         gameState = "gameclear";
         animator.Play(stopAnime);
         rbody.velocity = new Vector2(0, rbody.velocity.y);
+    }
+
+    void Teleport(Vector3 pos)
+    {
+        gameObject.transform.position = pos;
     }
 }

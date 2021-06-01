@@ -29,6 +29,8 @@ public class EnemyController : MonoBehaviour
     string collisionState;
     public bool damaged = false;
     public bool moving = false;
+    public bool blocking = false;
+    int diffence = 1;
     bool dead = false;
 
     GameObject attackZone;
@@ -188,16 +190,25 @@ public class EnemyController : MonoBehaviour
             collisionState = am.state;
             damage = am.val;
 
-            enemyLife -= damage;
-            damage = 0;
-            if(gap)
+            if(collisionState == "high" && blocking)
             {
-                Damaged();
+                damage -= diffence;
+                soundPlayer.PlayOneShot(guardHit);
             }
-            GetComponent<Renderer>().material.color = Color.red;
-            Invoke("ColorReset", 0.1f);
+            
+            if(damage > 0)
+            {
+                enemyLife -= damage;
+                damage = 0;
+                if(gap)
+                {
+                    Damaged();
+                }
+                GetComponent<Renderer>().material.color = Color.red;
+                Invoke("ColorReset", 0.1f);
+            }
 
-            if(am.knockBack)
+            if(am.knockBack && !blocking)
             {
                 am.KnockBack(gameObject);
             }
