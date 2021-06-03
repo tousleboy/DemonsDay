@@ -63,11 +63,10 @@ public class PlayerController : MonoBehaviour
     public AudioClip punch;
     public AudioClip punchHit;
     public AudioClip guardHit;
+    public AudioClip moneySound;
 
     public static string messages = "not recieved"; //recieve message from talk event. default should be "not recieved" 
     public string texts = "";
-
-    public static Vector3 SpawnPos = new Vector3(0, 0, 0);
 
     // Start is called before the first frame update
     void Start()
@@ -83,12 +82,6 @@ public class PlayerController : MonoBehaviour
         maxLife = life;
         gameState = "playing";
         soundPlayer = GetComponent<AudioSource>();
-        
-        if(SpawnPos != new Vector3(0, 0, 0))
-        {
-            Teleport(SpawnPos);
-            SpawnPos = new Vector3(0, 0, 0);
-        }
     }
 
     // Update is called once per frame
@@ -97,6 +90,7 @@ public class PlayerController : MonoBehaviour
         if(life <= 0)
         {
             gameState = "gameover";
+            Die();
         }
         if(gameState != "playing")
         {
@@ -356,6 +350,7 @@ public class PlayerController : MonoBehaviour
         {
             //Debug.Log(collision.gameObject.GetComponent<ItemData>().val + "yen get");
             score = collision.gameObject.GetComponent<ItemData>().val;
+            soundPlayer.PlayOneShot(moneySound);
             Destroy(collision.gameObject);
         }
         if(collision.gameObject.tag == "Heal")
@@ -427,6 +422,14 @@ public class PlayerController : MonoBehaviour
         gameState = "waiting";
         animator.Play(stopAnime);
         rbody.velocity = new Vector2(0, rbody.velocity.y);
+    }
+
+    void Die()
+    {
+        rbody.velocity = new Vector2(0, 0);
+        rbody.simulated = false;
+        GetComponent<CapsuleCollider2D>().enabled = false;
+
     }
 
     void Goal()

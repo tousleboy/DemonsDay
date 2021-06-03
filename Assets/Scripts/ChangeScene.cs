@@ -7,6 +7,7 @@ public class ChangeScene : MonoBehaviour
 {
     public string sceneName;
     public float delay = 0.0f;
+    public bool resetProgress = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,10 @@ public class ChangeScene : MonoBehaviour
 
     public void Load()
     {
+        if(resetProgress)
+        {
+            CheckPointManager.active = false;
+        }
         Invoke("GoNextScene", delay);
     }
 

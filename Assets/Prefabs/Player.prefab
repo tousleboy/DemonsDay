@@ -153,6 +153,8 @@ MonoBehaviour:
   punch: {fileID: 8300000, guid: a9e4595c8eeb24b98b3f22401ea24327, type: 3}
   punchHit: {fileID: 8300000, guid: 93825da3ccac04fbfb70141e4918c0ed, type: 3}
   guardHit: {fileID: 8300000, guid: 60a4deb5d60b54ad18ed9f0624219547, type: 3}
+  moneySound: {fileID: 8300000, guid: f4644955adceb42f4a37c53312dcc104, type: 3}
+  texts: 
 --- !u!95 &7404245662279908065
 Animator:
   serializedVersion: 3

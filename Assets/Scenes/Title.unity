@@ -410,6 +410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: movie1
   delay: 3
+  resetProgress: 0
 --- !u!114 &1390384493
 MonoBehaviour:
   m_ObjectHideFlags: 0

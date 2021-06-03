@@ -60,7 +60,8 @@ public class GameManager : MonoBehaviour
         {
             GameObject cp = GameObject.FindGameObjectWithTag("Respawn");
             Vector3 pos = cp.transform.position;
-            PlayerController.SpawnPos = pos;
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player.transform.position = pos;
         }
     }
 
