@@ -111,14 +111,17 @@ MonoBehaviour:
   gap: 0
   stopAnime: RichmenIdle
   runAnime: RichmenRun
-  comboAnime: RichmenCombo1
+  comboAnime: onetwo gap
   damagedAnime: RichmenDamaged
   deadAnime: RichmenDead
   enemyLife: 6
   damaged: 0
   moving: 0
+  blocking: 0
+  ducking: 0
   high: 0
   low: 0
+  knee: 0
   punch: {fileID: 8300000, guid: a9e4595c8eeb24b98b3f22401ea24327, type: 3}
   punchHit: {fileID: 8300000, guid: 93825da3ccac04fbfb70141e4918c0ed, type: 3}
   guardHit: {fileID: 8300000, guid: 60a4deb5d60b54ad18ed9f0624219547, type: 3}
@@ -339,11 +342,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5056657394207239591, guid: 12c5eaf435d4d4f8199ea74a6ad015ae, type: 3}
       propertyPath: m_Size.x
-      value: 0.46550703
+      value: 0.5371394
       objectReference: {fileID: 0}
     - target: {fileID: 5056657394207239591, guid: 12c5eaf435d4d4f8199ea74a6ad015ae, type: 3}
       propertyPath: m_Size.y
-      value: 0.21875048
+      value: 0.3620155
       objectReference: {fileID: 0}
     - target: {fileID: 5056657394207239591, guid: 12c5eaf435d4d4f8199ea74a6ad015ae, type: 3}
       propertyPath: m_Enabled
@@ -351,11 +354,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5056657394207239591, guid: 12c5eaf435d4d4f8199ea74a6ad015ae, type: 3}
       propertyPath: m_Offset.x
-      value: -0.1099174
+      value: -0.07410121
       objectReference: {fileID: 0}
     - target: {fileID: 5056657394207239591, guid: 12c5eaf435d4d4f8199ea74a6ad015ae, type: 3}
       propertyPath: m_Offset.y
-      value: 0.019046068
+      value: -0.052586436
       objectReference: {fileID: 0}
     - target: {fileID: 5102029811756208503, guid: 12c5eaf435d4d4f8199ea74a6ad015ae, type: 3}
       propertyPath: state
@@ -428,6 +431,10 @@ PrefabInstance:
       value: shield
       objectReference: {fileID: 0}
     - target: {fileID: 5056657394207239585, guid: 12c5eaf435d4d4f8199ea74a6ad015ae, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5056657394207239585, guid: 12c5eaf435d4d4f8199ea74a6ad015ae, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -437,7 +444,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5056657394207239591, guid: 12c5eaf435d4d4f8199ea74a6ad015ae, type: 3}
       propertyPath: m_Size.y
-      value: 1.8658533
+      value: 2.0916934
       objectReference: {fileID: 0}
     - target: {fileID: 5056657394207239591, guid: 12c5eaf435d4d4f8199ea74a6ad015ae, type: 3}
       propertyPath: m_Offset.x
@@ -445,11 +452,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5056657394207239591, guid: 12c5eaf435d4d4f8199ea74a6ad015ae, type: 3}
       propertyPath: m_Offset.y
-      value: -0.21812487
+      value: -0.10520482
       objectReference: {fileID: 0}
     - target: {fileID: 5102029811756208503, guid: 12c5eaf435d4d4f8199ea74a6ad015ae, type: 3}
       propertyPath: val
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5102029811756208503, guid: 12c5eaf435d4d4f8199ea74a6ad015ae, type: 3}
       propertyPath: hmkb

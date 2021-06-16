@@ -22,10 +22,16 @@ public class PlayerController : MonoBehaviour
     public string jumpAnime = "PlayerJump";
     public string jumpUpAnime = "PlayerJumpUp";
     public string[] comboAnimes;
+    public string[] kickAnimes;
+    public string[] parryAnimes;
+    public string[] cutAnimes;
     //public string jabAnime = "PlayerJab";
     public string blockAnime = "PlayerBlock";
+    public string elbowBlockAnime = "PlayerElbowBlock";
     public string duckingAnime = "PlayerDuck";
+    public string pearingAnime = "PlayerLeftPearing";
     public string bodyJabAnime = "PlayerBodyJab";
+    public string kneeKickAnime = "PlayerKneeKick";
     public string damagedAnime = "PlayerDamaged";
     //public string straightAnime = "PlayerStraight";
     //public string kickAnime = "PlayerKick";
@@ -37,6 +43,8 @@ public class PlayerController : MonoBehaviour
     public bool attacking = false;//アニメーション内で制御
     bool goBlock = false;
     public bool blocking = false;
+    public bool parry = false;
+    public bool cut = false;
     bool goDuck = false;
     public bool ducking = false;
     public bool combo = false;//アニメーション内で制御
@@ -47,7 +55,8 @@ public class PlayerController : MonoBehaviour
     //float pushTimes = 0.0f;
     //public bool high = false;
     //public bool low = false;
-    GameObject attackZone;
+    AttackManager amgr;
+    CollisionDetector cd;
 
     public static int life;
     int maxLife;
@@ -75,10 +84,10 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         nowAnime = stopAnime;
         oldAnime = stopAnime;
-        attackZone = transform.Find("AttackZone").gameObject;
+        amgr = transform.Find("AttackZone").gameObject.GetComponent<AttackManager>();
+        cd = transform.Find("CollisionDetector").gameObject.GetComponent<CollisionDetector>();
         life = 3;
         maxcombo = comboAnimes.Length;
-        Debug.Log(maxcombo);
         maxLife = life;
         gameState = "playing";
         soundPlayer = GetComponent<AudioSource>();
@@ -87,11 +96,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(life <= 0)
-        {
-            gameState = "gameover";
-            Die();
-        }
         if(gameState != "playing")
         {
             return;
@@ -141,28 +145,44 @@ public class PlayerController : MonoBehaviour
             jumpStop = true;
         }
 
-        if(Input.GetMouseButtonDown(0) || Input.GetKeyDown("j"))
+        if(Input.GetKeyDown("j"))
+        {
+            //StartCoroutine("PushJ");
+            Attack(comboAnimes, parryAnimes);
+        }
+        if(Input.GetKeyDown("k"))
+        {
+            Attack(kickAnimes, cutAnimes);
+        }
+
+        /*if(GetKeyDown("j"))
         {
             if(onGround && !damaged)
             {
                 AttackManager am = attackZone.GetComponent<AttackManager>();
-                am.state = "high";
-                blocking = false;
 
                 if(IsInvoking("ComboReset"))
                 {
                     CancelInvoke("ComboReset");
                 }
                 Invoke("ComboReset", comboInterval);
+                blocking = false;
 
-                if(ducking)
+                /*if(blocking)
+                {
+                    am.state = "knee";
+                    Action(kneeKickAnime, "attack");
+                    blocking = false;
+                }
+                else if(ducking)
                 {
                     am.state = "low";
                     Action(bodyJabAnime, "attack");
                 }
                 else if(!comboFinisher)
                 {
-                    Action(comboAnimes[combocount - 1], "attack");
+                    am.state = "high";
+                    actionAnime = comboAnimes[combocount - 1];
                     combocount = Mathf.Min(combocount + 1, maxcombo);
                     //passedTimes = 0.0f;
                 }
@@ -177,17 +197,20 @@ public class PlayerController : MonoBehaviour
             combocount = 1;
         }*/
 
-        if(Input.GetMouseButton(1) || Input.GetKeyDown("k"))
+        if(Input.GetMouseButton(1) || Input.GetAxisRaw("Vertical") > 0)
         {
-            blocking = true;
+            if(!damaged)
+            {
+                blocking = true;
+            }
             //Action(blockAnime, "block");
         }
-        else if(Input.GetMouseButtonUp(1) || Input.GetKeyUp("k"))
+        else if(Input.GetMouseButtonUp(1) || Input.GetAxisRaw("Vertical") <= 0 /*|| !Input.GetKey("j") */|| damaged)
         {
             blocking = false;
         }
         
-        if(Input.GetAxisRaw("Vertical") < 0)
+        if(Input.GetAxisRaw("Vertical") < 0 && !damaged)
         {
             if(!goAttack)
             {
@@ -200,6 +223,12 @@ public class PlayerController : MonoBehaviour
         else
         {
             ducking = false;
+        }
+
+        if(life <= 0)
+        {
+            gameState = "gameover";
+            Die();
         }
     }
 
@@ -268,6 +297,10 @@ public class PlayerController : MonoBehaviour
                         ducking = true;
                     }
                 }
+                /*else if(blocking && ducking)
+                {
+                    nowAnime = elbowBlockAnime;
+                }*/
                 else if(blocking)
                 {
                     nowAnime = blockAnime;
@@ -316,10 +349,11 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("hit");
             AttackManager am = collision.gameObject.GetComponent<AttackManager>();
+            cd.beingAttacked = false;
             collisionState = am.state;
             damage = am.val;
 
-            if(collisionState == "high" && blocking)
+            if(collisionState == "high" && (blocking || parry) || collisionState == "low" && (blocking || cut))
             {
                 damage -= diffence;
                 soundPlayer.PlayOneShot(guardHit);
@@ -327,19 +361,21 @@ public class PlayerController : MonoBehaviour
 
             life -= damage;
 
-            if(damage > 0)
+            if((damage > 0 || am.knockBack) && !blocking)
             {
                 Damage();
-                GetComponent<Renderer>().material.color = Color.red;
-                Invoke("ColorReset", 0.1f);
+                if(damage > 0)
+                {
+                    GetComponent<Renderer>().material.color = Color.red;
+                    Invoke("ColorReset", 0.1f);
+                }
+                if(am.knockBack)
+                {
+                    am.KnockBack(gameObject);
+                }
             }
 
             damage = 0;
-
-            if(am.knockBack)
-            {
-                am.KnockBack(gameObject);
-            }
         }
         if(collision.gameObject.tag == "Dead")
         {
@@ -391,13 +427,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /*IEnumerator PushJ()
+    {
+        float longPush = 0.001f;
+        float passed = 0.0f;
+        while(Input.GetKey("j") && passed <= longPush)
+        {
+            passed += Time.deltaTime * Time.deltaTime * Time.deltaTime * 30;
+            Debug.Log(passed);
+            yield return null;
+        }
+        if(passed < longPush) Attack();
+        else Block();
+    }*/
+
     void Action(string action, string mode)
     {
         actionAnime = action;
         if(mode == "attack")
         {
             goAttack = true;
-            soundPlayer.PlayOneShot(punch);
         }
         if(mode == "block")
         {
@@ -407,6 +456,54 @@ public class PlayerController : MonoBehaviour
         {
             goDuck = true;
         }
+    }
+
+    void Attack(string[] attack, string[] parry)
+    {
+        if(onGround && !damaged)
+        {
+            if(IsInvoking("ComboReset"))
+            {
+                CancelInvoke("ComboReset");
+            }
+            Invoke("ComboReset", comboInterval);
+            blocking = false;
+
+            /*if(blocking)
+            {
+                am.state = "knee";
+                Action(kneeKickAnime, "attack");
+                blocking = false;
+            }
+            else if(ducking)
+            {
+                am.state = "low";
+                Action(bodyJabAnime, "attack");
+            }
+            else */if(!comboFinisher)
+            {
+                if(cd.beingAttacked)
+                {
+                    Action(parry[(combocount - 1) % 2], "attack");
+                    cd.beingAttacked = false;
+                }
+                else
+                {
+                    Action(attack[combocount - 1], "attack");
+                }
+                combocount = Mathf.Min(combocount + 1, maxcombo);
+                //passedTimes = 0.0f;
+            }
+            else
+            {
+                ComboReset();
+            }
+        }
+    }
+
+    void Block()
+    {
+        blocking = true;
     }
 
     void Damage()
@@ -442,5 +539,22 @@ public class PlayerController : MonoBehaviour
     void Teleport(Vector3 pos)
     {
         gameObject.transform.position = pos;
+    }
+
+    public void SetHigh()
+    {
+        amgr.state = "high";
+    }
+    public void SetLow()
+    {
+        amgr.state = "low";
+    }
+    public void SetGuardBreak()
+    {
+        amgr.state = "guardbreak";
+    }
+    public void PlaySound()
+    {
+        soundPlayer.PlayOneShot(punch);
     }
 }

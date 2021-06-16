@@ -82,7 +82,7 @@ public class BattleFieldManager : MonoBehaviour
         {
             roundEnd = true;
         }
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" && eventEnd)
         {
             mainCamera.GetComponent<CameraManager>().resetPos = true;
         }

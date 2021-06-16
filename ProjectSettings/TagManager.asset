@@ -27,9 +27,9 @@ TagManager:
   - Attack
   - Ignore
   - Player
-  - 
-  - 
-  - 
+  - Enemy
+  - Shield
+  - PlayerAttack
   - 
   - 
   - 

@@ -18,7 +18,10 @@ public class EnemyController : MonoBehaviour
     Animator animator;
     public string stopAnime = "RichmenIdle";
     public string runAnime = "RichmenRun";
-    public string comboAnime = "RichmenCombo1";
+    public string comboAnime = "onetwo gap";
+    string[] comboStack;
+    int stackPointer = 0;
+    int stackLen;
     public string damagedAnime = "RichmenDamaged";
     public string deadAnime = "RichmenDead";
     string nowAnime;
@@ -30,6 +33,7 @@ public class EnemyController : MonoBehaviour
     public bool damaged = false;
     public bool moving = false;
     public bool blocking = false;
+    public bool ducking = false;
     int diffence = 1;
     bool dead = false;
 
@@ -38,7 +42,11 @@ public class EnemyController : MonoBehaviour
     BoxCollider2D abc;
     public bool high = false;
     public bool low = false;
-    bool isCalledFirst = true;
+    public bool knee = false;
+    //bool isCalledFirst = true;
+
+    Rigidbody2D rbody;
+    PlayerController pc;
 
     AudioSource soundPlayer;
     public AudioClip punch;
@@ -59,7 +67,15 @@ public class EnemyController : MonoBehaviour
             am = attackZone.GetComponent<AttackManager>();
             abc = attackZone.GetComponent<BoxCollider2D>();
         }
-        soundPlayer = GetComponent<AudioSource>(); 
+        soundPlayer = GetComponent<AudioSource>();
+
+        comboStack = comboAnime.Split(' ');
+        stackLen = comboStack.Length;
+
+        rbody = GetComponent<Rigidbody2D>();
+        pc = player.GetComponent<PlayerController>();
+
+        Debug.Log(stackLen + "stacks");
     }
 
     // Update is called once per frame
@@ -77,13 +93,18 @@ public class EnemyController : MonoBehaviour
             Invoke("ColorReset", 0.1f);
         }*/
 
-        if(moving || dead)
+        if(pc.onGround)
+        {
+            playerPos = player.transform.position;
+        }
+
+        /*if(moving || dead)
         {
             return;
-        }
+        }*/
         
         float xPosition = transform.position.x;
-        float xPlayerPosition = player.transform.position.x;
+        float xPlayerPosition = playerPos.x;
         
         if(xPosition - xPlayerPosition > 0)
         {
@@ -102,8 +123,6 @@ public class EnemyController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Rigidbody2D rbody = GetComponent<Rigidbody2D>();
-        PlayerController pc = player.GetComponent<PlayerController>();
         onGround = Physics2D.Linecast(transform.position, transform.position -(transform.up * 0.1f), groundLayer);
 
         if(damaged || dead)
@@ -111,27 +130,30 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-        if(pc.onGround)
+        if(goAttack)
         {
-            playerPos = player.transform.position;
+            Combo();
+            attacking = true;
+            goAttack = false;
         }
-
-        if(CheckLength(playerPos, range) && !attacking && onGround)
+        else if(CheckLength(playerPos, range) && onGround && !attacking)
         {
             if(CheckLength(playerPos, maai))
             {
                 rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
                 goAttack = true;
                 moving = false;
+                animator.SetBool("move", false);
             }
             else
             {
                 rbody.velocity = new Vector2(speed * transform.localScale.x, rbody.velocity.y);
                 moving = true;
+                animator.SetBool("move", true);
             }
         }
-
-        if(attacking)
+        
+        /*if(attacking)
         {
             if(high)
             {
@@ -140,6 +162,10 @@ public class EnemyController : MonoBehaviour
             else if(low)
             {
                 am.state = "low";
+            }
+            else if(knee)
+            {
+                am.state = "knee";
             }
             if(abc.enabled == true)
             {
@@ -153,32 +179,42 @@ public class EnemyController : MonoBehaviour
             {
                 isCalledFirst = true;
             }
-        }
+        }*/
 
-        if(!attacking && !damaged)
-        {
-            if(goAttack)
+        //if(!attacking && !damaged)
+        //{
+            /*if(goAttack)
             {
-                nowAnime = comboAnime;
+                Combo();
                 goAttack = false;
             }
-            else
+            /*else
             {
                 if(moving)
                 {
-                    nowAnime = runAnime;
+                    //nowAnime = runAnime;
+                    animator.SetTrigger("move");
                 }
                 else
                 {
                     nowAnime = stopAnime;
                 }
             }
-        }
-        if(nowAnime != oldAnime)
+        //}
+        /*if(nowAnime != oldAnime)
         {
             animator.Play(nowAnime);
             oldAnime = nowAnime;
         }
+
+        /*if(attacking && CheckLength(player.transform.position, maai))
+        {
+            if(blocking && pc.ducking)
+            {
+                animator.SetTrigger("KneeKick");
+                blocking = false;
+            }
+        }*/
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -190,7 +226,11 @@ public class EnemyController : MonoBehaviour
             collisionState = am.state;
             damage = am.val;
 
-            if(collisionState == "high" && blocking)
+            if(!ducking && collisionState == "knee")
+            {
+                return;
+            }
+            if(collisionState == "high" && blocking && !ducking || (collisionState == "low" || collisionState == "knee") && blocking && ducking)
             {
                 damage -= diffence;
                 soundPlayer.PlayOneShot(guardHit);
@@ -203,6 +243,10 @@ public class EnemyController : MonoBehaviour
                 if(gap)
                 {
                     Damaged();
+                }
+                else
+                {
+                    soundPlayer.PlayOneShot(punchHit);
                 }
                 GetComponent<Renderer>().material.color = Color.red;
                 Invoke("ColorReset", 0.1f);
@@ -218,17 +262,21 @@ public class EnemyController : MonoBehaviour
     void Damaged()
     {
         soundPlayer.PlayOneShot(punchHit);
-        animator.Play(damagedAnime, 0, 0);
+        attacking = false;
+        stackPointer = 0;
+        //animator.Play(damagedAnime, 0, 0);
+        animator.SetTrigger("damage");
         oldAnime = damagedAnime;
     }
 
     void Dead()
     {
         dead = true;
-        GameObject shield = transform.Find("shield").gameObject;
-        Destroy(shield);
+        /*GameObject shield = transform.Find("shield").gameObject;
+        Destroy(shield);*/
         GetComponent<CapsuleCollider2D>().enabled = false;
-        animator.Play(deadAnime);
+        //animator.Play(deadAnime);
+        animator.SetTrigger("die");
         Destroy(gameObject, 1.0f);
     }
 
@@ -241,5 +289,33 @@ public class EnemyController : MonoBehaviour
     {
         float d = Vector2.Distance(transform.position, targetPos);
         return d < length && d != 0;
+    }
+
+    public void SetHigh()
+    {
+        am.state = "high";
+    }
+    public void SetLow()
+    {
+        am.state = "low";
+    }
+    public void SetGuardBreak()
+    {
+        am.state = "guardbreak";
+    }
+    public void PlaySound()
+    {
+        soundPlayer.PlayOneShot(punch);
+    }
+
+    public void Combo()
+    {
+        animator.SetTrigger(comboStack[stackPointer]);
+        if(comboStack[stackPointer] == "exit")
+        {
+            attacking = false;
+            Debug.Log("exit");
+        }
+        stackPointer = (stackPointer + 1) % stackLen;
     }
 }
