@@ -233,7 +233,7 @@ MonoBehaviour:
   kickAnimes:
   - PlayerLowKick
   - PlayerKick
-  - PlayerLowKick
+  - PlayerKick
   parryAnimes:
   - PlayerLeftParrying
   - PlayerRightParrying

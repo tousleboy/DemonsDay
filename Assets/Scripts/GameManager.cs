@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     public GameObject text;
     public GameObject headSet;
     public GameObject MoneyText;
-    public GameObject Pannel;
+    public GameObject Pannel1;
+    public GameObject Pannel2;
     public Sprite gameOverSpr;
     public Sprite gameClearSpr;
     public GameObject Life;
@@ -39,7 +40,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         mainImage.SetActive(false);
-        Pannel.SetActive(false);
+        Pannel1.SetActive(false);
+        Pannel2.SetActive(false);
         lifeImage = Life.GetComponent<Image>();
         message = text.GetComponent<Text>();
         money = MoneyText.GetComponent<Text>();
@@ -101,7 +103,7 @@ public class GameManager : MonoBehaviour
 
         if(PlayerController.gameState == "gameover")
         {
-            Pannel.SetActive(true);
+            Pannel1.SetActive(true);
             mainImage.GetComponent<Image>().sprite = gameOverSpr;
             mainImage.SetActive(true);
         }
@@ -115,7 +117,7 @@ public class GameManager : MonoBehaviour
         }
         if(PlayerController.gameState == "gameclear")
         {
-            Pannel.SetActive(true);
+            Pannel2.SetActive(true);
             mainImage.GetComponent<Image>().sprite = gameClearSpr;
             mainImage.SetActive(true);
             CheckPointManager.active = false;

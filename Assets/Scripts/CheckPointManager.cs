@@ -8,6 +8,7 @@ public class CheckPointManager : MonoBehaviour
     public static bool active = false;
     AudioSource soundPlayer;
     public AudioClip sound;
+    bool isPlayerIn;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,19 +20,27 @@ public class CheckPointManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       Debug.Log(active); 
-    }
-
-    void OnTriggerStay2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Player")
-        {
-            if(Input.GetAxisRaw("Vertical") > 0 && !active)
+        if(Input.GetAxisRaw("Vertical") > 0 && !active && isPlayerIn)
             {
                 soundPlayer.PlayOneShot(sound);
                 paint.SetActive(true);
                 active = true;
             }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            isPlayerIn = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            isPlayerIn = false;
         }
     }
 }

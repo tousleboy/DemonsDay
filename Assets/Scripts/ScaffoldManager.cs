@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ScaffoldManager : MonoBehaviour
 {
+    bool isPlayerOn = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,7 +14,11 @@ public class ScaffoldManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetButton("Jump") && Input.GetAxisRaw("Vertical") < 0 && isPlayerOn)
+        {
+            GetComponent<BoxCollider2D>().isTrigger = true;
+            gameObject.layer = 0;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -34,17 +39,17 @@ public class ScaffoldManager : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            if(Input.GetButton("Jump") && Input.GetAxisRaw("Vertical") < 0)
-            {
-                GetComponent<BoxCollider2D>().isTrigger = true;
-                gameObject.layer = 0;
-            }
+            isPlayerOn = true;
         }
     }
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        GetComponent<BoxCollider2D>().isTrigger = true;
-        gameObject.layer = 0;
+        if(collision.gameObject.tag == "Player")
+        {
+            GetComponent<BoxCollider2D>().isTrigger = true;
+            isPlayerOn = false;
+            gameObject.layer = 0;
+        }
     }
 }
