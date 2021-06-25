@@ -8,10 +8,12 @@ public class ChangeScene : MonoBehaviour
     public string sceneName;
     public float delay = 0.0f;
     public bool resetProgress = true;
+    public bool continueMusic = true;
+    GameObject mp;
     // Start is called before the first frame update
     void Start()
     {
-        
+        mp = GameObject.FindGameObjectWithTag("Music");
     }
 
     // Update is called once per frame
@@ -31,6 +33,10 @@ public class ChangeScene : MonoBehaviour
 
     void GoNextScene()
     {
+        if(continueMusic && mp != null)
+        {
+            DontDestroyOnLoad(mp);
+        }
         SceneManager.LoadScene(sceneName);
     }
 }

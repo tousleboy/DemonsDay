@@ -5,6 +5,7 @@ using UnityEngine;
 public class CheckPointManager : MonoBehaviour
 {
     GameObject paint;
+    GameObject wall;
     public static bool active = false;
     AudioSource soundPlayer;
     public AudioClip sound;
@@ -13,8 +14,10 @@ public class CheckPointManager : MonoBehaviour
     void Start()
     {
         paint = transform.Find("paint").gameObject;
+        wall = transform.Find("wall").gameObject;
         soundPlayer = GetComponent<AudioSource>();
         paint.SetActive(active);
+        wall.SetActive(active);
     }
 
     // Update is called once per frame

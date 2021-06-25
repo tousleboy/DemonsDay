@@ -52,6 +52,7 @@ public class EnemyController : MonoBehaviour
     public AudioClip punch;
     public AudioClip punchHit;
     public AudioClip guardHit;
+    public AudioClip oh;
 
     // Start is called before the first frame update
     void Start()
@@ -306,6 +307,11 @@ public class EnemyController : MonoBehaviour
     public void PlaySound()
     {
         soundPlayer.PlayOneShot(punch);
+    }
+
+    public void Voice()
+    {
+        soundPlayer.PlayOneShot(oh);
     }
 
     public void Combo()

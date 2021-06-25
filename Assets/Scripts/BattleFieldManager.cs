@@ -14,6 +14,7 @@ public class BattleFieldManager : MonoBehaviour
 
     bool eventStart = false;
     bool eventEnd = false;
+    bool playerIn = false;
     bool roundEnd = true;
     bool autoLock = true;
 
@@ -42,7 +43,7 @@ public class BattleFieldManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(mainCamera.transform.position.x >= transform.position.x && !eventStart && !eventEnd)
+        if(mainCamera.transform.position.x >= transform.position.x && !eventStart && !eventEnd && playerIn)
         {
             eventStart = true;
             mainCamera.GetComponent<CameraManager>().locked = true;
@@ -73,6 +74,14 @@ public class BattleFieldManager : MonoBehaviour
                 enemy.GetComponent<EnemyController>().comboAnime = comboes[round - 1];
                 roundEnd = false;
             }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            playerIn = true;
         }
     }
 
