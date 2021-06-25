@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
     bool goAttack = false;
     public bool attacking = false;//アニメーション内で制御
+    string attackTrigger;
     bool goBlock = false;
     public bool blocking = false;
     public bool parry = false;
@@ -148,11 +149,11 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown("j"))
         {
             //StartCoroutine("PushJ");
-            Attack(comboAnimes, parryAnimes);
+            Attack("punch");
         }
         if(Input.GetKeyDown("k"))
         {
-            Attack(kickAnimes, cutAnimes);
+            Attack("kick");
         }
 
         /*if(GetKeyDown("j"))
@@ -279,9 +280,13 @@ public class PlayerController : MonoBehaviour
         {
             if(onGround)
             {
+                animator.SetBool("onground", true);
+                animator.SetBool("duck", ducking);
                 if(goAttack)
                 {
-                    nowAnime = actionAnime;
+                    //nowAnime = actionAnime;
+                    Debug.Log(attackTrigger);
+                    animator.SetTrigger(attackTrigger);
                     if(goAttack)
                     {
                         goAttack = false;
@@ -301,46 +306,52 @@ public class PlayerController : MonoBehaviour
                 {
                     nowAnime = elbowBlockAnime;
                 }*/
-                else if(blocking)
+                /*else if(blocking)
                 {
                     nowAnime = blockAnime;
                 }
                 else if(ducking)
                 {
                     nowAnime = duckingAnime;
-                }
+                }*/
                 else if(axisH == 0)
                 {
-                    nowAnime = stopAnime;
+                    //nowAnime = stopAnime;
+                    animator.SetBool("move", false);
                 }
                 else
                 {
-                    nowAnime = runAnime;
+                    //nowAnime = runAnime;
+                    animator.SetBool("move", true);
                 }
             }
             else
             {
                 goAttack = false;
+                animator.SetBool("onground", false);
                 if(rbody.velocity.y > 0)
                 {
-                    nowAnime = jumpUpAnime;
+                    animator.SetTrigger("jumpup");
+                    //nowAnime = jumpUpAnime;
                 }
                 else
                 {
-                    nowAnime = jumpAnime;
+                    animator.SetTrigger("jumpdown");
+                    //nowAnime = jumpAnime;
                 }
             }
         }
         else if(goAttack)
         {
-            nowAnime = actionAnime;
+            animator.SetTrigger(attackTrigger);
+            //nowAnime = actionAnime;
             goAttack = false;
         }
-        if(nowAnime != oldAnime)
+        /*if(nowAnime != oldAnime)
         {
             oldAnime = nowAnime;
             animator.Play(nowAnime);
-        }
+        }*/
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -458,7 +469,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Attack(string[] attack, string[] parry)
+    void Attack(string mode)
     {
         if(onGround && !damaged)
         {
@@ -482,14 +493,33 @@ public class PlayerController : MonoBehaviour
             }
             else */if(!comboFinisher)
             {
+                goAttack = true;
                 if(cd.beingAttacked)
                 {
-                    Action(parry[(combocount - 1) % 2], "attack");
+                    if(mode == "punch")
+                    {
+                        //Action(parryAnimes[(combocount - 1) % 2], "attack");
+                        attackTrigger = "parry";
+                    }
+                    else if(mode == "kick")
+                    {
+                        //Action(cutAnimes[(combocount - 1) % 1] , "attack");
+                        attackTrigger = "cut";
+                    }
+
                     cd.beingAttacked = false;
                 }
                 else
                 {
-                    Action(attack[combocount - 1], "attack");
+                    /*if(mode == "punch")
+                    {
+                        Action(comboAnimes[combocount - 1], "attack");
+                    }
+                    else if(mode == "kick")
+                    {
+                        Action(kickAnimes[combocount - 1], "attack");
+                    }*/
+                    attackTrigger = mode;
                 }
                 combocount = Mathf.Min(combocount + 1, maxcombo);
                 //passedTimes = 0.0f;
@@ -511,13 +541,15 @@ public class PlayerController : MonoBehaviour
         damaged = true;
         soundPlayer.PlayOneShot(punchHit);
         oldAnime = damagedAnime;
-        animator.Play(damagedAnime);
+        //animator.Play(damagedAnime);
+        animator.SetTrigger("damaged");
     }
 
     void Wait()
     {
         gameState = "waiting";
-        animator.Play(stopAnime);
+        //animator.Play(stopAnime);
+        animator.SetBool("wait", true);
         rbody.velocity = new Vector2(0, rbody.velocity.y);
     }
 
@@ -532,7 +564,7 @@ public class PlayerController : MonoBehaviour
     void Goal()
     {
         gameState = "gameclear";
-        animator.Play(stopAnime);
+        //animator.Play(stopAnime);
         rbody.velocity = new Vector2(0, rbody.velocity.y);
     }
 
