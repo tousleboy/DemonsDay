@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
     CollisionDetector cd;
 
     public static int life;
-    int maxLife;
+    public static int maxLife = 6;
     public int damage;
     public int diffence = 1;
     public bool damaged = false;
@@ -91,9 +91,8 @@ public class PlayerController : MonoBehaviour
         oldAnime = stopAnime;
         amgr = transform.Find("AttackZone").gameObject.GetComponent<AttackManager>();
         cd = transform.Find("CollisionDetector").gameObject.GetComponent<CollisionDetector>();
-        life = 3;
         maxcombo = comboAnimes.Length;
-        maxLife = life;
+        life = maxLife;
         gameState = "playing";
         soundPlayer = GetComponent<AudioSource>();
     }

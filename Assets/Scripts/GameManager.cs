@@ -13,13 +13,13 @@ public class GameManager : MonoBehaviour
     public GameObject Pannel2;
     public Sprite gameOverSpr;
     public Sprite gameClearSpr;
-    public GameObject Life;
+    /*public GameObject Life;
     public Sprite lifeZero;
     public Sprite lifeOne;
     public Sprite lifeTwo;
-    public Sprite lifeThree;
+    public Sprite lifeThree;*/
 
-    Image lifeImage;
+    //Image lifeImage;
     Text message;
     Text money;
     GameObject Boss;
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
         mainImage.SetActive(false);
         Pannel1.SetActive(false);
         Pannel2.SetActive(false);
-        lifeImage = Life.GetComponent<Image>();
+        //lifeImage = Life.GetComponent<Image>();
         message = text.GetComponent<Text>();
         money = MoneyText.GetComponent<Text>();
         soundPlayer = headSet.GetComponent<AudioSource>();
@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     { 
-        if(PlayerController.life >= 3)
+        /*if(PlayerController.life >= 3)
         {
             lifeImage.sprite = lifeThree;
         }
@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
         else
         {
             lifeImage.sprite = lifeZero;
-        }
+        }*/
 
         if(PlayerController.score != 0)
         {
