@@ -58,10 +58,18 @@ public class GameManager : MonoBehaviour
 
         UpdateScore();
 
-        if(CheckPointManager.active == true)
+        if(CheckPointManager.progress != 0)
         {
-            GameObject cp = GameObject.FindGameObjectWithTag("Respawn");
-            Vector3 pos = cp.transform.position;
+            GameObject[] cps = GameObject.FindGameObjectsWithTag("Respawn");
+            int i = 0;
+            bool done = false;
+            while(i < cps.Length && !done)
+            {
+                int progress = cps[i].GetComponent<CheckPointManager>().individualNum;
+                if(progress == CheckPointManager.progress) done = true;
+                if(!done) i++;
+            }
+            Vector3 pos = cps[i].transform.position;
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.transform.position = pos;
         }
@@ -120,7 +128,7 @@ public class GameManager : MonoBehaviour
             Pannel2.SetActive(true);
             mainImage.GetComponent<Image>().sprite = gameClearSpr;
             mainImage.SetActive(true);
-            CheckPointManager.active = false;
+            CheckPointManager.progress = 0;
         }
     }
 

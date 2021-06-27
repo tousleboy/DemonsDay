@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beingAttacked: 0
+  nextToEnemy: 0
 --- !u!1 &7404245662279908068
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +223,8 @@ MonoBehaviour:
     m_Bits: 256
   onGround: 0
   howManyJump: 0
+  backStep: 2
+  backStepping: 0
   stopAnime: PlayerIdle
   runAnime: PlayerRun
   jumpAnime: PlayerJump

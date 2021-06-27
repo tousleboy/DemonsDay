@@ -241,7 +241,7 @@ public class EnemyController : MonoBehaviour
             {
                 enemyLife -= damage;
                 damage = 0;
-                if(gap)
+                if(gap || (am.knockBack && !blocking))
                 {
                     Damaged();
                 }

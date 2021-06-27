@@ -26,7 +26,7 @@ public class ChangeScene : MonoBehaviour
     {
         if(resetProgress)
         {
-            CheckPointManager.active = false;
+            CheckPointManager.progress = 0;
         }
         Invoke("GoNextScene", delay);
     }

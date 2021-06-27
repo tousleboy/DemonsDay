@@ -5,6 +5,7 @@ using UnityEngine;
 public class CollisionDetector : MonoBehaviour
 {
     public bool beingAttacked = false;
+    public bool nextToEnemy = false;
     //PlayerController pc;
     // Start is called before the first frame update
     void Start()
@@ -24,7 +25,12 @@ public class CollisionDetector : MonoBehaviour
         {
             beingAttacked = true;
             Invoke("reset", 0.5f);
-            Debug.Log("danger");
+            //Debug.Log("danger");
+        }
+        if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Boss")
+        {
+            nextToEnemy = true;
+            Debug.Log("enemyin");
         }
     }
 
@@ -34,6 +40,10 @@ public class CollisionDetector : MonoBehaviour
         {
             beingAttacked = false;
             Debug.Log("danger");
+        }
+        if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Boss")
+        {
+            nextToEnemy = false;
         }
     }
 

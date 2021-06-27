@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour
     int jumpCount = 0;
     bool jumpStop = false;
 
+    public float backStep = 1.0f;
+    bool goBackStep;
+    public bool backStepping;
+
     Animator animator;
     public string stopAnime = "PlayerIdle";
     public string runAnime = "PlayerRun";
@@ -42,11 +46,11 @@ public class PlayerController : MonoBehaviour
     bool goAttack = false;
     public bool attacking = false;//アニメーション内で制御
     string attackTrigger;
-    bool goBlock = false;
+    //bool goBlock = false;
     public bool blocking = false;
     public bool parry = false;
     public bool cut = false;
-    bool goDuck = false;
+    //bool goDuck = false;
     public bool ducking = false;
     public bool combo = false;//アニメーション内で制御
     public bool comboFinisher = false;//アニメーション内で制御
@@ -127,23 +131,29 @@ public class PlayerController : MonoBehaviour
 
             damage = 0;
         }*/
+        if(!backStepping)
+        {
+            if(cd.nextToEnemy && axisH * transform.localScale.x < 0)
+            {
+                goBackStep = true;
+            }
+            else if(axisH > 0.0f)
+            {
+                transform.localScale = new Vector2(1, 1);
+            }
+            else if(axisH < 0.0f)
+            {
+                transform.localScale = new Vector2(-1, 1);
+            }
 
-        if(axisH > 0.0f)
-        {
-            transform.localScale = new Vector2(1, 1);
-        }
-        else if(axisH < 0.0f)
-        {
-            transform.localScale = new Vector2(-1, 1);
-        }
-
-        if(Input.GetButtonDown("Jump"))
-        {
-            Jump();
-        }
-        if(Input.GetButtonUp("Jump") && !onGround && rbody.velocity.y > 0)
-        {
-            jumpStop = true;
+            if(Input.GetButtonDown("Jump"))
+            {
+                Jump();
+            }
+            if(Input.GetButtonUp("Jump") && !onGround && rbody.velocity.y > 0)
+            {
+                jumpStop = true;
+            }
         }
 
         if(Input.GetKeyDown("j"))
@@ -247,15 +257,21 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if(attacking || blocking || ducking)
+        if(attacking || blocking || ducking || backStepping)
         {
             axisH = 0;
             goJump = false;
         }
 
-        if(onGround || axisH != 0)//走り
+        if((onGround || axisH != 0) && !backStepping)//走り
         {
             rbody.velocity = new Vector2(axisH * runSpeed, rbody.velocity.y);
+        }
+
+        if(goBackStep)
+        {
+            Vector2 backStepPw = new Vector2(backStep * transform.localScale.x * -1, 0);
+            rbody.AddForce(backStepPw, ForceMode2D.Impulse);
         }
 
         if((goJump && (jumpCount <= howManyJump)) || (onGround && goJump))//多段ジャンプ
@@ -285,22 +301,13 @@ public class PlayerController : MonoBehaviour
                 if(goAttack)
                 {
                     //nowAnime = actionAnime;
-                    Debug.Log(attackTrigger);
                     animator.SetTrigger(attackTrigger);
-                    if(goAttack)
-                    {
-                        goAttack = false;
-                    }
-                    if(goBlock)
-                    {
-                        goBlock = false;
-                        blocking = true;
-                    }
-                    if(goDuck)
-                    {
-                        goDuck = false;
-                        ducking = true;
-                    }
+                    goAttack = false;
+                }
+                else if(goBackStep)
+                {
+                    animator.SetTrigger("backstep");
+                    goBackStep = false;
                 }
                 /*else if(blocking && ducking)
                 {
@@ -452,7 +459,7 @@ public class PlayerController : MonoBehaviour
         else Block();
     }*/
 
-    void Action(string action, string mode)
+    /*void Action(string action, string mode)
     {
         actionAnime = action;
         if(mode == "attack")
@@ -467,7 +474,7 @@ public class PlayerController : MonoBehaviour
         {
             goDuck = true;
         }
-    }
+    }*/
 
     void Attack(string mode)
     {
@@ -558,6 +565,7 @@ public class PlayerController : MonoBehaviour
         rbody.velocity = new Vector2(0, 0);
         rbody.simulated = false;
         GetComponent<CapsuleCollider2D>().enabled = false;
+        animator.SetTrigger("die");
 
     }
 
@@ -588,5 +596,10 @@ public class PlayerController : MonoBehaviour
     public void PlaySound()
     {
         soundPlayer.PlayOneShot(punch);
+    }
+    public void TriggerOff()
+    {
+        animator.ResetTrigger("punch");
+        animator.ResetTrigger("kick");
     }
 }
