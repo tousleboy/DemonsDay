@@ -366,7 +366,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("hit");
             AttackManager am = collision.gameObject.GetComponent<AttackManager>();
-            cd.beingAttacked = false;
+            //cd.beingAttacked = false;
             collisionState = am.state;
             damage = am.val;
 
@@ -506,6 +506,7 @@ public class PlayerController : MonoBehaviour
                     {
                         //Action(parryAnimes[(combocount - 1) % 2], "attack");
                         attackTrigger = "parry";
+                        animator.SetInteger("chain", cd.chain);
                     }
                     else if(mode == "kick")
                     {
@@ -596,9 +597,12 @@ public class PlayerController : MonoBehaviour
     {
         soundPlayer.PlayOneShot(punch);
     }
-    public void TriggerOff()
+    public void PunchTriggerOff()
     {
         animator.ResetTrigger("punch");
+    }
+    public void KickTriggerOff()
+    {
         animator.ResetTrigger("kick");
     }
 }

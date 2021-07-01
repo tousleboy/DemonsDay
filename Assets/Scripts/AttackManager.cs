@@ -5,6 +5,7 @@ using UnityEngine;
 public class AttackManager : MonoBehaviour
 {
     public int val = 1;
+    public int chain = 1;
     public string state = "all";
 
     public bool knockBack = false;

@@ -699,7 +699,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 573507578716400024, guid: 8ccee71a88e6b40b692d17d3a24bb632, type: 3}
       propertyPath: comboAnime
-      value: lowkick gap exit
+      value: onetwo gap exit
       objectReference: {fileID: 0}
     - target: {fileID: 573507578716400027, guid: 8ccee71a88e6b40b692d17d3a24bb632, type: 3}
       propertyPath: m_Name

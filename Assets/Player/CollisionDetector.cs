@@ -5,6 +5,7 @@ using UnityEngine;
 public class CollisionDetector : MonoBehaviour
 {
     public bool beingAttacked = false;
+    public int chain = 1;
     public bool nextToEnemy = false;
     //PlayerController pc;
     // Start is called before the first frame update
@@ -24,7 +25,8 @@ public class CollisionDetector : MonoBehaviour
         if(collision.gameObject.tag == "Attack")
         {
             beingAttacked = true;
-            Invoke("reset", 0.5f);
+            chain = collision.gameObject.GetComponent<AttackManager>().chain;
+            //Invoke("reset", 0.5f);
             //Debug.Log("danger");
         }
         if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Boss")
@@ -39,7 +41,7 @@ public class CollisionDetector : MonoBehaviour
         if(collision.gameObject.tag == "Attack")
         {
             beingAttacked = false;
-            Debug.Log("danger");
+            Debug.Log("dangergone");
         }
         if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Boss")
         {
