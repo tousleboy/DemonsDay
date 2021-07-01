@@ -27,10 +27,28 @@ public class MusicChangerScript : MonoBehaviour
             AudioSource auds = musicPlayer.GetComponent<AudioSource>();
             if(auds.clip != music)
             {
-                auds.clip = music;
-                auds.Play();
+                StartCoroutine(AudioChange(auds));
             }
             activated = true;
+        }
+    }
+
+    IEnumerator AudioChange(AudioSource auds)
+    {
+        float i;
+        float downspeed = 0.1f;
+        float upspeed = 0.2f;
+        for(i = 1.0f; i >= 0.0f; i -= downspeed)
+        {
+            auds.volume = i;
+            yield return null;
+        }
+        audio.clip = music;
+        auds.Play();
+        for(i = 0.0f; i >= 1.0f; i += upspeed)
+        {
+            auds.volume = i;
+            yield return null;
         }
     }
 }
