@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour
     public bool attacking = false;
     public bool gap = false;
     bool goAttack = false;
+    bool isPlayerNear = false;
 
     Animator animator;
     public string stopAnime = "RichmenIdle";
@@ -125,6 +126,7 @@ public class EnemyController : MonoBehaviour
     void FixedUpdate()
     {
         onGround = Physics2D.Linecast(transform.position, transform.position -(transform.up * 0.1f), groundLayer);
+        isPlayerNear = CheckLength(playerPos, maai);
 
         if(damaged || dead)
         {
@@ -139,7 +141,7 @@ public class EnemyController : MonoBehaviour
         }
         else if(CheckLength(playerPos, range) && onGround && !attacking)
         {
-            if(CheckLength(playerPos, maai))
+            if(isPlayerNear)
             {
                 rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
                 goAttack = true;
@@ -241,7 +243,7 @@ public class EnemyController : MonoBehaviour
             {
                 enemyLife -= damage;
                 damage = 0;
-                if(gap || (am.knockBack && !blocking))
+                if(gap || (am.knockBack && damaged))
                 {
                     Damaged();
                 }
@@ -253,7 +255,7 @@ public class EnemyController : MonoBehaviour
                 Invoke("ColorReset", 0.1f);
             }
 
-            if(am.knockBack && !blocking)
+            if(am.knockBack && damaged)
             {
                 am.KnockBack(gameObject);
             }
@@ -316,6 +318,13 @@ public class EnemyController : MonoBehaviour
 
     public void Combo()
     {
+        if(!isPlayerNear && comboStack[stackPointer] == "gap")
+        {
+            stackPointer = 0;
+            attacking = false;
+            animator.SetTrigger("exit");
+            return;
+        }
         animator.SetTrigger(comboStack[stackPointer]);
         if(comboStack[stackPointer] == "exit")
         {

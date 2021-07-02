@@ -4870,6 +4870,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 842812180335989722, guid: 156c9dade900945068fccf7708013fad, type: 3}
+      propertyPath: sceneName
+      value: Stage3
+      objectReference: {fileID: 0}
+    - target: {fileID: 842812180335989722, guid: 156c9dade900945068fccf7708013fad, type: 3}
+      propertyPath: continueMusic
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 156c9dade900945068fccf7708013fad, type: 3}
 --- !u!1001 &1201997066
@@ -7883,7 +7891,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5784901006901450715, guid: 562bb267cda794370aa7e9bf073e33ba, type: 3}
       propertyPath: comboes.Array.data[0]
-      value: lowkick gap exit
+      value: onetwothree gap exit
       objectReference: {fileID: 0}
     - target: {fileID: 5784901006901450715, guid: 562bb267cda794370aa7e9bf073e33ba, type: 3}
       propertyPath: comboes.Array.data[1]
@@ -8033,7 +8041,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5784901006901450715, guid: 562bb267cda794370aa7e9bf073e33ba, type: 3}
       propertyPath: comboes.Array.data[0]
-      value: onetwo onetwo gap exit
+      value: onetwo onetwothree gap exit
       objectReference: {fileID: 0}
     - target: {fileID: 5784901006901450715, guid: 562bb267cda794370aa7e9bf073e33ba, type: 3}
       propertyPath: comboes.Array.data[1]
@@ -8041,7 +8049,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5784901006901450715, guid: 562bb267cda794370aa7e9bf073e33ba, type: 3}
       propertyPath: comboes.Array.data[2]
-      value: onetwo lowkick onetwo gap exit
+      value: onetwothree lowkick onetwo gap exit
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 562bb267cda794370aa7e9bf073e33ba, type: 3}

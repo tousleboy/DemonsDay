@@ -36,16 +36,16 @@ public class MusicChangerScript : MonoBehaviour
     IEnumerator AudioChange(AudioSource auds)
     {
         float i;
-        float downspeed = 0.1f;
-        float upspeed = 0.2f;
+        float downspeed = 0.01f;
+        float upspeed = 0.01f;
         for(i = 1.0f; i >= 0.0f; i -= downspeed)
         {
             auds.volume = i;
             yield return null;
         }
-        musicPlayer.GetComponent<AudioSource>().clip = music;
+        auds.clip = music;
         auds.Play();
-        for(i = 0.0f; i >= 1.0f; i += upspeed)
+        for(i = 0.0f; i <= 1.0f; i += upspeed)
         {
             auds.volume = i;
             yield return null;

@@ -369,16 +369,18 @@ public class PlayerController : MonoBehaviour
             //cd.beingAttacked = false;
             collisionState = am.state;
             damage = am.val;
+            bool blockSuccess = false;
 
             if(collisionState == "high" && (blocking || parry) || collisionState == "low" && (blocking || cut))
             {
                 damage -= diffence;
+                blockSuccess = true;
                 soundPlayer.PlayOneShot(guardHit);
             }
 
             life -= damage;
 
-            if((damage > 0 || am.knockBack) && !blocking)
+            if((damage > 0 || am.knockBack) && !blockSuccess)
             {
                 Damage();
                 if(damage > 0)
@@ -386,10 +388,10 @@ public class PlayerController : MonoBehaviour
                     GetComponent<Renderer>().material.color = Color.red;
                     Invoke("ColorReset", 0.1f);
                 }
-                if(am.knockBack)
-                {
-                    am.KnockBack(gameObject);
-                }
+            }
+            if(am.knockBack && !blockSuccess)
+            {
+                am.KnockBack(gameObject);
             }
 
             damage = 0;
@@ -564,7 +566,7 @@ public class PlayerController : MonoBehaviour
     {
         rbody.velocity = new Vector2(0, 0);
         rbody.simulated = false;
-        GetComponent<CapsuleCollider2D>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
         animator.SetTrigger("die");
 
     }
