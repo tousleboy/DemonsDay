@@ -9,6 +9,7 @@ public class AttackManager : MonoBehaviour
     public string state = "all";
 
     public bool knockBack = false;
+    public bool guardBreak = false;
     public float hmkb = 0.0f; //how many knockback
 
     // Start is called before the first frame update

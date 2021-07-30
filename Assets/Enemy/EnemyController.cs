@@ -14,7 +14,7 @@ public class EnemyController : MonoBehaviour
     public bool attacking = false;
     public bool gap = false;
     bool goAttack = false;
-    bool isPlayerNear = false;
+    public bool isPlayerNear = false;
 
     Animator animator;
     public string stopAnime = "RichmenIdle";
@@ -33,7 +33,9 @@ public class EnemyController : MonoBehaviour
     string collisionState;
     public bool damaged = false;
     public bool moving = false;
-    public bool blocking = false;
+    //public bool blocking = false;
+    public bool parry = false;
+    public bool cut = false;
     public bool ducking = false;
     int diffence = 1;
     bool dead = false;
@@ -52,6 +54,7 @@ public class EnemyController : MonoBehaviour
     AudioSource soundPlayer;
     public AudioClip punch;
     public AudioClip punchHit;
+    public AudioClip heavyHit;
     public AudioClip guardHit;
     public AudioClip oh;
 
@@ -135,8 +138,8 @@ public class EnemyController : MonoBehaviour
 
         if(goAttack)
         {
-            Combo();
             attacking = true;
+            Combo();
             goAttack = false;
         }
         else if(CheckLength(playerPos, range) && onGround && !attacking)
@@ -228,34 +231,34 @@ public class EnemyController : MonoBehaviour
             AttackManager am = collision.gameObject.GetComponent<AttackManager>();
             collisionState = am.state;
             damage = am.val;
+            bool blockSuccess = false;
 
             if(!ducking && collisionState == "knee")
             {
                 return;
             }
-            if(collisionState == "high" && blocking && !ducking || (collisionState == "low" || collisionState == "knee") && blocking && ducking)
+            if((collisionState == "high" && parry || collisionState == "low" && cut) && !am.guardBreak)
             {
                 damage -= diffence;
                 soundPlayer.PlayOneShot(guardHit);
+                blockSuccess = true;
             }
             
-            if(damage > 0)
+            if(damage > 0 && !blockSuccess)
             {
                 enemyLife -= damage;
                 damage = 0;
-                if(gap || (am.knockBack && damaged))
+                if(am.guardBreak) soundPlayer.PlayOneShot(heavyHit);
+                if(gap || (am.knockBack && damaged) || am.guardBreak)
                 {
                     Damaged();
                 }
-                else
-                {
-                    soundPlayer.PlayOneShot(punchHit);
-                }
+                else soundPlayer.PlayOneShot(punchHit);
                 GetComponent<Renderer>().material.color = Color.red;
                 Invoke("ColorReset", 0.1f);
             }
 
-            if(am.knockBack && damaged)
+            if(am.knockBack && !blockSuccess)
             {
                 am.KnockBack(gameObject);
             }
@@ -280,6 +283,7 @@ public class EnemyController : MonoBehaviour
         GetComponent<CapsuleCollider2D>().enabled = false;
         //animator.Play(deadAnime);
         animator.SetTrigger("die");
+        PlayerController.concentration = Mathf.Max(PlayerController.concentration - 5, 0);
         Destroy(gameObject, 1.0f);
     }
 

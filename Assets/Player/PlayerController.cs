@@ -73,11 +73,16 @@ public class PlayerController : MonoBehaviour
     public static string gameState;
     public static int score = 0;
 
+    public static int concentration = 0;
+    GameObject conEffect;
+
     AudioSource soundPlayer;
     public AudioClip punch;
     public AudioClip punchHit;
+    public AudioClip heavyHit;
     public AudioClip guardHit;
     public AudioClip moneySound;
+    public AudioClip concentrationSound;
 
     public static string messages = "not recieved"; //recieve message from talk event. default should be "not recieved" 
     public string texts = "";
@@ -95,6 +100,8 @@ public class PlayerController : MonoBehaviour
         life = maxLife;
         gameState = "playing";
         soundPlayer = GetComponent<AudioSource>();
+        StartCoroutine("Deconcentration");
+        conEffect = transform.Find("ConcentrationEffect").gameObject;
     }
 
     // Update is called once per frame
@@ -112,6 +119,15 @@ public class PlayerController : MonoBehaviour
             messages = texts;
             texts = "";
         }
+        if(concentration >= 10)
+        {
+            if(!conEffect.activeSelf)
+            {
+                conEffect.SetActive(true);
+                soundPlayer.PlayOneShot(concentrationSound);
+            }
+        }
+        else if(conEffect.activeSelf) conEffect.SetActive(false);
         //passedTimes += Time.deltaTime;
 
         /*if(damage > 0)
@@ -130,7 +146,7 @@ public class PlayerController : MonoBehaviour
 
             damage = 0;
         }*/
-        if(!backStepping)
+        if(!backStepping && !attacking)
         {
             if(cd.nextToEnemy && axisH * transform.localScale.x < 0)
             {
@@ -207,7 +223,7 @@ public class PlayerController : MonoBehaviour
             combocount = 1;
         }*/
 
-        if(Input.GetMouseButton(1) || Input.GetAxisRaw("Vertical") > 0)
+        /*if(Input.GetMouseButton(1) || Input.GetAxisRaw("Vertical") > 0)
         {
             if(!damaged)
             {
@@ -215,10 +231,10 @@ public class PlayerController : MonoBehaviour
             }
             //Action(blockAnime, "block");
         }
-        else if(Input.GetMouseButtonUp(1) || Input.GetAxisRaw("Vertical") <= 0 /*|| !Input.GetKey("j") */|| damaged)
+        else if(Input.GetMouseButtonUp(1) || Input.GetAxisRaw("Vertical") <= 0 /*|| !Input.GetKey("j") || damaged)
         {
             blocking = false;
-        }
+        }*/
         
         if(Input.GetAxisRaw("Vertical") < 0 && !damaged)
         {
@@ -371,11 +387,12 @@ public class PlayerController : MonoBehaviour
             damage = am.val;
             bool blockSuccess = false;
 
-            if(collisionState == "high" && (blocking || parry) || collisionState == "low" && (blocking || cut))
+            if((collisionState == "high" && parry || collisionState == "low" && cut) && !am.guardBreak)
             {
                 damage -= diffence;
                 blockSuccess = true;
                 soundPlayer.PlayOneShot(guardHit);
+                concentration += 1;
             }
 
             life -= damage;
@@ -383,6 +400,7 @@ public class PlayerController : MonoBehaviour
             if((damage > 0 || am.knockBack) && !blockSuccess)
             {
                 Damage();
+                concentration = Mathf.Max(concentration - 2, 0);
                 if(damage > 0)
                 {
                     GetComponent<Renderer>().material.color = Color.red;
@@ -443,6 +461,20 @@ public class PlayerController : MonoBehaviour
         {
             rbody.velocity = new Vector2(rbody.velocity.x, rbody.velocity.y - 1.0f);
             yield return null;
+        }
+    }
+
+    IEnumerator Deconcentration()
+    {
+        int deconSpeed = 1;
+        while(gameState == "playing")
+        {
+            if(!cd.nextToEnemy && concentration != 0)
+            {
+                concentration = Mathf.Max(concentration - deconSpeed, 0);
+                yield return new WaitForSeconds(1.0f);
+            }
+            else yield return null;
         }
     }
 
@@ -520,6 +552,11 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
+                    if(mode == "kick" && concentration >= 10)
+                    {
+                        attackTrigger = "con1";
+                        concentration -= 5;
+                    }
                     /*if(mode == "punch")
                     {
                         Action(comboAnimes[combocount - 1], "attack");
@@ -528,7 +565,7 @@ public class PlayerController : MonoBehaviour
                     {
                         Action(kickAnimes[combocount - 1], "attack");
                     }*/
-                    attackTrigger = mode;
+                    else attackTrigger = mode;
                 }
                 combocount = Mathf.Min(combocount + 1, maxcombo);
                 //passedTimes = 0.0f;
@@ -591,9 +628,9 @@ public class PlayerController : MonoBehaviour
     {
         amgr.state = "low";
     }
-    public void SetGuardBreak()
+    public void SetGuardBreak1()
     {
-        amgr.state = "guardbreak";
+        amgr.state = "guardbreak1";
     }
     public void PlaySound()
     {
