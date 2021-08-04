@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
 
     bool goAttack = false;
     public bool attacking = false;//アニメーション内で制御
+    //bool delay = false;
     string attackTrigger;
     //bool goBlock = false;
     public bool blocking = false;
@@ -119,7 +120,7 @@ public class PlayerController : MonoBehaviour
             messages = texts;
             texts = "";
         }
-        if(concentration >= 10)
+        if(concentration >= ConcentrateGaugeManager.maxCon)
         {
             if(!conEffect.activeSelf)
             {
@@ -171,12 +172,12 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown("j"))
+        if(Input.GetKeyDown("j") || Input.GetButtonDown("Fire1"))
         {
             //StartCoroutine("PushJ");
             Attack("punch");
         }
-        if(Input.GetKeyDown("k"))
+        if(Input.GetKeyDown("k") || Input.GetButtonDown("Fire2"))
         {
             Attack("kick");
         }
@@ -236,7 +237,7 @@ public class PlayerController : MonoBehaviour
             blocking = false;
         }*/
         
-        if(Input.GetAxisRaw("Vertical") < 0 && !damaged)
+        if(Input.GetAxisRaw("Vertical") < 0 && !damaged && !attacking)
         {
             if(!goAttack)
             {
@@ -513,13 +514,6 @@ public class PlayerController : MonoBehaviour
     {
         if(onGround && !damaged)
         {
-            if(IsInvoking("ComboReset"))
-            {
-                CancelInvoke("ComboReset");
-            }
-            Invoke("ComboReset", comboInterval);
-            blocking = false;
-
             /*if(blocking)
             {
                 am.state = "knee";
@@ -552,10 +546,27 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    if(mode == "kick" && concentration >= 10)
+                    /*if(IsInvoking("DelayAttack"))
+                    {
+                        CancelInvoke("DelayAttack");
+                    }
+                    if(delay)
+                    {
+                        PunchTriggerOff();
+                        KickTriggerOff();
+                        mode = "delay" + mode;
+                        delay = false;
+                        if(IsInvoking("DelayTimeEnd")) CancelInvoke("DelayTimeEnd");
+                    }*/
+
+                    if(mode == "kick" && concentration >= ConcentrateGaugeManager.maxCon)
                     {
                         attackTrigger = "con1";
                         concentration -= 5;
+                    }
+                    else if((mode == "kick" && Input.GetAxisRaw("Vertical") > 0) ||(mode == "punch" && Input.GetAxisRaw("Vertical") <0))
+                    {
+                        attackTrigger = "delay" + mode;
                     }
                     /*if(mode == "punch")
                     {
@@ -619,6 +630,18 @@ public class PlayerController : MonoBehaviour
     {
         gameObject.transform.position = pos;
     }
+
+    /*public void DelayAttack()
+    {
+        delay = true;
+        if(IsInvoking("DelayTimeEnd")) CancelInvoke("DelayTimeEnd");
+        Invoke("DelayTimeEnd", 0.5f);
+    }
+
+    void DelayTimeEnd()
+    {
+        delay = false;
+    }*/
 
     public void SetHigh()
     {

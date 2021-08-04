@@ -325,8 +325,8 @@ public class EnemyController : MonoBehaviour
         if(!isPlayerNear && comboStack[stackPointer] == "gap")
         {
             stackPointer = 0;
-            attacking = false;
             animator.SetTrigger("exit");
+            attacking = false;
             return;
         }
         animator.SetTrigger(comboStack[stackPointer]);

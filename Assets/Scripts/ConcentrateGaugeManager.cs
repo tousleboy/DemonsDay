@@ -7,8 +7,8 @@ public class ConcentrateGaugeManager : MonoBehaviour
 {
     public GameObject[] gauges;
     int gaugeLen;
-    int oneGaugeValue = 5;
-    int maxCon;
+    int oneGaugeValue = 10;
+    public static int maxCon;
     int prevCon;
     int nowCon;
 
@@ -37,7 +37,7 @@ public class ConcentrateGaugeManager : MonoBehaviour
         }
         else if((prevCon / oneGaugeValue) > (nowCon / oneGaugeValue))
         {
-            TurnGauge(false, (prevCon / 5) - 1);
+            TurnGauge(false, (prevCon / oneGaugeValue) - 1);
             prevCon = nowCon;
         }
     }

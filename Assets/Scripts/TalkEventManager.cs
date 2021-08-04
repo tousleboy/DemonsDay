@@ -10,6 +10,8 @@ public class TalkEventManager : MonoBehaviour
     public float range = 1.0f;
     public float delay = 0.0f;
     public string texts;    //Japanese texts should be devided with ' ', English ver has not been releaced
+    public bool isEvent = false;
+    public float eventLength = 3.0f;
     
     bool done = false;
     // Start is called before the first frame update
@@ -35,11 +37,21 @@ public class TalkEventManager : MonoBehaviour
         {
             Invoke("SendTexts", delay);
             done = true;
+            if(isEvent)
+            {
+                PlayerController.gameState = "waiting";
+                Invoke("EventEnd", eventLength);
+            }
         }
     }
 
     void SendTexts()
     {
         pc.texts = texts;
+    }
+
+    void EventEnd()
+    {
+        PlayerController.gameState = "playing";
     }
 }

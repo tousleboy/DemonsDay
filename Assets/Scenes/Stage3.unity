@@ -2776,6 +2776,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2372817734944560871, guid: 28c6509cce481430f8378a2d85f219b5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372817734944560871, guid: 28c6509cce481430f8378a2d85f219b5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.51
+      objectReference: {fileID: 0}
     - target: {fileID: 7404245662279908064, guid: 28c6509cce481430f8378a2d85f219b5, type: 3}
       propertyPath: concentrationSound
       value: 
