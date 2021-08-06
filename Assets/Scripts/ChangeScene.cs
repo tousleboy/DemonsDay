@@ -33,9 +33,10 @@ public class ChangeScene : MonoBehaviour
 
     void GoNextScene()
     {
-        if(continueMusic && mp != null)
+        if(mp != null)
         {
-            DontDestroyOnLoad(mp);
+            if(continueMusic) DontDestroyOnLoad(mp);
+            else SceneManager.MoveGameObjectToScene(mp, SceneManager.GetActiveScene());
         }
         SceneManager.LoadScene(sceneName);
     }

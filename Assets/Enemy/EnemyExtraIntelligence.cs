@@ -10,8 +10,13 @@ public class EnemyExtraIntelligence : MonoBehaviour
     PlayerController pc;
     AttackManager pam;
 
-    bool canDuck = false;
     bool wait = false;
+
+    int punchP = 100;
+    int kickP = 100;
+    //int bodyP = 90;
+    //int highP = 90;
+    int breakP = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,14 +35,46 @@ public class EnemyExtraIntelligence : MonoBehaviour
             return;
         }
 
-        if(pc.attacking && !pc.parry && !pc.cut && ec.isPlayerNear && (ec.gap || ec.parry || ec.cut) && Probability(90) && !pam.guardBreak)
+        if(pc.attacking && !pc.parry && !pc.cut && ec.isPlayerNear && (ec.gap || ec.parry || ec.cut) && !pam.guardBreak)
         {
-            if(pam.state == "high" && !ec.parry) animator.SetTrigger("parry");
-            if(pam.state == "low" && !ec.cut) animator.SetTrigger("cut");
+            if(pam.state == "high" && !ec.parry && Probability(punchP))
+            {
+                animator.SetTrigger("parry");
+            }
+            if(pam.state == "low" && !ec.cut && Probability(kickP))
+            {
+                animator.SetTrigger("cut");
+            }
         }
-        if(pc.attacking && pam.guardBreak && pam.state == "high" && canDuck && !ec.damaged && Probability(90)) animator.SetTrigger("duck");
+        if(pc.attacking && pam.guardBreak && pam.state == "high" && !ec.damaged && Probability(breakP)) animator.SetTrigger("duck");
 
-        if(ec.damaged && pam.guardBreak && pam.state == "high" && !canDuck) canDuck = true;
+        if(ec.damaged && pam.guardBreak && pam.state == "high" && breakP == 0) breakP = 80;
+
+
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        int i = 10;
+        int j = 10;
+        if(collision.gameObject.tag == "Attack")
+        {
+            if(!ec.parry && !ec.cut)
+            {
+                punchP = Mathf.Min(punchP + 50, 100);
+                kickP = Mathf.Min(kickP + 50, 100);
+            }
+            if(ec.parry)
+            {
+                punchP = Mathf.Min(punchP + i, 100);
+                kickP = Mathf.Max(kickP - j, 0);
+            }
+            if(ec.cut)
+            {
+                punchP = Mathf.Max(punchP - j, 0);
+                kickP = Mathf.Min(kickP + i, 100);
+            }
+        }
     }
 
     bool Probability(int p)

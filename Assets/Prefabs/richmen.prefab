@@ -111,12 +111,14 @@ MonoBehaviour:
     m_Bits: 256
   attacking: 0
   gap: 0
+  isPlayerNear: 0
   stopAnime: RichmenIdle
   runAnime: RichmenRun
   comboAnime: onetwo gap
+  nextComboAnimes: []
   damagedAnime: RichmenDamaged
   deadAnime: RichmenDead
-  enemyLife: 6
+  maxLife: 6
   damaged: 0
   moving: 0
   parry: 0

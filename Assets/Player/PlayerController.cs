@@ -108,6 +108,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(texts != "")
+        {
+            messages = texts;
+            texts = "";
+        }
+
         if(gameState != "playing")
         {
             return;
@@ -115,11 +121,6 @@ public class PlayerController : MonoBehaviour
 
         axisH = Input.GetAxisRaw("Horizontal");
         //Debug.Log("texts" + texts +  " messages" + messages);
-        if(texts != "")
-        {
-            messages = texts;
-            texts = "";
-        }
         if(concentration >= ConcentrateGaugeManager.maxCon)
         {
             if(!conEffect.activeSelf)
@@ -562,7 +563,7 @@ public class PlayerController : MonoBehaviour
                     if(mode == "kick" && concentration >= ConcentrateGaugeManager.maxCon)
                     {
                         attackTrigger = "con1";
-                        concentration -= 5;
+                        concentration = concentration / 2;
                     }
                     else if((mode == "kick" && Input.GetAxisRaw("Vertical") > 0) ||(mode == "punch" && Input.GetAxisRaw("Vertical") <0))
                     {
@@ -602,12 +603,17 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("damaged");
     }
 
-    void Wait()
+    public void Wait()
     {
         gameState = "waiting";
         //animator.Play(stopAnime);
         animator.SetBool("wait", true);
         rbody.velocity = new Vector2(0, rbody.velocity.y);
+    }
+    public void StopWait()
+    {
+        gameState = "playing";
+        animator.SetBool("wait", false);
     }
 
     void Die()

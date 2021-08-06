@@ -37,7 +37,7 @@ public class MusicChangerScript : MonoBehaviour
     {
         float i;
         float downspeed = 0.01f;
-        float upspeed = 0.01f;
+        float upspeed = 0.05f;
         for(i = 1.0f; i >= 0.0f; i -= downspeed)
         {
             auds.volume = i;

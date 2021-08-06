@@ -19,7 +19,8 @@ public class EnemyController : MonoBehaviour
     Animator animator;
     public string stopAnime = "RichmenIdle";
     public string runAnime = "RichmenRun";
-    public string comboAnime = "onetwo gap";
+    public string comboAnime = "onetwo gap exit";
+    public string[] nextComboAnimes;
     string[] comboStack;
     int stackPointer = 0;
     int stackLen;
@@ -28,7 +29,8 @@ public class EnemyController : MonoBehaviour
     string nowAnime;
     string oldAnime;
 
-    public int enemyLife = 8;
+    int enemyLife;
+    public int maxLife = 8;
     int damage = 0;
     string collisionState;
     public bool damaged = false;
@@ -63,6 +65,7 @@ public class EnemyController : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerPos = player.transform.position;
+        enemyLife = maxLife;
         animator = GetComponent<Animator>();
         nowAnime = stopAnime;
         oldAnime = stopAnime;
@@ -133,6 +136,13 @@ public class EnemyController : MonoBehaviour
 
         if(damaged || dead)
         {
+            return;
+        }
+        if(PlayerController.gameState != "playing")
+        {
+            rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
+            moving = false;
+            animator.SetBool("move", false);
             return;
         }
 

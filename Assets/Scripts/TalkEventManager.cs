@@ -37,9 +37,9 @@ public class TalkEventManager : MonoBehaviour
         {
             Invoke("SendTexts", delay);
             done = true;
-            if(isEvent)
+            if(isEvent && PlayerController.messages != texts)
             {
-                PlayerController.gameState = "waiting";
+                pc.Wait();
                 Invoke("EventEnd", eventLength);
             }
         }
@@ -47,11 +47,11 @@ public class TalkEventManager : MonoBehaviour
 
     void SendTexts()
     {
-        pc.texts = texts;
+        PlayerController.messages = texts;
     }
 
     void EventEnd()
     {
-        PlayerController.gameState = "playing";
+        pc.StopWait();
     }
 }

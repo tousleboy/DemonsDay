@@ -20,8 +20,8 @@ public class ConcentrateGaugeManager : MonoBehaviour
     {
         gaugeLen = gauges.Length;
         maxCon = gaugeLen * oneGaugeValue;
-        prevCon = PlayerController.concentration;
         nowCon = PlayerController.concentration;
+        prevCon = 0;
     }
 
     // Update is called once per frame
@@ -30,14 +30,17 @@ public class ConcentrateGaugeManager : MonoBehaviour
         PlayerController.concentration = Mathf.Min(PlayerController.concentration, maxCon);
         nowCon = PlayerController.concentration;
 
+        int i;
         if((prevCon / oneGaugeValue) < (nowCon / oneGaugeValue))
         {
-            TurnGauge(true, (nowCon / oneGaugeValue) - 1);
+            for(i = 0; i < (nowCon / oneGaugeValue) - (prevCon / oneGaugeValue); i++) TurnGauge(true, (nowCon / oneGaugeValue) - 1 - i);
+            
             prevCon = nowCon;
         }
         else if((prevCon / oneGaugeValue) > (nowCon / oneGaugeValue))
         {
-            TurnGauge(false, (prevCon / oneGaugeValue) - 1);
+            for(i = 0; i < (prevCon / oneGaugeValue) - (nowCon / oneGaugeValue); i++) TurnGauge(false, (prevCon / oneGaugeValue) - 1 - i);
+            
             prevCon = nowCon;
         }
     }
