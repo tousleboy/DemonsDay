@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip moneySound;
     public AudioClip concentrationSound;
 
-    public static string messages = "not recieved"; //recieve message from talk event. default should be "not recieved" 
+    public static string messages = ""; //recieve message from talk event. default should be "not recieved" 
     public string texts = "";
 
     // Start is called before the first frame update

@@ -12,8 +12,8 @@ public class EnemyExtraIntelligence : MonoBehaviour
 
     bool wait = false;
 
-    int punchP = 100;
-    int kickP = 100;
+    int punchP = 70;
+    int kickP = 90;
     //int bodyP = 90;
     //int highP = 90;
     int breakP = 0;
@@ -35,13 +35,17 @@ public class EnemyExtraIntelligence : MonoBehaviour
             return;
         }
 
-        if(pc.attacking && !pc.parry && !pc.cut && ec.isPlayerNear && (ec.gap || ec.parry || ec.cut) && !pam.guardBreak)
+        if(pc.attacking && !pc.parry && !pc.cut && ec.isPlayerNear && (ec.gap || ec.parry || ec.cut) && !pam.guardBreak && !ec.backStepping && !ec.damaged)
         {
-            if(pam.state == "high" && !ec.parry && Probability(punchP))
+            if(!ec.parry && !ec.cut && Probability(50))
+            {
+                ec.goBackStep = true;
+            }
+            else if(pam.state == "high" && !ec.parry && Probability(punchP))
             {
                 animator.SetTrigger("parry");
             }
-            if(pam.state == "low" && !ec.cut && Probability(kickP))
+            else if(pam.state == "low" && !ec.cut && Probability(kickP))
             {
                 animator.SetTrigger("cut");
             }
@@ -61,8 +65,8 @@ public class EnemyExtraIntelligence : MonoBehaviour
         {
             if(!ec.parry && !ec.cut)
             {
-                punchP = Mathf.Min(punchP + 50, 100);
-                kickP = Mathf.Min(kickP + 50, 100);
+                punchP = Mathf.Min(punchP + 100, 100);
+                kickP = Mathf.Min(kickP + 100, 100);
             }
             if(ec.parry)
             {

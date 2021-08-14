@@ -1098,10 +1098,9 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1633810840854677120, guid: e88e93566f2b04cdba3e2eb8df1dc079, type: 3}
       propertyPath: texts
-      value: "\u3053\u3044\u3064\u306F\u304B\u306A\u308A\u306E\u624B\u7DF4\u308C\u306D
-        \u751F\u534A\u53EF\u306A\u653B\u6483\u306F\u9632\u304C\u308C\u3066\u3057\u307E\u3046\u308F
-        \u591A\u7A2E\u591A\u69D8\u306A\u653B\u6483\u3067\u64B9\u4E71\u3057\u3066
-        \u30C1\u30E3\u30F3\u30B9\u3092\u5F85\u3064\u3057\u304B\u306A\u3044\u306D"
+      value: "\u30EA\u30C3\u30C1\u30E1\u30F3\u306E\u4E0A\u7D1A\u7D44\u54E1\u306D
+        \u55A7\u5629\u3084\u6050\u559D\u306E\u8155\u3092\u898B\u8FBC\u307E\u308C\u3066\u629C\u64E2\u3055\u308C\u305F\u5974\u3089\u3088\uFF01
+        \u57FA\u672C\u306F\u96D1\u9B5A\u5171\u3068\u540C\u3058\u3060\u304B\u3089\u6839\u6C17\u5F37\u304F\u306D\uFF01"
       objectReference: {fileID: 0}
     - target: {fileID: 1633810840854677120, guid: e88e93566f2b04cdba3e2eb8df1dc079, type: 3}
       propertyPath: isEvent
@@ -1117,7 +1116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1633810840854677121, guid: e88e93566f2b04cdba3e2eb8df1dc079, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.6837835
+      value: -4.93
       objectReference: {fileID: 0}
     - target: {fileID: 1633810840854677121, guid: e88e93566f2b04cdba3e2eb8df1dc079, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1657,6 +1656,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 610632371622978001, guid: 156c9dade900945068fccf7708013fad, type: 3}
+      propertyPath: Boss
+      value: 
+      objectReference: {fileID: 451723662}
+    - target: {fileID: 610632371622978001, guid: 156c9dade900945068fccf7708013fad, type: 3}
+      propertyPath: Fade
+      value: 
+      objectReference: {fileID: 1700918679}
+    - target: {fileID: 610632371622978001, guid: 156c9dade900945068fccf7708013fad, type: 3}
+      propertyPath: bossIsGoal
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 610632371622978092, guid: 156c9dade900945068fccf7708013fad, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1743,6 +1754,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 610632371622978093, guid: 156c9dade900945068fccf7708013fad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 842812180335989722, guid: 156c9dade900945068fccf7708013fad, type: 3}
+      propertyPath: sceneName
+      value: Title
+      objectReference: {fileID: 0}
+    - target: {fileID: 842812180335989722, guid: 156c9dade900945068fccf7708013fad, type: 3}
+      propertyPath: continueMusic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7441295772253676731, guid: 156c9dade900945068fccf7708013fad, type: 3}
+      propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1916,7 +1939,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: highrichmen
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8775575347030252590, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
+      propertyPath: maxLife
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8775575347030252590, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
+      propertyPath: comboAnime
+      value: onetwothree lowkick lowkick onetwothree gap exit
+      objectReference: {fileID: 0}
+    - target: {fileID: 8775575347030252590, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
+      propertyPath: dramaticWhenDie
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8775575347030252590, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
+      propertyPath: nextComboAnimes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8775575347030252590, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
+      propertyPath: nextComboAnimes.Array.data[0]
+      value: onetwo backstep exit onetwo lowkick gap exit
+      objectReference: {fileID: 0}
+    - target: {fileID: 8775575347030252590, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
+      propertyPath: nextComboAnimes.Array.data[1]
+      value: onetwo lowkick backstep exit lowkick onetwothree gap exit
+      objectReference: {fileID: 0}
+    - target: {fileID: 8775575347030252597, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8775575347030252597, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
 --- !u!1001 &1343312407
 PrefabInstance:
@@ -2782,6 +2834,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7eec6099813aa4bce8569a927b1ae213, type: 3}
+--- !u!1 &1700918679 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4157217801313525739, guid: 156c9dade900945068fccf7708013fad, type: 3}
+  m_PrefabInstance: {fileID: 1197898120}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1710258784
 PrefabInstance:
   m_ObjectHideFlags: 0

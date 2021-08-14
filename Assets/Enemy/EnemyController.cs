@@ -16,11 +16,18 @@ public class EnemyController : MonoBehaviour
     bool goAttack = false;
     public bool isPlayerNear = false;
 
+    public bool backStepping = false;
+    public bool goBackStep = false;
+    float backStep = 6.0f;
+
     Animator animator;
     public string stopAnime = "RichmenIdle";
     public string runAnime = "RichmenRun";
+    public bool sequential = true;
     public string comboAnime = "onetwo gap exit";
     public string[] nextComboAnimes;
+    int comboChangeInterval;
+    int comboChangeNum = 0;
     string[] comboStack;
     int stackPointer = 0;
     int stackLen;
@@ -39,6 +46,7 @@ public class EnemyController : MonoBehaviour
     public bool parry = false;
     public bool cut = false;
     public bool ducking = false;
+    public bool dramaticWhenDie = false;
     int diffence = 1;
     bool dead = false;
 
@@ -83,6 +91,8 @@ public class EnemyController : MonoBehaviour
         rbody = GetComponent<Rigidbody2D>();
         pc = player.GetComponent<PlayerController>();
 
+        comboChangeInterval = maxLife / (nextComboAnimes.Length + 1);
+
         Debug.Log(stackLen + "stacks");
     }
 
@@ -123,7 +133,7 @@ public class EnemyController : MonoBehaviour
             transform.localScale = new Vector2(1, 1);
         }
 
-        if(enemyLife <= 0)
+        if(enemyLife <= 0 && !dead)
         {
             Dead();
         }
@@ -134,38 +144,52 @@ public class EnemyController : MonoBehaviour
         onGround = Physics2D.Linecast(transform.position, transform.position -(transform.up * 0.1f), groundLayer);
         isPlayerNear = CheckLength(playerPos, maai);
 
-        if(damaged || dead)
+        if(damaged || dead || backStepping)
         {
             return;
         }
+
+        rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
+
         if(PlayerController.gameState != "playing")
         {
-            rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
             moving = false;
             animator.SetBool("move", false);
             return;
         }
 
-        if(goAttack)
+        if(goBackStep)
         {
-            attacking = true;
-            Combo();
-            goAttack = false;
+            Vector2 backStepPw = new Vector2(backStep * transform.localScale.x * -1, 0);
+            rbody.AddForce(backStepPw, ForceMode2D.Impulse);
+            animator.SetTrigger("backstep");
+            goBackStep = false;
+            return;
         }
-        else if(CheckLength(playerPos, range) && onGround && !attacking)
+
+        if(sequential)
         {
-            if(isPlayerNear)
+            if(goAttack)
             {
-                rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
-                goAttack = true;
-                moving = false;
-                animator.SetBool("move", false);
+                attacking = true;
+                Combo();
+                goAttack = false;
             }
-            else
+            else if(CheckLength(playerPos, range) && onGround && !attacking && !backStepping)
             {
-                rbody.velocity = new Vector2(speed * transform.localScale.x, rbody.velocity.y);
-                moving = true;
-                animator.SetBool("move", true);
+                if(isPlayerNear)
+                {
+                    rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
+                    goAttack = true;
+                    moving = false;
+                    animator.SetBool("move", false);
+                }
+                else
+                {
+                    rbody.velocity = new Vector2(speed * transform.localScale.x, rbody.velocity.y);
+                    moving = true;
+                    animator.SetBool("move", true);
+                }
             }
         }
         
@@ -235,7 +259,7 @@ public class EnemyController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Attack")
+        if(collision.gameObject.tag == "Attack" && !backStepping)
         {
             Debug.Log("hit" + enemyLife);
             AttackManager am = collision.gameObject.GetComponent<AttackManager>();
@@ -275,19 +299,39 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    IEnumerator SlowMotion()
+    {
+        Time.timeScale = 0.2f;
+        yield return new WaitForSeconds(0.2f);
+        Time.timeScale = 1.0f;
+    }
+
     void Damaged()
     {
         soundPlayer.PlayOneShot(punchHit);
         attacking = false;
+        goBackStep = false;
         stackPointer = 0;
+        string[] warnings = new string[] {"様子が変わった!警戒!", "前となんか違う！", "動きが変わった！"};
         //animator.Play(damagedAnime, 0, 0);
         animator.SetTrigger("damage");
         oldAnime = damagedAnime;
+        if(comboChangeInterval != maxLife && comboChangeNum < nextComboAnimes.Length)
+        {
+            if(enemyLife <= maxLife - comboChangeInterval * (comboChangeNum + 1))
+            {
+                comboStack = nextComboAnimes[comboChangeNum].Split(' ');
+                stackLen = comboStack.Length;
+                PlayerController.messages = warnings[comboChangeNum % warnings.Length];
+                comboChangeNum += 1;
+            }
+        }
     }
 
     void Dead()
     {
         dead = true;
+        if(dramaticWhenDie) StartCoroutine("SlowMotion");
         /*GameObject shield = transform.Find("shield").gameObject;
         Destroy(shield);*/
         GetComponent<CapsuleCollider2D>().enabled = false;
@@ -330,21 +374,38 @@ public class EnemyController : MonoBehaviour
         soundPlayer.PlayOneShot(oh);
     }
 
+    public void BackStep()
+    {
+        Vector2 backStepPw = new Vector2(backStep * transform.localScale.x * -1, 0);
+        rbody.AddForce(backStepPw, ForceMode2D.Impulse);
+    }
+
     public void Combo()
     {
-        if(!isPlayerNear && comboStack[stackPointer] == "gap")
+        string trigger;
+        if(!isPlayerNear && (comboStack[stackPointer] == "gap"))
         {
-            stackPointer = 0;
-            animator.SetTrigger("exit");
+            stackPointer = -1;
+            trigger = "exit";
             attacking = false;
-            return;
         }
-        animator.SetTrigger(comboStack[stackPointer]);
-        if(comboStack[stackPointer] == "exit")
+        else if(comboStack[Mathf.Max(0, stackPointer - 1)] == "backstep")
         {
+            trigger = "exit";
+            Debug.Log("backstep");
             attacking = false;
-            Debug.Log("exit");
         }
+        else
+        {
+            trigger = comboStack[stackPointer];
+            if(trigger == "exit")
+            {
+                attacking = false;
+                Debug.Log("exit");
+            }
+        }
+
+        animator.SetTrigger(trigger);
         stackPointer = (stackPointer + 1) % stackLen;
     }
 }

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject MoneyText;
     public GameObject Pannel1;
     public GameObject Pannel2;
+    public GameObject Fade;
     public Sprite gameOverSpr;
     public Sprite gameClearSpr;
     /*public GameObject Life;
@@ -22,7 +23,7 @@ public class GameManager : MonoBehaviour
     //Image lifeImage;
     Text message;
     Text money;
-    GameObject Boss;
+    public GameObject Boss;
     AudioSource soundPlayer;
     Animator hsAnimator;
     public AudioClip piron;
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     public bool bossIsGoal = true;
     public bool hsAlwaysActive = true;
+    bool goal = false;
 
     static int score = 0;
 
@@ -115,20 +117,21 @@ public class GameManager : MonoBehaviour
             mainImage.GetComponent<Image>().sprite = gameOverSpr;
             mainImage.SetActive(true);
         }
-        if(bossIsGoal)
+        if(bossIsGoal && !goal)
         {
-            Boss = GameObject.FindGameObjectWithTag("Boss");
             if(Boss == null)
             {
-                PlayerController.gameState = "gameclear";
+                goal = true;
+                StartCoroutine("BossDefeated");
             }
         }
-        if(PlayerController.gameState == "gameclear")
+        if(PlayerController.gameState == "gameclear" && !bossIsGoal)
         {
             Pannel2.SetActive(true);
             mainImage.GetComponent<Image>().sprite = gameClearSpr;
             mainImage.SetActive(true);
             CheckPointManager.progress = 0;
+            goal = true;
         }
     }
 
@@ -155,5 +158,36 @@ public class GameManager : MonoBehaviour
             }
         }
         message.text = "";
+    }
+
+    IEnumerator BossDefeated()
+    {
+        Image I = Fade.GetComponent<Image>();
+        GameObject NextButton = Pannel2.transform.Find("NextButton").gameObject;
+        GameObject musicPlayer = GameObject.FindGameObjectWithTag("Music");
+        float t = 0.0f;
+        float speed = 0.5f;
+        PlayerController.gameState = "gameclear";
+        Fade.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        while(t <= 1.0f)
+        {
+            I.color = Color.Lerp(Color.clear, Color.black, t);
+            t += speed * Time.deltaTime;
+            yield return null;
+        }
+        if(musicPlayer != null)
+        {
+            float i;
+            float downspeed = 0.01f;
+            AudioSource auds = musicPlayer.GetComponent<AudioSource>();
+            for(i = 1.0f; i >= 0.0f; i -= downspeed)
+            {
+                auds.volume = i;
+                yield return null;
+            }
+        }
+        yield return new WaitForSeconds(1.0f);
+        NextButton.GetComponent<ChangeScene>().Load();
     }
 }
