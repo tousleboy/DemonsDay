@@ -662,6 +662,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 509071108}
     - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
+      propertyPath: sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 64ab62820ec9c4f85be9c053c0e0ae53, type: 3}
+    - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
       propertyPath: waitTime
       value: 1
       objectReference: {fileID: 0}
@@ -750,6 +754,10 @@ PrefabInstance:
       propertyPath: end
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
+      propertyPath: sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 64ab62820ec9c4f85be9c053c0e0ae53, type: 3}
     - target: {fileID: 3896682775488044532, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
       propertyPath: m_Name
       value: ComicAnchor (4)
@@ -1501,6 +1509,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Stage1
   delay: 1
+  resetProgress: 1
+  continueMusic: 1
 --- !u!82 &1767937593
 AudioSource:
   m_ObjectHideFlags: 0

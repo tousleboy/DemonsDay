@@ -132,8 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1633810840854677120, guid: e88e93566f2b04cdba3e2eb8df1dc079, type: 3}
       propertyPath: texts
-      value: "\u3053\u30FC\u3093\u306A\u3082\u306E\u540A\u308B\u3057\u3066\u3048
-        \u3067\u3082\u826F\u3044\u6E96\u5099\u904B\u52D5\u306B\u306A\u308A\u305D\u3046
+      value: "\u3053\u308C\u306F\u826F\u3044\u6E96\u5099\u904B\u52D5\u306B\u306A\u308A\u305D\u3046
         \u3076\u3093\u6BB4\u3063\u3066\u307F\u306A\u3088"
       objectReference: {fileID: 0}
     - target: {fileID: 1633810840854677121, guid: e88e93566f2b04cdba3e2eb8df1dc079, type: 3}
@@ -372,6 +371,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1633810840854677120, guid: e88e93566f2b04cdba3e2eb8df1dc079, type: 3}
+      propertyPath: delay
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1633810840854677120, guid: e88e93566f2b04cdba3e2eb8df1dc079, type: 3}
       propertyPath: texts
       value: "\u52D5\u304D\u3092\u3088\u304F\u307F\u3066\uFF01 \u305D\u3044\u3064\u306F\u30EA\u30C3\u30C1\u30E1\u30F3\u306E\u69CB\u6210\u54E1
@@ -8192,7 +8195,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7404245662279908067, guid: 28c6509cce481430f8378a2d85f219b5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7
+      value: -6.4
       objectReference: {fileID: 0}
     - target: {fileID: 7404245662279908067, guid: 28c6509cce481430f8378a2d85f219b5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9398,7 +9401,7 @@ PrefabInstance:
     - target: {fileID: 1633810840854677120, guid: e88e93566f2b04cdba3e2eb8df1dc079, type: 3}
       propertyPath: texts
       value: "\u30EA\u30C3\u30C1\u30E1\u30F3\u306F\u306D \u8907\u6570\u4EBA\u3067
-        \u5F85\u3061\u4F0F\u305B\u3057\u3066\u308B\u3053\u3068\u3082 \u3042\u308B\u304B\u3089
+        \u5F85\u3061\u4F0F\u305B\u3057\u3066\u308B\u3053\u3068\u3082\u3042\u308B\u304B\u3089
         \u899A\u609F\u3057\u3066\u304A\u3044\u3066\u306D"
       objectReference: {fileID: 0}
     - target: {fileID: 1633810840854677121, guid: e88e93566f2b04cdba3e2eb8df1dc079, type: 3}

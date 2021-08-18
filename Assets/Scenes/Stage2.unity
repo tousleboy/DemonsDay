@@ -4846,7 +4846,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1633810840854677120, guid: e88e93566f2b04cdba3e2eb8df1dc079, type: 3}
       propertyPath: texts
-      value: "\u3084\u308B\u306D\u3048\uFF01 \u307E\u305F\u6B66\u52C7\u4F1D\u63CF\u304D\u8A18\u3057\u3066\u304A\u3053\u3046\u306D "
+      value: "\u3084\u308B\u306D\u3048\uFF01 \u307E\u305F\u6B66\u52C7\u4F1D\u63CF\u304D\u8A18\u3057\u3066\u304A\u3053\u3046\u306D"
       objectReference: {fileID: 0}
     - target: {fileID: 1633810840854677121, guid: e88e93566f2b04cdba3e2eb8df1dc079, type: 3}
       propertyPath: m_RootOrder
@@ -5121,7 +5121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 842812180335989722, guid: 156c9dade900945068fccf7708013fad, type: 3}
       propertyPath: continueMusic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6969407495800740607, guid: 156c9dade900945068fccf7708013fad, type: 3}
       propertyPath: sceneName

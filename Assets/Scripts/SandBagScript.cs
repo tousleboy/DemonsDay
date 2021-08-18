@@ -8,22 +8,34 @@ public class SandBagScript : MonoBehaviour
     public string targetAnime = "SandBagTarget1";
     AudioSource soundPlayer;
     public GameObject target;
+    GameObject player;
     Animator animator;
     public AudioClip punchHit;
     bool damaged = false;
     bool dead = false;
+    float length = 5.0f;
     // Start is called before the first frame update
     void Start()
     {
         soundPlayer = GetComponent<AudioSource>();
         animator = target.GetComponent<Animator>();
-        animator.Play(targetAnime);
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
         if(dead) return;
+        if(CheckLength(player.transform.position))
+        {
+            if(target.activeSelf == false)
+            {
+                target.SetActive(true);
+                animator.Play(targetAnime);
+            }
+        }
+        else target.SetActive(false);
+
         if(life <= 0) StartCoroutine("Die");
     }
 
@@ -35,6 +47,17 @@ public class SandBagScript : MonoBehaviour
             soundPlayer.PlayOneShot(punchHit);
             if(!damaged) StartCoroutine("Swing");
         }
+    }
+
+    bool CheckLength(Vector2 targetPos)
+    {
+        bool ret = false;
+        float d = Vector2.Distance(transform.position,targetPos);
+        if(length >= d)
+        {
+            ret = true;
+        }
+        return ret;
     }
 
     IEnumerator Swing()

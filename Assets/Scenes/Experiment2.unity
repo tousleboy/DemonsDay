@@ -699,7 +699,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 573507578716400024, guid: 8ccee71a88e6b40b692d17d3a24bb632, type: 3}
       propertyPath: comboAnime
-      value: onetwo gap exit
+      value: onetwo lowkick middlekick gap exit
       objectReference: {fileID: 0}
     - target: {fileID: 573507578716400024, guid: 8ccee71a88e6b40b692d17d3a24bb632, type: 3}
       propertyPath: dramaticWhenDie
@@ -2622,7 +2622,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 610632371622978001, guid: 156c9dade900945068fccf7708013fad, type: 3}
       propertyPath: bossIsGoal
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 610632371622978092, guid: 156c9dade900945068fccf7708013fad, type: 3}
       propertyPath: m_Camera

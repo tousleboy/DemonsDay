@@ -394,17 +394,22 @@ MonoBehaviour:
   attacking: 0
   gap: 0
   isPlayerNear: 0
+  backStepping: 0
+  goBackStep: 0
   stopAnime: RichmenIdle
   runAnime: RichmenRun
+  sequential: 1
   comboAnime: onetwothree onetwothree lowkick lowkick gap exit
+  nextComboAnimes: []
   damagedAnime: RichmenDamaged
   deadAnime: RichmenDead
-  enemyLife: 18
+  maxLife: 8
   damaged: 0
   moving: 0
   parry: 0
   cut: 0
   ducking: 0
+  dramaticWhenDie: 0
   high: 0
   low: 0
   knee: 0

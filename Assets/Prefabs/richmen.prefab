@@ -112,8 +112,11 @@ MonoBehaviour:
   attacking: 0
   gap: 0
   isPlayerNear: 0
+  backStepping: 0
+  goBackStep: 0
   stopAnime: RichmenIdle
   runAnime: RichmenRun
+  sequential: 1
   comboAnime: onetwo gap
   nextComboAnimes: []
   damagedAnime: RichmenDamaged
@@ -124,6 +127,7 @@ MonoBehaviour:
   parry: 0
   cut: 0
   ducking: 0
+  dramaticWhenDie: 0
   high: 0
   low: 0
   knee: 0

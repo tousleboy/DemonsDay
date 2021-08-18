@@ -149,7 +149,7 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-        rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
+        if(onGround) rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
 
         if(PlayerController.gameState != "playing")
         {

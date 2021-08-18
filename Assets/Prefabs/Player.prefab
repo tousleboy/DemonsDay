@@ -370,7 +370,7 @@ MonoBehaviour:
   heavyHit: {fileID: 0}
   guardHit: {fileID: 8300000, guid: 60a4deb5d60b54ad18ed9f0624219547, type: 3}
   moneySound: {fileID: 8300000, guid: f4644955adceb42f4a37c53312dcc104, type: 3}
-  concentrationSound: {fileID: 0}
+  concentrationSound: {fileID: 8300000, guid: 8c38e4b217e2c44baac59a4aeb5d341c, type: 3}
   texts: 
 --- !u!95 &7404245662279908065
 Animator:
