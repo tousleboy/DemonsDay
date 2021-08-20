@@ -176,7 +176,7 @@ public class GameManager : MonoBehaviour
             t += speed * Time.deltaTime;
             yield return null;
         }
-        if(musicPlayer != null)
+        if(musicPlayer != null && !NextButton.GetComponent<ChangeScene>().continueMusic)
         {
             float i;
             float downspeed = 0.01f;

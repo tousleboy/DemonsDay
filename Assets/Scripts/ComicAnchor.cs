@@ -10,6 +10,8 @@ public class ComicAnchor : MonoBehaviour
     public float soundDelay = 0.0f;
     public GameObject next;
     public bool end = false;
+    public AudioClip newMusic;
+    public bool musicStop = false;
     // Start is called before the first frame update
     void Start()
     {

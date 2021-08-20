@@ -6,6 +6,7 @@ public class ComicCameraController : MonoBehaviour
 {
     public GameObject rootAnchor;
     GameObject Anchor;
+    GameObject musicPlayer;
     ComicAnchor ca;
     public float leaveSpeed = 1.0f;
     float allowableRange = 1.0f;
@@ -26,6 +27,8 @@ public class ComicCameraController : MonoBehaviour
         soundPlayer = GetComponent<AudioSource>();
 
         cs = GetComponent<ChangeScene>();
+
+        musicPlayer = GameObject.FindGameObjectWithTag("Music");
     }
 
     // Update is called once per frame
@@ -45,6 +48,21 @@ public class ComicCameraController : MonoBehaviour
             if(ca.sound != null)
             {
                 soundPlayer.PlayOneShot(ca.sound);
+            }
+            if(musicPlayer != null)
+            {
+                AudioSource auds = musicPlayer.GetComponent<AudioSource>();
+                if(ca.musicStop)
+                {
+                    StartCoroutine(AudioChange(auds, null));
+                }
+                else if(ca.newMusic != null && musicPlayer != null)
+                {
+                    if(auds.clip != ca.newMusic)
+                    {
+                        StartCoroutine(AudioChange(auds, ca.newMusic));
+                    }
+                }
             }
             if(ca.end)
             {
@@ -71,6 +89,25 @@ public class ComicCameraController : MonoBehaviour
     {
         Vector2 direction = targetPos - (Vector2)transform.position;
         return direction.normalized;
+    }
+
+    IEnumerator AudioChange(AudioSource auds, AudioClip music)
+    {
+        float i;
+        float downspeed = 0.01f;
+        float upspeed = 0.1f;
+        for(i = 1.0f; i >= 0.0f && auds.clip != null; i -= downspeed)
+        {
+            auds.volume = i;
+            yield return null;
+        }
+        auds.clip = music;
+        auds.Play();
+        for(i = 0.0f; i <= 1.0f && music != null; i += upspeed)
+        {
+            auds.volume = i;
+            yield return null;
+        }
     }
 
     void Restart()
