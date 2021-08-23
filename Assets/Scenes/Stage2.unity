@@ -4366,7 +4366,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2133763747112226972, guid: fb155e0f582964099b5c9304e12f6aee, type: 3}
       propertyPath: life
-      value: 100
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2133763747112226972, guid: fb155e0f582964099b5c9304e12f6aee, type: 3}
       propertyPath: targetAnime

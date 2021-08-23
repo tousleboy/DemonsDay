@@ -33,11 +33,15 @@ public class GameManager : MonoBehaviour
     public bool hsAlwaysActive = true;
     bool goal = false;
 
-    static int score = 0;
+    public static int score = 0;
 
     string messages;
     string nowMessages;
     string oldMessages;
+
+    public static int battleScore = 100;
+    public static int defeats = 0;
+    public static int retry = 0;
     // Start is called before the first frame update
     void Start()
     {

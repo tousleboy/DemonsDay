@@ -119,6 +119,8 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        Debug.Log(GameManager.battleScore);
+
         axisH = Input.GetAxisRaw("Horizontal");
         //Debug.Log("texts" + texts +  " messages" + messages);
         if(concentration >= ConcentrateGaugeManager.maxCon)
@@ -599,6 +601,7 @@ public class PlayerController : MonoBehaviour
         damaged = true;
         soundPlayer.PlayOneShot(punchHit);
         oldAnime = damagedAnime;
+        GameManager.battleScore = Mathf.Max(GameManager.battleScore - 3, 0);
         //animator.Play(damagedAnime);
         animator.SetTrigger("damaged");
     }
@@ -622,6 +625,9 @@ public class PlayerController : MonoBehaviour
         rbody.simulated = false;
         GetComponent<BoxCollider2D>().enabled = false;
         animator.SetTrigger("die");
+
+        GameManager.retry += 1;
+        GameManager.battleScore = Mathf.Max(GameManager.battleScore - 5, 0);
 
     }
 

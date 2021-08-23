@@ -147,7 +147,7 @@ PrefabInstance:
     - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
       propertyPath: newMusic
       value: 
-      objectReference: {fileID: 8300000, guid: 76d0cbd416b5f42938b45d2054d11886, type: 3}
+      objectReference: {fileID: 8300000, guid: be7de29a801b34b729b0f8fd8dbc6927, type: 3}
     - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
       propertyPath: leaveSpeed
       value: 2
@@ -1605,7 +1605,7 @@ PrefabInstance:
       objectReference: {fileID: 23114677}
     - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
       propertyPath: waitTime
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
       propertyPath: leaveSpeed
@@ -1625,7 +1625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5817357461203834195, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.82
+      value: -2.59
       objectReference: {fileID: 0}
     - target: {fileID: 5817357461203834195, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
       propertyPath: m_LocalPosition.z

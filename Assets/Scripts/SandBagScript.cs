@@ -41,7 +41,7 @@ public class SandBagScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Attack" && !damaged)
+        if(collision.gameObject.tag == "Attack")
         {
             life -= collision.gameObject.GetComponent<AttackManager>().val;
             soundPlayer.PlayOneShot(punchHit);
