@@ -11,6 +11,7 @@ public class CameraManager : MonoBehaviour
 
     public bool locked = false;
     public bool resetPos = false;
+    public bool cannotGoBack = false;
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +59,7 @@ public class CameraManager : MonoBehaviour
 
             Vector3 v3 = new Vector3(x, y, z);
             transform.position = v3;
+            if(cannotGoBack) leftLimit = x;
         } 
     }
 }

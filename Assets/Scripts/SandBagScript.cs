@@ -41,7 +41,7 @@ public class SandBagScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Attack")
+        if(collision.gameObject.tag == "Attack" || !damaged)
         {
             life -= collision.gameObject.GetComponent<AttackManager>().val;
             soundPlayer.PlayOneShot(punchHit);
@@ -62,7 +62,7 @@ public class SandBagScript : MonoBehaviour
 
     IEnumerator Swing()
     {
-        float speed = -100f;
+        float speed = -120f;
         damaged = true;
         Quaternion now = transform.rotation;
         while(Quaternion.Angle(now, transform.rotation) < 10)
@@ -70,7 +70,7 @@ public class SandBagScript : MonoBehaviour
             transform.Rotate(new Vector3(0, 0, -speed * Time.deltaTime));
             yield return null;
         }
-        while(Quaternion.Angle(transform.rotation, now) > 1.0)
+        while(Quaternion.Angle(transform.rotation, now) > 5.0)
         {
             transform.Rotate(new Vector3(0, 0, speed * Time.deltaTime));
             yield return null;

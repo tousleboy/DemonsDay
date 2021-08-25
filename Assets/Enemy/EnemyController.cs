@@ -144,6 +144,8 @@ public class EnemyController : MonoBehaviour
         onGround = Physics2D.Linecast(transform.position, transform.position -(transform.up * 0.1f), groundLayer);
         isPlayerNear = CheckLength(playerPos, maai);
 
+        animator.SetBool("jump", !onGround);
+
         if(damaged || dead || backStepping)
         {
             return;
@@ -296,6 +298,11 @@ public class EnemyController : MonoBehaviour
             {
                 am.KnockBack(gameObject);
             }
+        }
+        if(collision.gameObject.tag == "Dead")
+        {
+            enemyLife = 0;
+            Damaged();
         }
     }
 

@@ -1114,8 +1114,8 @@ MonoBehaviour:
   Pannel1: {fileID: 7927281596060095146}
   Pannel2: {fileID: 4209043942162478063}
   Fade: {fileID: 4157217801313525739}
-  gameOverSpr: {fileID: 21300000, guid: c9a12541a5dda455690992255c2bec15, type: 3}
-  gameClearSpr: {fileID: 21300000, guid: 47a90bfe25da44079a1daa36f867505a, type: 3}
+  gameOverSpr: {fileID: 21300000, guid: 11a617200b5c546d3b188a56a34f4e18, type: 3}
+  gameClearSpr: {fileID: 21300000, guid: bb007b89957434905a2690321e902a2a, type: 3}
   Boss: {fileID: 0}
   piron: {fileID: 8300000, guid: 64ab62820ec9c4f85be9c053c0e0ae53, type: 3}
   bossIsGoal: 0
@@ -1260,7 +1260,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 47a90bfe25da44079a1daa36f867505a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb007b89957434905a2690321e902a2a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
