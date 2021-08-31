@@ -13,7 +13,7 @@ public class SandBagScript : MonoBehaviour
     public AudioClip punchHit;
     bool damaged = false;
     bool dead = false;
-    float length = 5.0f;
+    float length = 4.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +41,7 @@ public class SandBagScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Attack" || !damaged)
+        if(collision.gameObject.tag == "Attack" && !damaged)
         {
             life -= collision.gameObject.GetComponent<AttackManager>().val;
             soundPlayer.PlayOneShot(punchHit);
@@ -62,7 +62,7 @@ public class SandBagScript : MonoBehaviour
 
     IEnumerator Swing()
     {
-        float speed = -120f;
+        float speed = -200f;
         damaged = true;
         Quaternion now = transform.rotation;
         while(Quaternion.Angle(now, transform.rotation) < 10)
@@ -70,7 +70,7 @@ public class SandBagScript : MonoBehaviour
             transform.Rotate(new Vector3(0, 0, -speed * Time.deltaTime));
             yield return null;
         }
-        while(Quaternion.Angle(transform.rotation, now) > 5.0)
+        while(Quaternion.Angle(transform.rotation, now) > 2.0)
         {
             transform.Rotate(new Vector3(0, 0, speed * Time.deltaTime));
             yield return null;

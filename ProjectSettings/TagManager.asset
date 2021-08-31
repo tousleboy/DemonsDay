@@ -14,6 +14,7 @@ TagManager:
   - Goal
   - Heal
   - Music
+  - Back
   layers:
   - Default
   - TransparentFX
@@ -31,7 +32,7 @@ TagManager:
   - Enemy
   - Shield
   - PlayerAttack
-  - 
+  - PlayerFilter
   - 
   - 
   - 

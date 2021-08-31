@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     public bool bossIsGoal = true;
     public bool hsAlwaysActive = true;
+    public bool startWithFade = false;
     bool goal = false;
 
     public static int score = 0;
@@ -78,6 +79,11 @@ public class GameManager : MonoBehaviour
             Vector3 pos = cps[i].transform.position;
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.transform.position = pos;
+        }
+
+        if(startWithFade)
+        {
+            StartCoroutine("FadeIn");
         }
     }
 
@@ -152,9 +158,12 @@ public class GameManager : MonoBehaviour
         int i;
         for(i = 0; i < length; i++)
         {
-            hsAnimator.SetTrigger("Call");
+            if(headSet.activeSelf)
+            {
+                hsAnimator.SetTrigger("Call");
+                soundPlayer.PlayOneShot(piron);
+            }
             message.text = messages[i];
-            soundPlayer.PlayOneShot(piron);
             yield return new WaitForSeconds(messages[i].Length / 5.0f);
             if(recieved != nowMessages)
             {
@@ -162,6 +171,24 @@ public class GameManager : MonoBehaviour
             }
         }
         message.text = "";
+    }
+
+    IEnumerator FadeIn()
+    {
+        Image I = Fade.GetComponent<Image>();
+        float t = 0.0f;
+        float speed = 0.2f;
+        PlayerController.gameState = "wait";
+        Fade.SetActive(true);
+        I.color = Color.black;
+        while(t <= 1.0f)
+        {
+            I.color = Color.Lerp(Color.black, Color.clear, t);
+            t += speed * Time.deltaTime;
+            yield return null;
+        }
+        PlayerController.gameState = "playing";
+        Fade.SetActive(false);
     }
 
     IEnumerator BossDefeated()

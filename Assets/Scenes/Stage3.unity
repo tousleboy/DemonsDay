@@ -226,6 +226,7 @@ MonoBehaviour:
   bottomLimit: 0
   locked: 0
   resetPos: 0
+  cannotGoBack: 0
 --- !u!1001 &329870463
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -550,7 +551,7 @@ GameObject:
   - component: {fileID: 800227758}
   m_Layer: 0
   m_Name: town_back2
-  m_TagString: Untagged
+  m_TagString: Back
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

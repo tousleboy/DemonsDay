@@ -11,6 +11,7 @@ public class BattleFieldManager : MonoBehaviour
     GameObject[] gates;
     public GameObject wall1;
     public GameObject wall2;
+    public bool goal = false;
 
     bool eventStart = false;
     bool eventEnd = false;
@@ -66,6 +67,10 @@ public class BattleFieldManager : MonoBehaviour
                     eventEnd = true;
                     wall1.SetActive(false);
                     wall2.SetActive(false);
+                    if(goal)
+                    {
+                        PlayerController.gameState = "gameclear";
+                    }
                     return;
                 }
                 int n = Random.Range(0, 4);
