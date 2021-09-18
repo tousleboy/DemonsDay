@@ -8,6 +8,7 @@ public class TalkEventManager : MonoBehaviour
     PlayerController pc;
 
     public float range = 1.0f;
+    public float height = 100.0f;
     public float delay = 0.0f;
     public string texts;    //Japanese texts should be devided with ' ', English ver has not been releaced
     public bool isEvent = false;
@@ -33,7 +34,7 @@ public class TalkEventManager : MonoBehaviour
         }
         float playerX = player.transform.position.x;
         float playerY = player.transform.position.y;
-        if(transform.position.x - range <= playerX && transform.position.x + range >= playerX && playerY >= transform.position.y)
+        if(transform.position.x - range <= playerX && transform.position.x + range >= playerX && playerY >= transform.position.y && playerY <= transform.position.y + height)
         {
             Invoke("SendTexts", delay);
             done = true;

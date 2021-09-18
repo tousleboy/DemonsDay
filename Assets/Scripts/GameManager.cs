@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public bool bossIsGoal = true;
     public bool hsAlwaysActive = true;
     public bool startWithFade = false;
+    public bool endWithFade = false;
     bool goal = false;
 
     public static int score = 0;
@@ -132,16 +133,24 @@ public class GameManager : MonoBehaviour
             if(Boss == null)
             {
                 goal = true;
-                StartCoroutine("BossDefeated");
+                StartCoroutine("FadeOut");
             }
         }
-        if(PlayerController.gameState == "gameclear" && !bossIsGoal)
+        if(PlayerController.gameState == "gameclear" && !bossIsGoal && !goal)
         {
-            Pannel2.SetActive(true);
-            mainImage.GetComponent<Image>().sprite = gameClearSpr;
-            mainImage.SetActive(true);
-            CheckPointManager.progress = 0;
-            goal = true;
+            if(endWithFade)
+            {
+                goal = true;
+                StartCoroutine("FadeOut");
+            }
+            else
+            {
+                Pannel2.SetActive(true);
+                mainImage.GetComponent<Image>().sprite = gameClearSpr;
+                mainImage.SetActive(true);
+                CheckPointManager.progress = 0;
+                goal = true;
+            }
         }
     }
 
@@ -191,7 +200,7 @@ public class GameManager : MonoBehaviour
         Fade.SetActive(false);
     }
 
-    IEnumerator BossDefeated()
+    IEnumerator FadeOut()
     {
         Image I = Fade.GetComponent<Image>();
         GameObject NextButton = Pannel2.transform.Find("NextButton").gameObject;
