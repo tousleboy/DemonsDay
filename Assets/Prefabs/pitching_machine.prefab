@@ -181,6 +181,7 @@ MonoBehaviour:
   length: 12
   life: 3
   punchHit: {fileID: 8300000, guid: bf5be156771ce41c5bb1cf992dd07d43, type: 3}
+  shoot: {fileID: 8300000, guid: 6f82bd88f2195497d86db1e617b60844, type: 3}
 --- !u!82 &3539719332970295002
 AudioSource:
   m_ObjectHideFlags: 0

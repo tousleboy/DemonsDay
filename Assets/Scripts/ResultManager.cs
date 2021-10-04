@@ -84,4 +84,39 @@ public class ResultManager : MonoBehaviour
         yield return new WaitForSeconds(interval2);
         button.SetActive(true);
     }
+
+    IEnumerator FadeOut()
+    {
+        Image I = Fade.GetComponent<Image>();
+        //GameObject NextButton = Pannel2.transform.Find("NextButton").gameObject;
+        GameObject musicPlayer = GameObject.FindGameObjectWithTag("Music");
+        float t = 0.0f;
+        float speed = 0.5f;
+        Fade.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        while(t <= 1.0f)
+        {
+            I.color = Color.Lerp(Color.clear, Color.black, t);
+            t += speed * Time.deltaTime;
+            yield return null;
+        }
+        if(musicPlayer != null && !button.GetComponent<ChangeScene>().continueMusic)
+        {
+            float i;
+            float downspeed = 0.01f;
+            AudioSource auds = musicPlayer.GetComponent<AudioSource>();
+            for(i = 1.0f; i >= 0.0f; i -= downspeed)
+            {
+                auds.volume = i;
+                yield return null;
+            }
+        }
+        yield return new WaitForSeconds(1.0f);
+        button.GetComponent<ChangeScene>().Load();
+    }
+
+    public void StartFadeOut()
+    {
+        StartCoroutine("FadeOut");
+    }
 }

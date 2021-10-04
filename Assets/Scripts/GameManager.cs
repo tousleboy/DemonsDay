@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject Pannel1;
     public GameObject Pannel2;
     public GameObject Fade;
+    public GameObject titleText;
     public Sprite gameOverSpr;
     public Sprite gameClearSpr;
     /*public GameObject Life;
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     //Image lifeImage;
     Text message;
     Text money;
+    Text title;
     public GameObject Boss;
     AudioSource soundPlayer;
     Animator hsAnimator;
@@ -32,7 +34,9 @@ public class GameManager : MonoBehaviour
     public bool bossIsGoal = true;
     public bool hsAlwaysActive = true;
     public bool startWithFade = false;
+    public string firstText;
     public bool endWithFade = false;
+    public static bool fadeInDone = false;
     bool goal = false;
 
     public static int score = 0;
@@ -53,6 +57,7 @@ public class GameManager : MonoBehaviour
         //lifeImage = Life.GetComponent<Image>();
         message = text.GetComponent<Text>();
         money = MoneyText.GetComponent<Text>();
+        title = titleText.GetComponent<Text>();
         soundPlayer = headSet.GetComponent<AudioSource>();
         hsAnimator = headSet.GetComponent<Animator>();
 
@@ -82,7 +87,9 @@ public class GameManager : MonoBehaviour
             player.transform.position = pos;
         }
 
-        if(startWithFade)
+        title.text = "";
+        titleText.SetActive(false);
+        if(startWithFade && !fadeInDone)
         {
             StartCoroutine("FadeIn");
         }
@@ -148,6 +155,7 @@ public class GameManager : MonoBehaviour
                 Pannel2.SetActive(true);
                 mainImage.GetComponent<Image>().sprite = gameClearSpr;
                 mainImage.SetActive(true);
+                fadeInDone = false;
                 CheckPointManager.progress = 0;
                 goal = true;
             }
@@ -185,11 +193,27 @@ public class GameManager : MonoBehaviour
     IEnumerator FadeIn()
     {
         Image I = Fade.GetComponent<Image>();
+        int i = 0;
         float t = 0.0f;
         float speed = 0.2f;
         PlayerController.gameState = "wait";
         Fade.SetActive(true);
+        fadeInDone = true;
         I.color = Color.black;
+        //yield return new WaitForSeconds(1.0f);
+        if(firstText != "")
+        {
+            titleText.SetActive(true);
+            while(i <= firstText.Length)
+            {
+                title.text = firstText.Substring(0, i);
+                i++;
+                yield return new WaitForSeconds(0.3f);
+            }
+            yield return new WaitForSeconds(1.0f);
+            title.text = "";
+            speed = speed * 2;
+        }
         while(t <= 1.0f)
         {
             I.color = Color.Lerp(Color.black, Color.clear, t);
@@ -198,6 +222,7 @@ public class GameManager : MonoBehaviour
         }
         PlayerController.gameState = "playing";
         Fade.SetActive(false);
+        titleText.SetActive(false);
     }
 
     IEnumerator FadeOut()
@@ -209,6 +234,7 @@ public class GameManager : MonoBehaviour
         float speed = 0.5f;
         PlayerController.gameState = "gameclear";
         Fade.SetActive(true);
+        fadeInDone = false;
         yield return new WaitForSeconds(0.5f);
         while(t <= 1.0f)
         {

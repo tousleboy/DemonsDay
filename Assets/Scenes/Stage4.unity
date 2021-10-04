@@ -3146,6 +3146,10 @@ PrefabInstance:
       value: Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 610632371622978001, guid: 156c9dade900945068fccf7708013fad, type: 3}
+      propertyPath: firstText
+      value: "1\u30F6\u6708\u524D"
+      objectReference: {fileID: 0}
+    - target: {fileID: 610632371622978001, guid: 156c9dade900945068fccf7708013fad, type: 3}
       propertyPath: endWithFade
       value: 1
       objectReference: {fileID: 0}

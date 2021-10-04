@@ -15,26 +15,32 @@ public class EnemyController : MonoBehaviour
     public bool gap = false;
     bool goAttack = false;
     public bool isPlayerNear = false;
+    bool restrainting = false;
+    bool scaleFix = false;
 
     public bool backStepping = false;
     public bool goBackStep = false;
     float backStep = 6.0f;
 
     Animator animator;
-    public string stopAnime = "RichmenIdle";
-    public string runAnime = "RichmenRun";
-    public bool sequential = true;
+    //public string stopAnime = "RichmenIdle";
+    //public string runAnime = "RichmenRun";
+    public string style = "swarmer";
     public string comboAnime = "onetwo gap exit";
     public string[] nextComboAnimes;
+    public string restraintAnime = "";
     int comboChangeInterval;
     int comboChangeNum = 0;
     string[] comboStack;
+    string[] restraintStack;
     int stackPointer = 0;
     int stackLen;
-    public string damagedAnime = "RichmenDamaged";
-    public string deadAnime = "RichmenDead";
-    string nowAnime;
-    string oldAnime;
+    int rStackPointer = 0;
+    int rStackLen;
+    //public string damagedAnime = "RichmenDamaged";
+    //public string deadAnime = "RichmenDead";
+    //string nowAnime;
+    //string oldAnime;
 
     int enemyLife;
     public int maxLife = 8;
@@ -53,9 +59,9 @@ public class EnemyController : MonoBehaviour
     GameObject attackZone;
     AttackManager am;
     BoxCollider2D abc;
-    public bool high = false;
-    public bool low = false;
-    public bool knee = false;
+    //public bool high = false;
+    //public bool low = false;
+    //public bool knee = false;
     //bool isCalledFirst = true;
 
     Rigidbody2D rbody;
@@ -75,8 +81,8 @@ public class EnemyController : MonoBehaviour
         playerPos = player.transform.position;
         enemyLife = maxLife;
         animator = GetComponent<Animator>();
-        nowAnime = stopAnime;
-        oldAnime = stopAnime;
+        //nowAnime = stopAnime;
+        //oldAnime = stopAnime;
         attackZone = transform.Find("AttackZone").gameObject;
         if(attackZone != null)
         {
@@ -87,6 +93,12 @@ public class EnemyController : MonoBehaviour
 
         comboStack = comboAnime.Split(' ');
         stackLen = comboStack.Length;
+
+        if(style == "slugger")
+        {
+            restraintStack = restraintAnime.Split(' ');
+            rStackLen = restraintStack.Length;
+        }
 
         rbody = GetComponent<Rigidbody2D>();
         pc = player.GetComponent<PlayerController>();
@@ -123,14 +135,16 @@ public class EnemyController : MonoBehaviour
         
         float xPosition = transform.position.x;
         float xPlayerPosition = playerPos.x;
-        
-        if(xPosition - xPlayerPosition > 0)
+        if(!scaleFix)
         {
-            transform.localScale = new Vector2(-1, 1);
-        }
-        else if(xPosition - xPlayerPosition < 0)
-        {
-            transform.localScale = new Vector2(1, 1);
+            if(xPosition - xPlayerPosition > 0)
+            {
+                transform.localScale = new Vector2(-1, 1);
+            }
+            else if(xPosition - xPlayerPosition < 0)
+            {
+                transform.localScale = new Vector2(1, 1);
+            }
         }
 
         if(enemyLife <= 0 && !dead)
@@ -151,12 +165,17 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-        if(onGround) rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
+        if(onGround && attacking) rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
 
         if(PlayerController.gameState != "playing")
         {
+            rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
             moving = false;
             animator.SetBool("move", false);
+            if(style == "slugger")
+            {
+                StopRestraint();
+            }
             return;
         }
 
@@ -169,7 +188,7 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-        if(sequential)
+        if(style == "swarmer")
         {
             if(goAttack)
             {
@@ -191,6 +210,47 @@ public class EnemyController : MonoBehaviour
                     rbody.velocity = new Vector2(speed * transform.localScale.x, rbody.velocity.y);
                     moving = true;
                     animator.SetBool("move", true);
+                }
+            }
+        }
+        else if(style == "slugger")
+        {
+            if(goAttack)
+            {
+                attacking = true;
+                Combo();
+                goAttack = false;
+            }
+            if(attacking)
+            {
+                return;
+            }
+            if(moving)
+            {
+                rbody.velocity = new Vector2(speed * transform.localScale.x, rbody.velocity.y);
+            }
+
+            if(!isPlayerNear)//restraint
+            {
+                if(!restrainting) Restraint();
+            }
+            else
+            {
+                StopRestraint();
+
+                if(moving)//tackle
+                {
+                    rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
+                    moving = false;
+                    animator.SetBool("move", false);
+                    animator.SetTrigger("charge");
+                }
+                else//kick or upper
+                {
+                    rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
+                    goAttack = true;
+                    moving = false;
+                    animator.SetBool("move", false);
                 }
             }
         }
@@ -322,7 +382,7 @@ public class EnemyController : MonoBehaviour
         string[] warnings = new string[] {"様子が変わった!警戒!", "前となんか違う！", "動きが変わった！"};
         //animator.Play(damagedAnime, 0, 0);
         animator.SetTrigger("damage");
-        oldAnime = damagedAnime;
+        //oldAnime = damagedAnime;
         if(comboChangeInterval != maxLife && comboChangeNum < nextComboAnimes.Length)
         {
             if(enemyLife <= maxLife - comboChangeInterval * (comboChangeNum + 1))
@@ -416,5 +476,57 @@ public class EnemyController : MonoBehaviour
 
         animator.SetTrigger(trigger);
         stackPointer = (stackPointer + 1) % stackLen;
+    }
+
+    void SetAttacking()
+    {
+        attacking = true;
+    }
+
+    void ResetAttacking()
+    {
+        attacking = false;
+    }
+
+    void ScaleFix()
+    {
+        scaleFix = true;
+    }
+
+    void ScaleFree()
+    {
+        scaleFix = false;
+    }
+
+    public void Restraint()
+    {
+        string trigger;
+        trigger = restraintStack[rStackPointer];
+        restrainting = true;
+
+        if(trigger == "idle")
+        {
+            rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
+            moving = false;
+            animator.SetBool("move", false);
+        }
+        else if(trigger == "run")
+        {
+            moving = true;
+            animator.SetBool("move", true);
+        }
+
+        Invoke("Restraint", 0.5f);
+        rStackPointer = (rStackPointer + 1) % rStackLen;
+    }
+
+    void StopRestraint()
+    {
+        if(IsInvoking("Restraint"))
+        {
+            CancelInvoke("Restraint");
+        }
+        rStackPointer = 0;
+        restrainting = false;
     }
 }

@@ -27,6 +27,7 @@ public class ChangeScene : MonoBehaviour
         if(resetProgress)
         {
             CheckPointManager.progress = 0;
+            GameManager.fadeInDone = false;
         }
         Invoke("GoNextScene", delay);
     }

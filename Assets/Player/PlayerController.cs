@@ -83,6 +83,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip heavyHit;
     public AudioClip guardHit;
     public AudioClip moneySound;
+    public AudioClip eat;
     public AudioClip concentrationSound;
 
     public static string messages = ""; //recieve message from talk event. default should be "not recieved" 
@@ -435,6 +436,7 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.tag == "Heal")
         {
            life = Mathf.Min(life + collision.gameObject.GetComponent<ItemData>().val, maxLife);
+           soundPlayer.PlayOneShot(eat);
            Destroy(collision.gameObject);
         }
         if(collision.gameObject.tag == "Goal")
@@ -569,10 +571,10 @@ public class PlayerController : MonoBehaviour
                         attackTrigger = "con1";
                         concentration = concentration / 2;
                     }
-                    else if((mode == "kick" && Input.GetAxisRaw("Vertical") > 0) ||(mode == "punch" && Input.GetAxisRaw("Vertical") <0))
+                    /*else if((mode == "kick" && Input.GetAxisRaw("Vertical") > 0) ||(mode == "punch" && Input.GetAxisRaw("Vertical") <0))
                     {
                         attackTrigger = "delay" + mode;
-                    }
+                    }*/
                     /*if(mode == "punch")
                     {
                         Action(comboAnimes[combocount - 1], "attack");

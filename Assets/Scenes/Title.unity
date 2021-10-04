@@ -411,6 +411,7 @@ MonoBehaviour:
   sceneName: movie1
   delay: 3
   resetProgress: 0
+  continueMusic: 0
 --- !u!114 &1390384493
 MonoBehaviour:
   m_ObjectHideFlags: 0

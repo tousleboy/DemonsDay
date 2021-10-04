@@ -398,7 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684b54f56422e439b91697c4040a5211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Title
+  sceneName: Stage4
   delay: 0
   resetProgress: 1
   continueMusic: 0
@@ -445,9 +445,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 548679600}
-        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: Load
+      - m_Target: {fileID: 1756853021}
+        m_TargetAssemblyTypeName: ResultManager, Assembly-CSharp
+        m_MethodName: StartFadeOut
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

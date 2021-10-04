@@ -18,6 +18,7 @@ public class CannonController : MonoBehaviour
 
     AudioSource soundPlayer;
     public AudioClip punchHit;
+    public AudioClip shoot;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +48,7 @@ public class CannonController : MonoBehaviour
             Rigidbody2D rbody = obj.GetComponent<Rigidbody2D>();
             Vector2 v = new Vector2(fireSpeedX, fireSpeedY);
             rbody.AddForce(v, ForceMode2D.Impulse);
+            soundPlayer.PlayOneShot(shoot);
             }
         }
     }
