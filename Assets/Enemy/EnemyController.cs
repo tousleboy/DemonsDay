@@ -41,6 +41,7 @@ public class EnemyController : MonoBehaviour
     //public string deadAnime = "RichmenDead";
     //string nowAnime;
     //string oldAnime;
+    public string[] warnings;
 
     int enemyLife;
     public int maxLife = 8;
@@ -379,7 +380,7 @@ public class EnemyController : MonoBehaviour
         attacking = false;
         goBackStep = false;
         stackPointer = 0;
-        string[] warnings = new string[] {"様子が変わった!警戒!", "前となんか違う！", "動きが変わった！"};
+        //string[] warnings = new string[] {"様子が変わった!警戒!", "前となんか違う！", "動きが変わった！"};
         //animator.Play(damagedAnime, 0, 0);
         animator.SetTrigger("damage");
         //oldAnime = damagedAnime;
@@ -496,6 +497,11 @@ public class EnemyController : MonoBehaviour
     void ScaleFree()
     {
         scaleFix = false;
+    }
+
+    void MoveForward(float d)
+    {
+        transform.Translate(d * transform.localScale.x, 0, 0);
     }
 
     public void Restraint()

@@ -666,6 +666,14 @@ PrefabInstance:
       value: Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 610632371622978001, guid: 156c9dade900945068fccf7708013fad, type: 3}
+      propertyPath: Boss
+      value: 
+      objectReference: {fileID: 208029793}
+    - target: {fileID: 610632371622978001, guid: 156c9dade900945068fccf7708013fad, type: 3}
+      propertyPath: bossIsGoal
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 610632371622978001, guid: 156c9dade900945068fccf7708013fad, type: 3}
       propertyPath: hsAlwaysActive
       value: 0
       objectReference: {fileID: 0}
@@ -759,7 +767,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 842812180335989722, guid: 156c9dade900945068fccf7708013fad, type: 3}
       propertyPath: sceneName
-      value: Stage6
+      value: Stage5
+      objectReference: {fileID: 0}
+    - target: {fileID: 842812180335989722, guid: 156c9dade900945068fccf7708013fad, type: 3}
+      propertyPath: continueMusic
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6969407495800740607, guid: 156c9dade900945068fccf7708013fad, type: 3}
       propertyPath: sceneName
@@ -1036,7 +1048,7 @@ PrefabInstance:
     - target: {fileID: 6743690143811486826, guid: 2ea5ad4f661624898832a881fa7128ce, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 096dfeca9c0984efe913b6cfd8029f6a, type: 3}
+      objectReference: {fileID: 8300000, guid: 830285b5e9b6940e69ffc8055e05817c, type: 3}
     - target: {fileID: 6743690143811486827, guid: 2ea5ad4f661624898832a881fa7128ce, type: 3}
       propertyPath: m_Name
       value: MusicPlayer
@@ -1392,6 +1404,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1072612078951792817, guid: 77f4f4a9c011d494a9ce0742db56b5e7, type: 3}
+      propertyPath: m_Size.x
+      value: 0.791492
+      objectReference: {fileID: 0}
+    - target: {fileID: 1072612078951792817, guid: 77f4f4a9c011d494a9ce0742db56b5e7, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.025248766
+      objectReference: {fileID: 0}
     - target: {fileID: 1072612078951792820, guid: 77f4f4a9c011d494a9ce0742db56b5e7, type: 3}
       propertyPath: maai
       value: 1.5
@@ -1402,11 +1422,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1072612078951792820, guid: 77f4f4a9c011d494a9ce0742db56b5e7, type: 3}
       propertyPath: maxLife
-      value: 12
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1072612078951792820, guid: 77f4f4a9c011d494a9ce0742db56b5e7, type: 3}
       propertyPath: restraintAnime
-      value: idle run run run run idle run idle run
+      value: idle run idle run run run idle run idle run
+      objectReference: {fileID: 0}
+    - target: {fileID: 1072612078951792820, guid: 77f4f4a9c011d494a9ce0742db56b5e7, type: 3}
+      propertyPath: dramaticWhenDie
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1072612078951792820, guid: 77f4f4a9c011d494a9ce0742db56b5e7, type: 3}
+      propertyPath: nextComboAnimes.Array.data[0]
+      value: upper kick exit
+      objectReference: {fileID: 0}
+    - target: {fileID: 1072612078951792820, guid: 77f4f4a9c011d494a9ce0742db56b5e7, type: 3}
+      propertyPath: nextComboAnimes.Array.data[1]
+      value: upper upper exit kick exit
       objectReference: {fileID: 0}
     - target: {fileID: 1072612078951792821, guid: 77f4f4a9c011d494a9ce0742db56b5e7, type: 3}
       propertyPath: m_RootOrder

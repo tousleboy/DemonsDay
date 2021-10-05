@@ -3867,7 +3867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 842812180335989722, guid: 156c9dade900945068fccf7708013fad, type: 3}
       propertyPath: continueMusic
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 156c9dade900945068fccf7708013fad, type: 3}
@@ -7276,7 +7276,7 @@ PrefabInstance:
     - target: {fileID: 6743690143811486826, guid: 2ea5ad4f661624898832a881fa7128ce, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 8829f7421580b4c3db1ed98ba2ce23a7, type: 3}
+      objectReference: {fileID: 8300000, guid: 0e8af11c51bde4a5296bbd4ff1b4e598, type: 3}
     - target: {fileID: 6743690143811486827, guid: 2ea5ad4f661624898832a881fa7128ce, type: 3}
       propertyPath: m_Name
       value: MusicPlayer

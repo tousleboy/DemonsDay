@@ -249,6 +249,7 @@ public class PlayerController : MonoBehaviour
                 blocking = false;
                 ducking = true;
             }
+            if(goBackStep) goBackStep = false;
             //passedTimes = 0.0f;
         }
         else

@@ -932,6 +932,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8775575347030252590, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
+      propertyPath: warnings.Array.data[0]
+      value: "\u69D8\u5B50\u304C\u5909\u308F\u3063\u305F\uFF01\u8B66\u6212\uFF01"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8775575347030252590, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
+      propertyPath: warnings.Array.data[1]
+      value: "\u524D\u3068\u306A\u3093\u304B\u9055\u3046\uFF01"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8775575347030252590, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
+      propertyPath: warnings.Array.data[2]
+      value: "\u52D5\u304D\u304C\u5909\u308F\u3063\u305F\uFF01"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8775575347030252590, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
       propertyPath: nextComboAnimes.Array.size
       value: 2
       objectReference: {fileID: 0}
