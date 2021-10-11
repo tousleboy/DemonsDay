@@ -11,19 +11,20 @@ public class MusicChangerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        musicPlayer = GameObject.FindGameObjectWithTag("Music");
+        player = GameObject.FindGameObjectWithTag("Player");      
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(musicPlayer == null)
-        {
-            return;
-        }
         if(player.transform.position.x > transform.position.x && !activated)
         {
+            musicPlayer = GameObject.FindGameObjectWithTag("Music");
+            if(musicPlayer == null)
+            {
+                activated = true;
+                return;
+            }
             AudioSource auds = musicPlayer.GetComponent<AudioSource>();
             if(auds.clip != music)
             {

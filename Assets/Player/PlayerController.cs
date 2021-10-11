@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        Debug.Log(GameManager.battleScore);
+        //Debug.Log(GameManager.battleScore);
 
         axisH = Input.GetAxisRaw("Horizontal");
         //Debug.Log("texts" + texts +  " messages" + messages);

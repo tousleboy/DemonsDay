@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     public string firstText;
     public bool endWithFade = false;
     public static bool fadeInDone = false;
+    public static int howManyLoad = 0;
     bool goal = false;
 
     public static int score = 0;
@@ -51,6 +52,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        howManyLoad += 1;
+
         mainImage.SetActive(false);
         Pannel1.SetActive(false);
         Pannel2.SetActive(false);
@@ -89,7 +92,7 @@ public class GameManager : MonoBehaviour
 
         title.text = "";
         titleText.SetActive(false);
-        if(startWithFade && !fadeInDone)
+        if(startWithFade && howManyLoad == 1)
         {
             StartCoroutine("FadeIn");
         }

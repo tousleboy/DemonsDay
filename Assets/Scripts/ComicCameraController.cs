@@ -27,8 +27,6 @@ public class ComicCameraController : MonoBehaviour
         soundPlayer = GetComponent<AudioSource>();
 
         cs = GetComponent<ChangeScene>();
-
-        musicPlayer = GameObject.FindGameObjectWithTag("Music");
     }
 
     // Update is called once per frame
@@ -49,15 +47,22 @@ public class ComicCameraController : MonoBehaviour
             {
                 soundPlayer.PlayOneShot(ca.sound);
             }
-            if(musicPlayer != null)
+
+            if(ca.musicStop)
             {
-                AudioSource auds = musicPlayer.GetComponent<AudioSource>();
-                if(ca.musicStop)
+                musicPlayer = GameObject.FindGameObjectWithTag("Music");
+                if(musicPlayer != null)
                 {
+                    AudioSource auds = musicPlayer.GetComponent<AudioSource>();
                     StartCoroutine(AudioChange(auds, null));
                 }
-                else if(ca.newMusic != null && musicPlayer != null)
+            }
+            else if(ca.newMusic != null)
+            {
+                musicPlayer = GameObject.FindGameObjectWithTag("Music");
+                if(musicPlayer != null)
                 {
+                    AudioSource auds = musicPlayer.GetComponent<AudioSource>();
                     if(auds.clip != ca.newMusic)
                     {
                         StartCoroutine(AudioChange(auds, ca.newMusic));

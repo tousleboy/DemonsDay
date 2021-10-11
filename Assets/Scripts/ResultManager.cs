@@ -93,6 +93,8 @@ public class ResultManager : MonoBehaviour
         float t = 0.0f;
         float speed = 0.5f;
         Fade.SetActive(true);
+        Button bt = button.GetComponent<Button>();
+        bt.interactable = false;
         yield return new WaitForSeconds(0.5f);
         while(t <= 1.0f)
         {
