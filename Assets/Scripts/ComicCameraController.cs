@@ -100,7 +100,7 @@ public class ComicCameraController : MonoBehaviour
     {
         float i;
         float downspeed = 0.01f;
-        float upspeed = 0.1f;
+        float upspeed = 1f;
         for(i = 1.0f; i >= 0.0f && auds.clip != null; i -= downspeed)
         {
             auds.volume = i;

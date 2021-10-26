@@ -208,6 +208,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 62a827a35f8184b7ab6a2054e526a275, type: 3}
     - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
+      propertyPath: musicStop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
       propertyPath: leaveSpeed
       value: 2
       objectReference: {fileID: 0}
@@ -493,6 +497,10 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 64ab62820ec9c4f85be9c053c0e0ae53, type: 3}
     - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
       propertyPath: waitTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
+      propertyPath: musicStop
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3896682775488044532, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
@@ -840,6 +848,10 @@ PrefabInstance:
       propertyPath: sound
       value: 
       objectReference: {fileID: 8300000, guid: 7e8eb52b18fa6485198f55aa6613db9e, type: 3}
+    - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
+      propertyPath: newMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: b4d5d5b23aa024bff9a6aab67571bcf0, type: 3}
     - target: {fileID: 3896682775488044532, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
       propertyPath: m_Name
       value: ComicAnchor (17)
@@ -1311,7 +1323,7 @@ PrefabInstance:
     - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
       propertyPath: sound
       value: 
-      objectReference: {fileID: 8300000, guid: 8829f7421580b4c3db1ed98ba2ce23a7, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
       propertyPath: leaveSpeed
       value: 2
@@ -1399,6 +1411,10 @@ PrefabInstance:
     - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
       propertyPath: waitTime
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
+      propertyPath: musicStop
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
       propertyPath: leaveSpeed
@@ -1517,7 +1533,7 @@ PrefabInstance:
     - target: {fileID: 6247755654804179598, guid: b0fa287b5b29c4c018820fe6d40358d4, type: 3}
       propertyPath: mainTheme
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 3eb56c9cc440a445ba4b1d4edcbe99b4, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0fa287b5b29c4c018820fe6d40358d4, type: 3}
 --- !u!1 &1337834568
@@ -2126,7 +2142,7 @@ PrefabInstance:
     - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
       propertyPath: sound
       value: 
-      objectReference: {fileID: 8300000, guid: 93825da3ccac04fbfb70141e4918c0ed, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
       propertyPath: waitTime
       value: 0.5

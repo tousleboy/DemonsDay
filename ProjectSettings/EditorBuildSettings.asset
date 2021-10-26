@@ -50,4 +50,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage6.unity
     guid: 801e1ea3dcef047c6b55a4274019604e
+  - enabled: 1
+    path: Assets/Scenes/movie7.unity
+    guid: dd3f96c33ebf7444fb220b92ae24c24f
   m_configObjects: {}

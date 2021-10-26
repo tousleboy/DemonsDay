@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
             headSet.SetActive(false);
         }
 
+        PlayerController.messages = "";
         nowMessages = PlayerController.messages;
         oldMessages = PlayerController.messages;
 
@@ -180,7 +181,8 @@ public class GameManager : MonoBehaviour
         {
             if(headSet.activeSelf)
             {
-                hsAnimator.SetTrigger("Call");
+                if(hsAnimator != null) hsAnimator.SetTrigger("Call");
+
                 soundPlayer.PlayOneShot(piron);
             }
             message.text = messages[i];

@@ -13,6 +13,8 @@ public class TalkEventManager : MonoBehaviour
     public string texts;    //Japanese texts should be devided with ' ', English ver has not been releaced
     public bool isEvent = false;
     public float eventLength = 3.0f;
+    public bool occurEveryTime = true;
+    public int when = 1;
     
     bool done = false;
     // Start is called before the first frame update
@@ -36,12 +38,15 @@ public class TalkEventManager : MonoBehaviour
         float playerY = player.transform.position.y;
         if(transform.position.x - range <= playerX && transform.position.x + range >= playerX && playerY >= transform.position.y && playerY <= transform.position.y + height)
         {
-            Invoke("SendTexts", delay);
-            done = true;
-            if(isEvent && PlayerController.messages != texts)
+            if(occurEveryTime || when == GameManager.howManyLoad)
             {
-                pc.Wait();
-                Invoke("EventEnd", eventLength);
+                Invoke("SendTexts", delay);
+                done = true;
+                if(isEvent && PlayerController.messages != texts)
+                {
+                    pc.Wait();
+                    Invoke("EventEnd", eventLength);
+                }
             }
         }
     }

@@ -89,6 +89,10 @@ public class PlayerController : MonoBehaviour
     public static string messages = ""; //recieve message from talk event. default should be "not recieved" 
     public string texts = "";
 
+
+    GameObject frontFoot;
+    GameObject backFoot;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -104,6 +108,9 @@ public class PlayerController : MonoBehaviour
         soundPlayer = GetComponent<AudioSource>();
         StartCoroutine("Deconcentration");
         conEffect = transform.Find("ConcentrationEffect").gameObject;
+
+        frontFoot = transform.Find("FrontFoot").gameObject;
+        backFoot = transform.Find("BackFoot").gameObject;
     }
 
     // Update is called once per frame
@@ -273,7 +280,16 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        onGround = Physics2D.Linecast(transform.position, transform.position -(transform.up * 0.1f), groundLayer);
+        Vector3 frontFootPos = frontFoot.transform.position;
+        Vector3 backFootPos = backFoot.transform.position;
+        bool center = Physics2D.Linecast(transform.position, transform.position -(transform.up * 0.1f), groundLayer);
+        bool front = Physics2D.Linecast(frontFootPos, frontFootPos -(transform.up * 0.1f), groundLayer);
+        bool back = Physics2D.Linecast(backFootPos, backFootPos -(transform.up * 0.1f), groundLayer);
+        Debug.Log("center" + center + "vector" + transform.position);
+        Debug.Log("front" + front + "vector" + frontFootPos);
+        Debug.Log("back" + back + "vector" + backFootPos);
+        onGround = center || front || back; 
+        //onGround = Physics2D.Linecast(transform.position, transform.position -(transform.up * 0.1f), groundLayer);
 
         if(damaged)
         {

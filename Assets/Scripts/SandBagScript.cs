@@ -84,6 +84,7 @@ public class SandBagScript : MonoBehaviour
         float t;
         float length = 1.0f;
         GetComponent<BoxCollider2D>().enabled = false;
+        target.GetComponent<AudioSource>().volume = 0;
         dead = true;
         
         for(t = 0; t < length; t += Time.deltaTime)
