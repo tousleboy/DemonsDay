@@ -36,6 +36,7 @@ public class TitleManager : MonoBehaviour
             t += speed * Time.deltaTime;
             yield return null;
         }
+        I.color = Color.white;
         button.SetActive(true);
     }
 
@@ -51,6 +52,7 @@ public class TitleManager : MonoBehaviour
             t += speed * Time.deltaTime;
             yield return null;
         }
+        I.color = Color.black;
     }
 
     public void StartTurnOff()

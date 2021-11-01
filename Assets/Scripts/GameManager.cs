@@ -225,6 +225,7 @@ public class GameManager : MonoBehaviour
             t += speed * Time.deltaTime;
             yield return null;
         }
+        I.color = Color.clear;
         PlayerController.gameState = "playing";
         Fade.SetActive(false);
         titleText.SetActive(false);
@@ -247,6 +248,7 @@ public class GameManager : MonoBehaviour
             t += speed * Time.deltaTime;
             yield return null;
         }
+        I.color = Color.black;
         if(musicPlayer != null && !NextButton.GetComponent<ChangeScene>().continueMusic)
         {
             float i;
@@ -257,6 +259,7 @@ public class GameManager : MonoBehaviour
                 auds.volume = i;
                 yield return null;
             }
+            auds.volume = 0.0f;
         }
         yield return new WaitForSeconds(1.0f);
         NextButton.GetComponent<ChangeScene>().Load();

@@ -55,6 +55,7 @@ public class ResultManager : MonoBehaviour
             t += speed * Time.deltaTime;
             yield return null;
         }
+        I.color = Color.clear;
 
         int i;
         float interval1 = 0.5f;
@@ -102,6 +103,7 @@ public class ResultManager : MonoBehaviour
             t += speed * Time.deltaTime;
             yield return null;
         }
+        I.color = Color.black;
         if(musicPlayer != null && !button.GetComponent<ChangeScene>().continueMusic)
         {
             float i;
@@ -112,6 +114,7 @@ public class ResultManager : MonoBehaviour
                 auds.volume = i;
                 yield return null;
             }
+            auds.volume = 0.0f;
         }
         yield return new WaitForSeconds(1.0f);
         button.GetComponent<ChangeScene>().Load();

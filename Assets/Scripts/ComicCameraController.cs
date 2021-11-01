@@ -113,6 +113,7 @@ public class ComicCameraController : MonoBehaviour
             auds.volume = i;
             yield return null;
         }
+        auds.volume = 1f;
     }
 
     void Restart()

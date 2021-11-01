@@ -46,6 +46,7 @@ public class FlashBackManager : MonoBehaviour
             t += speed * Time.deltaTime;
             yield return null;
         }
+        R.material.color = Color.clear;
         
         int i;
         for(i = 0; i < flashBacks.Length; i++)
@@ -64,6 +65,7 @@ public class FlashBackManager : MonoBehaviour
             t += speed * Time.deltaTime;
             yield return null;
         }
+        R.material.color = Color.white;
         wall.SetActive(false);
     }
 
