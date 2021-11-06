@@ -261,7 +261,6 @@ GameObject:
   - component: {fileID: 8775575347030252590}
   - component: {fileID: 8775575347030252587}
   - component: {fileID: 8775575347030252596}
-  - component: {fileID: 8775575347030252597}
   m_Layer: 13
   m_Name: highrichmen
   m_TagString: Enemy
@@ -397,20 +396,22 @@ MonoBehaviour:
   backStepping: 0
   goBackStep: 0
   style: swarmer
-  comboAnime: onetwothree onetwothree lowkick lowkick gap exit
-  nextComboAnimes: []
+  comboAnime: onetwothree lowkick middlekick onetwothree gap exit
+  nextComboAnimes:
+  - onetwo backstep exit onetwo lowkick gap exit
+  - onetwo lowkick backstep exit lowkick onetwothree gap exit
   restraintAnime: 
   warnings:
-  - 
-  - 
-  - 
-  maxLife: 8
+  - "\u69D8\u5B50\u304C\u5909\u308F\u3063\u305F\uFF01\u8B66\u6212\uFF01"
+  - "\u524D\u3068\u306A\u3093\u304B\u9055\u3046\uFF01"
+  - "\u52D5\u304D\u304C\u5909\u308F\u3063\u305F\uFF01"
+  maxLife: 16
   damaged: 0
   moving: 0
   parry: 0
   cut: 0
   ducking: 0
-  dramaticWhenDie: 0
+  dramaticWhenDie: 1
   punch: {fileID: 8300000, guid: a9e4595c8eeb24b98b3f22401ea24327, type: 3}
   punchHit: {fileID: 8300000, guid: 93825da3ccac04fbfb70141e4918c0ed, type: 3}
   heavyHit: {fileID: 8300000, guid: 1344645d190ee4b0293bea2811cb4a09, type: 3}
@@ -533,18 +534,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8775575347030252597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8775575347030252589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0770c63d1b9fb4135bbdec3b697b9784, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8775575346848876619
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -558,7 +547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5056657394207239584, guid: 12c5eaf435d4d4f8199ea74a6ad015ae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5056657394207239584, guid: 12c5eaf435d4d4f8199ea74a6ad015ae, type: 3}
       propertyPath: m_LocalPosition.y
@@ -610,7 +599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5056657394207239591, guid: 12c5eaf435d4d4f8199ea74a6ad015ae, type: 3}
       propertyPath: m_Size.x
-      value: 0.42408752
+      value: 0.29374504
       objectReference: {fileID: 0}
     - target: {fileID: 5056657394207239591, guid: 12c5eaf435d4d4f8199ea74a6ad015ae, type: 3}
       propertyPath: m_Size.y
@@ -622,7 +611,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5056657394207239591, guid: 12c5eaf435d4d4f8199ea74a6ad015ae, type: 3}
       propertyPath: m_Offset.x
-      value: 0.016462326
+      value: 0.08163357
       objectReference: {fileID: 0}
     - target: {fileID: 5056657394207239591, guid: 12c5eaf435d4d4f8199ea74a6ad015ae, type: 3}
       propertyPath: m_Offset.y

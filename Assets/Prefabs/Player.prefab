@@ -148,7 +148,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.93823147, y: 1}
+  m_Offset: {x: 0.65567994, y: 1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -159,7 +159,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.4979572, y: 2}
+  m_Size: {x: 1.9328542, y: 2}
   m_EdgeRadius: 0
 --- !u!50 &5584026415757505433
 Rigidbody2D:
@@ -277,7 +277,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 8
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: d5ef4aa54d5f240ecb7e31f96b950ca9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -329,7 +329,7 @@ MonoBehaviour:
     m_Bits: 256
   onGround: 0
   howManyJump: 0
-  backStep: 2
+  backStep: 8
   backStepping: 0
   stopAnime: PlayerIdle
   runAnime: PlayerRun
@@ -503,7 +503,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.025270462, y: 1.0040905}
+  m_Offset: {x: -0.008399725, y: 1.0176576}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.25, y: 0}
@@ -514,8 +514,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.34409142, y: 1.7753077}
-  m_EdgeRadius: 0.12
+  m_Size: {x: 0.5802827, y: 1.9422715}
+  m_EdgeRadius: 0.01
 --- !u!1 &9014023849643622486
 GameObject:
   m_ObjectHideFlags: 0

@@ -927,48 +927,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: highrichmen
       objectReference: {fileID: 0}
-    - target: {fileID: 8775575347030252590, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
-      propertyPath: maxLife
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 8775575347030252590, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
-      propertyPath: comboAnime
-      value: onetwothree lowkick middlekick onetwothree gap exit
-      objectReference: {fileID: 0}
-    - target: {fileID: 8775575347030252590, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
-      propertyPath: dramaticWhenDie
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8775575347030252590, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
-      propertyPath: warnings.Array.data[0]
-      value: "\u69D8\u5B50\u304C\u5909\u308F\u3063\u305F\uFF01\u8B66\u6212\uFF01"
-      objectReference: {fileID: 0}
-    - target: {fileID: 8775575347030252590, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
-      propertyPath: warnings.Array.data[1]
-      value: "\u524D\u3068\u306A\u3093\u304B\u9055\u3046\uFF01"
-      objectReference: {fileID: 0}
-    - target: {fileID: 8775575347030252590, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
-      propertyPath: warnings.Array.data[2]
-      value: "\u52D5\u304D\u304C\u5909\u308F\u3063\u305F\uFF01"
-      objectReference: {fileID: 0}
-    - target: {fileID: 8775575347030252590, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
-      propertyPath: nextComboAnimes.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8775575347030252590, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
-      propertyPath: nextComboAnimes.Array.data[0]
-      value: onetwo backstep exit onetwo lowkick gap exit
-      objectReference: {fileID: 0}
-    - target: {fileID: 8775575347030252590, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
-      propertyPath: nextComboAnimes.Array.data[1]
-      value: onetwo lowkick backstep exit lowkick onetwothree gap exit
-      objectReference: {fileID: 0}
-    - target: {fileID: 8775575347030252597, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8775575347030252597, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
 --- !u!1 &1378578891
 GameObject:
@@ -1169,6 +1128,10 @@ PrefabInstance:
     - target: {fileID: 2372817734944560871, guid: 28c6509cce481430f8378a2d85f219b5, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 7404245662279908064, guid: 28c6509cce481430f8378a2d85f219b5, type: 3}
+      propertyPath: backStep
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7404245662279908064, guid: 28c6509cce481430f8378a2d85f219b5, type: 3}
       propertyPath: concentrationSound

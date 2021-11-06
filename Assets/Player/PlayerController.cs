@@ -300,6 +300,7 @@ public class PlayerController : MonoBehaviour
         {
             axisH = 0;
             goJump = false;
+            goBackStep = false;
         }
 
         if((onGround || axisH != 0) && !backStepping)//走り
@@ -307,11 +308,11 @@ public class PlayerController : MonoBehaviour
             rbody.velocity = new Vector2(axisH * runSpeed, rbody.velocity.y);
         }
 
-        if(goBackStep)
+        /*if(goBackStep)
         {
             Vector2 backStepPw = new Vector2(backStep * transform.localScale.x * -1, 0);
             rbody.AddForce(backStepPw, ForceMode2D.Impulse);
-        }
+        }*/
 
         if((goJump && (jumpCount <= howManyJump)) || (onGround && goJump))//多段ジャンプ
         {
@@ -424,7 +425,7 @@ public class PlayerController : MonoBehaviour
             if((damage > 0 || am.knockBack) && !blockSuccess)
             {
                 Damage();
-                concentration = Mathf.Max(concentration - 2, 0);
+                concentration = Mathf.Max(concentration - 20, 0);
                 if(damage > 0)
                 {
                     GetComponent<Renderer>().material.color = Color.red;
@@ -675,7 +676,12 @@ public class PlayerController : MonoBehaviour
     {
         delay = false;
     }*/
-
+    void BackStep()
+    {
+        rbody.velocity = new Vector2(0f, rbody.velocity.y);
+        Vector2 backStepPw = new Vector2(backStep * transform.localScale.x * -1, 0);
+        rbody.AddForce(backStepPw, ForceMode2D.Impulse);
+    }
     public void SetHigh()
     {
         amgr.state = "high";

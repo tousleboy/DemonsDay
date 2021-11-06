@@ -7,7 +7,7 @@ public class ConcentrateGaugeManager : MonoBehaviour
 {
     public GameObject[] gauges;
     int gaugeLen;
-    int oneGaugeValue = 3;
+    int oneGaugeValue = 4;
     public static int maxCon;
     int prevCon;
     int nowCon;

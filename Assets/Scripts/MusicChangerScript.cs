@@ -51,6 +51,6 @@ public class MusicChangerScript : MonoBehaviour
             auds.volume = i;
             yield return null;
         }
-        auds.volume = 0.0f;
+        auds.volume = 1.0f;
     }
 }

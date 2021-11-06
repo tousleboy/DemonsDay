@@ -8438,6 +8438,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6447801277719478759, guid: 28c6509cce481430f8378a2d85f219b5, type: 3}
+      propertyPath: m_Size.y
+      value: 1.9443524
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447801277719478759, guid: 28c6509cce481430f8378a2d85f219b5, type: 3}
+      propertyPath: m_Offset.y
+      value: 1.0083681
+      objectReference: {fileID: 0}
     - target: {fileID: 7404245662279908067, guid: 28c6509cce481430f8378a2d85f219b5, type: 3}
       propertyPath: m_RootOrder
       value: 124
