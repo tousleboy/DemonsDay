@@ -446,6 +446,7 @@ MonoBehaviour:
   delay: 3
   resetProgress: 1
   continueMusic: 0
+  stopMusic: 0
 --- !u!1 &1858895434
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,6 +676,7 @@ GameObject:
   - component: {fileID: 2141527386}
   - component: {fileID: 2141527385}
   - component: {fileID: 2141527389}
+  - component: {fileID: 2141527390}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -776,3 +778,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e0f1e0d7ef4475c83169fe6bc1c76c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2141527390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141527384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e03ad0a13ddde4711afbdf52d983c444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 1640016688}
+  decisionKey: Jump
