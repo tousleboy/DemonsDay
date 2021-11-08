@@ -10,6 +10,7 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
     public string decisionKey = "Jump";
     int pointer = 0;
     bool wait = false;
+    bool decided = false;
     float waitTime = 0.4f;
 
     // Start is called before the first frame update
@@ -23,7 +24,7 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
     // Update is called once per frame
     void Update()
     {
-        if(!AllActive())
+        if(!AllActive() || decided)
         {
             return;
         }
@@ -61,6 +62,7 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
             b.onClick.Invoke();
             //b.OnPointerDown(EventSystems.PointerEventData);
             wait = true;
+            decided = true;
         }
     }
 

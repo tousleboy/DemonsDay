@@ -147,19 +147,21 @@ public class GameManager : MonoBehaviour
             mainImage.GetComponent<Image>().sprite = gameOverSpr;
             mainImage.SetActive(true);
         }
+
         if(bossIsGoal && !goal)
         {
             if(Boss == null)
             {
-                goal = true;
+                Goal();
                 StartCoroutine("FadeOut");
             }
         }
         if(PlayerController.gameState == "gameclear" && !bossIsGoal && !goal)
         {
+            Goal();
+
             if(endWithFade)
             {
-                goal = true;
                 StartCoroutine("FadeOut");
             }
             else
@@ -167,15 +169,6 @@ public class GameManager : MonoBehaviour
                 Pannel2.SetActive(true);
                 mainImage.GetComponent<Image>().sprite = gameClearSpr;
                 mainImage.SetActive(true);
-                fadeInDone = false;
-                CheckPointManager.progress = 0;
-
-                score += stageScore;
-                stageScore = 0;
-                defeats += stageDefeats;
-                stageDefeats = 0;
-
-                goal = true;
             }
         }
     }
@@ -277,5 +270,18 @@ public class GameManager : MonoBehaviour
         }
         yield return new WaitForSeconds(1.0f);
         NextButton.GetComponent<ChangeScene>().Load();
+    }
+
+    void Goal()
+    {
+        fadeInDone = false;
+        CheckPointManager.progress = 0;
+
+        score += stageScore;
+        stageScore = 0;
+        defeats += stageDefeats;
+        stageDefeats = 0;
+
+        goal = true;
     }
 }
