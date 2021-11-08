@@ -407,7 +407,7 @@ public class EnemyController : MonoBehaviour
         animator.SetTrigger("die");
         PlayerController.concentration = Mathf.Max(PlayerController.concentration - 10, 0);
         GameManager.battleScore = Mathf.Min(GameManager.battleScore + 5, 100);
-        GameManager.defeats += 1;
+        GameManager.stageDefeats += 1;
         Destroy(gameObject, 1.0f);
     }
 

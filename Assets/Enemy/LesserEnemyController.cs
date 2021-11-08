@@ -100,7 +100,7 @@ public class LesserEnemyController : MonoBehaviour
         Destroy(attackZone);
         //rbody.velocity = new Vector2(0, 0);
         animator.Play(deadAnime);
-        GameManager.defeats += 1;
+        GameManager.stageDefeats += 1;
         Destroy(gameObject, 1.0f);
     }
 }

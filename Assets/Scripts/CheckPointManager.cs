@@ -36,6 +36,11 @@ public class CheckPointManager : MonoBehaviour
                 paint.SetActive(true);
                 active = true;
                 progress = individualNum;
+
+                GameManager.score += GameManager.stageScore;
+                GameManager.stageScore = 0;
+                GameManager.defeats += GameManager.stageDefeats;
+                GameManager.stageDefeats = 0;
             }
     }
 

@@ -82,6 +82,9 @@ public class ResultManager : MonoBehaviour
         battleRankImage.SetActive(true);
         soundPlayer.PlayOneShot(pecha);
 
+        GameManager.totalBattleScore += GameManager.battleScore;
+        GameManager.battleScore = 100;
+
         yield return new WaitForSeconds(interval2);
         button.SetActive(true);
     }

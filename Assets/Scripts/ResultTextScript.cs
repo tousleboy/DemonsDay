@@ -11,9 +11,24 @@ public class ResultTextScript : MonoBehaviour
     void Start()
     {
         t = GetComponent<Text>();
-        if(mode == "NumberofDefeats") t.text = GameManager.defeats.ToString();
-        else if(mode == "Money") t.text = GameManager.score.ToString();
-        else if(mode == "Retry") t.text = GameManager.retry.ToString();
+        if(mode == "NumberofDefeats")
+        {
+            t.text = GameManager.defeats.ToString();
+            GameManager.totalDefeats += GameManager.defeats;
+            GameManager.defeats = 0;
+        }
+        else if(mode == "Money")
+        {
+            t.text = GameManager.score.ToString();
+            GameManager.totalScore += GameManager.score;
+            GameManager.score = 0;
+        }
+        else if(mode == "Retry")
+        {
+            t.text = GameManager.retry.ToString();
+            GameManager.totalRetry += GameManager.retry;
+            GameManager.retry = 0;
+        }
 
     }
 

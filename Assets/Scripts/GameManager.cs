@@ -40,15 +40,20 @@ public class GameManager : MonoBehaviour
     public static int howManyLoad = 0;
     bool goal = false;
 
-    public static int score = 0;
-
     string messages;
     string nowMessages;
     string oldMessages;
 
     public static int battleScore = 100;
+    public static int score = 0;
     public static int defeats = 0;
     public static int retry = 0;
+    public static int stageScore = 0;
+    public static int stageDefeats = 0;
+    public static int totalBattleScore = 0;
+    public static int totalScore = 0;
+    public static int totalDefeats = 0;
+    public static int totalRetry = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +77,9 @@ public class GameManager : MonoBehaviour
         PlayerController.messages = "";
         nowMessages = PlayerController.messages;
         oldMessages = PlayerController.messages;
+
+        stageScore = 0;
+        stageDefeats = 0;
 
         UpdateScore();
 
@@ -121,7 +129,7 @@ public class GameManager : MonoBehaviour
 
         if(PlayerController.score != 0)
         {
-            score += PlayerController.score;
+            stageScore += PlayerController.score;
             PlayerController.score = 0;
             UpdateScore();
         }
@@ -161,6 +169,12 @@ public class GameManager : MonoBehaviour
                 mainImage.SetActive(true);
                 fadeInDone = false;
                 CheckPointManager.progress = 0;
+
+                score += stageScore;
+                stageScore = 0;
+                defeats += stageDefeats;
+                stageDefeats = 0;
+
                 goal = true;
             }
         }
@@ -168,7 +182,7 @@ public class GameManager : MonoBehaviour
 
     void UpdateScore()
     {
-        money.text = "¥" + score.ToString();
+        money.text = "¥" + (score + stageScore).ToString();
     }
 
     IEnumerator StoryTeller()
