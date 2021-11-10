@@ -22,6 +22,7 @@ public class LogoManager : MonoBehaviour
 
         Il.color = Color.clear;
         Ip.color = Color.black;
+        panel.SetActive(true);
         button.SetActive(false);
         StartCoroutine("TurnOn");
     }
@@ -58,14 +59,16 @@ public class LogoManager : MonoBehaviour
         }
         yield return new WaitForSeconds(time3);
         button.SetActive(true);
+        panel.SetActive(false);
     }
 
     IEnumerator TurnOff()
     {
         float t = 0.0f;
         float speed = 0.5f;
-        Button bt = button.GetComponent<Button>();
-        bt.interactable = false;
+        //Button bt = button.GetComponent<Button>();
+        //bt.interactable = false;
+        panel.SetActive(true);
         while(t <= 1.0f)
         {
             Ip.color = Color.Lerp(Color.clear, Color.black, t);

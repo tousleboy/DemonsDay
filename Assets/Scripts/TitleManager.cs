@@ -5,20 +5,23 @@ using UnityEngine.UI;
 
 public class TitleManager : MonoBehaviour
 {
-    GameObject mainImage;
-    GameObject button;
+    //public GameObject mainImage;
+    public GameObject startButton;
+    public GameObject panel;
+    public GameObject Fade;
     Image I;
     // Start is called before the first frame update
     void Start()
     {
-        mainImage = transform.Find("MainImage").gameObject;
-        button = transform.Find("Button").gameObject;
-        I = mainImage.GetComponent<Image>();
+        //mainImage = transform.Find("MainImage").gameObject;
+        //button = transform.Find("Button").gameObject;
+        I = Fade.GetComponent<Image>();
 
         I.color = Color.black;
-        if(GameManager.nowScene != "") button.GetComponent<ChangeScene>().sceneName = GameManager.nowScene;
-        
-        button.SetActive(false);
+        Fade.SetActive(true);
+        if(GameManager.nowScene != "") startButton.GetComponent<ChangeScene>().sceneName = GameManager.nowScene;
+
+        panel.SetActive(false);
         StartCoroutine("TurnOn");
     }
 
@@ -34,23 +37,25 @@ public class TitleManager : MonoBehaviour
         float speed = 0.5f;
         while(t <= 1.0f)
         {
-            I.color = Color.Lerp(Color.black, Color.white, t);
+            I.color = Color.Lerp(Color.black, Color.clear, t);
             t += speed * Time.deltaTime;
             yield return null;
         }
-        I.color = Color.white;
-        button.SetActive(true);
+        I.color = Color.clear;
+        panel.SetActive(true);
+        Fade.SetActive(false);
     }
 
     IEnumerator TurnOff()
     {
         float t = 0.0f;
         float speed = 0.5f;
-        Button bt = button.GetComponent<Button>();
-        bt.interactable = false;
+        //Button bt = button.GetComponent<Button>();
+        //bt.interactable = false;
+        Fade.SetActive(true);
         while(t <= 1.0f)
         {
-            I.color = Color.Lerp(Color.white, Color.black, t);
+            I.color = Color.Lerp(Color.clear, Color.black, t);
             t += speed * Time.deltaTime;
             yield return null;
         }

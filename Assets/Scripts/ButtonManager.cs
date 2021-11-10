@@ -11,7 +11,7 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
     int pointer = 0;
     bool wait = false;
     bool decided = false;
-    float waitTime = 0.4f;
+    float waitTime = 0.3f;
 
     // Start is called before the first frame update
     void Start()
@@ -19,12 +19,14 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
         Color c = buttons[pointer].GetComponent<Button>().colors.pressedColor;
         buttons[pointer].GetComponent<Image>().color = c;
         //Button b = buttons[pointer].GetComponent<Button>();
+        wait = true;
+        Invoke("StopWait", waitTime);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!AllActive() || decided)
+        if(decided)
         {
             return;
         }

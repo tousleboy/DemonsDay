@@ -8,7 +8,8 @@ public class ResultManager : MonoBehaviour
     public GameObject battleRank;
     public GameObject battleRankImage;
     public GameObject[] results;
-    public GameObject button;
+    //public GameObject button;
+    public GameObject buttonPannel;
     public GameObject Fade;
 
     public Sprite A;
@@ -31,7 +32,8 @@ public class ResultManager : MonoBehaviour
         }
         battleRank.SetActive(false);
         battleRankImage.SetActive(false);
-        button.SetActive(false);
+        //button.SetActive(false);
+        buttonPannel.SetActive(false);
 
         StartCoroutine("ShowResult");
     }
@@ -86,7 +88,8 @@ public class ResultManager : MonoBehaviour
         GameManager.battleScore = 100;
 
         yield return new WaitForSeconds(interval2);
-        button.SetActive(true);
+        //button.SetActive(true);
+        buttonPannel.SetActive(true);
     }
 
     IEnumerator FadeOut()
@@ -97,8 +100,8 @@ public class ResultManager : MonoBehaviour
         float t = 0.0f;
         float speed = 0.5f;
         Fade.SetActive(true);
-        Button bt = button.GetComponent<Button>();
-        bt.interactable = false;
+        //Button bt = button.GetComponent<Button>();
+        //bt.interactable = false;
         yield return new WaitForSeconds(0.5f);
         while(t <= 1.0f)
         {
@@ -107,7 +110,7 @@ public class ResultManager : MonoBehaviour
             yield return null;
         }
         I.color = Color.black;
-        if(musicPlayer != null && !button.GetComponent<ChangeScene>().continueMusic)
+        if(musicPlayer != null /*&& !button.GetComponent<ChangeScene>().continueMusic*/)
         {
             float i;
             float downspeed = 0.01f;
@@ -120,7 +123,7 @@ public class ResultManager : MonoBehaviour
             auds.volume = 0.0f;
         }
         yield return new WaitForSeconds(1.0f);
-        button.GetComponent<ChangeScene>().Load();
+        //button.GetComponent<ChangeScene>().Load();
     }
 
     public void StartFadeOut()
