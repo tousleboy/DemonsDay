@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour
     public static int totalScore = 0;
     public static int totalDefeats = 0;
     public static int totalRetry = 0;
+    static public string nowScene = "";
+    static string nextScene;
     // Start is called before the first frame update
     void Start()
     {
@@ -80,6 +82,9 @@ public class GameManager : MonoBehaviour
 
         stageScore = 0;
         stageDefeats = 0;
+
+        nowScene = Pannel1.transform.Find("RestartButton").gameObject.GetComponent<ChangeScene>().sceneName;
+        nextScene = Pannel2.transform.Find("NextButton").gameObject.GetComponent<ChangeScene>().sceneName;
 
         UpdateScore();
 
@@ -276,6 +281,8 @@ public class GameManager : MonoBehaviour
     {
         fadeInDone = false;
         CheckPointManager.progress = 0;
+        howManyLoad = 0;
+        nowScene = nextScene;
 
         score += stageScore;
         stageScore = 0;

@@ -16,6 +16,8 @@ public class TitleManager : MonoBehaviour
         I = mainImage.GetComponent<Image>();
 
         I.color = Color.black;
+        if(GameManager.nowScene != "") button.GetComponent<ChangeScene>().sceneName = GameManager.nowScene;
+        
         button.SetActive(false);
         StartCoroutine("TurnOn");
     }

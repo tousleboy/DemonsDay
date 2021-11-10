@@ -1502,7 +1502,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Title
   delay: 0
-  resetProgress: 1
+  resetProgress: 0
   continueMusic: 0
   stopMusic: 1
 --- !u!1 &3563567257377453306
@@ -2284,7 +2284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: movie2
   delay: 0
-  resetProgress: 1
+  resetProgress: 0
   continueMusic: 1
   stopMusic: 0
 --- !u!1 &6337208381504452115
@@ -2513,7 +2513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Title
   delay: 0
-  resetProgress: 1
+  resetProgress: 0
   continueMusic: 0
   stopMusic: 1
 --- !u!1 &7927281596060095146
