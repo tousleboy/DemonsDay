@@ -14,19 +14,19 @@ public class ResultTextScript : MonoBehaviour
         if(mode == "NumberofDefeats")
         {
             t.text = GameManager.defeats.ToString();
-            GameManager.totalDefeats += GameManager.defeats;
+            //GameManager.totalDefeats += GameManager.defeats;
             GameManager.defeats = 0;
         }
         else if(mode == "Money")
         {
             t.text = GameManager.score.ToString();
-            GameManager.totalScore += GameManager.score;
+            //GameManager.totalScore += GameManager.score;
             GameManager.score = 0;
         }
         else if(mode == "Retry")
         {
             t.text = GameManager.retry.ToString();
-            GameManager.totalRetry += GameManager.retry;
+            //GameManager.totalRetry += GameManager.retry;
             GameManager.retry = 0;
         }
 

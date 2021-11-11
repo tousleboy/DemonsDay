@@ -10,6 +10,7 @@ public class ResultManager : MonoBehaviour
     public GameObject[] results;
     //public GameObject button;
     public GameObject buttonPannel;
+    public ChangeScene next;
     public GameObject Fade;
 
     public Sprite A;
@@ -17,6 +18,7 @@ public class ResultManager : MonoBehaviour
     public Sprite C;
     public Sprite D;
 
+    public bool end;
     public AudioClip drum;
     public AudioClip pecha;
     AudioSource soundPlayer;
@@ -84,12 +86,18 @@ public class ResultManager : MonoBehaviour
         battleRankImage.SetActive(true);
         soundPlayer.PlayOneShot(pecha);
 
-        GameManager.totalBattleScore += GameManager.battleScore;
+        //GameManager.totalBattleScore += GameManager.battleScore;
         GameManager.battleScore = 100;
+
+        if(!end) GameManager.nowScene = next.sceneName;
+        else GameManager.nowScene = "";
+
+        SaveManager.Save();
 
         yield return new WaitForSeconds(interval2);
         //button.SetActive(true);
         buttonPannel.SetActive(true);
+        Fade.SetActive(false);
     }
 
     IEnumerator FadeOut()
