@@ -285,9 +285,9 @@ public class PlayerController : MonoBehaviour
         bool center = Physics2D.Linecast(transform.position, transform.position -(transform.up * 0.1f), groundLayer);
         bool front = Physics2D.Linecast(frontFootPos, frontFootPos -(transform.up * 0.1f), groundLayer);
         bool back = Physics2D.Linecast(backFootPos, backFootPos -(transform.up * 0.1f), groundLayer);
-        Debug.Log("center" + center + "vector" + transform.position);
-        Debug.Log("front" + front + "vector" + frontFootPos);
-        Debug.Log("back" + back + "vector" + backFootPos);
+        //Debug.Log("center" + center + "vector" + transform.position);
+        //Debug.Log("front" + front + "vector" + frontFootPos);
+        //Debug.Log("back" + back + "vector" + backFootPos);
         onGround = center || front || back; 
         //onGround = Physics2D.Linecast(transform.position, transform.position -(transform.up * 0.1f), groundLayer);
 

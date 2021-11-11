@@ -41,6 +41,8 @@ public class CheckPointManager : MonoBehaviour
                 GameManager.stageScore = 0;
                 GameManager.defeats += GameManager.stageDefeats;
                 GameManager.stageDefeats = 0;
+                
+                SaveManager.Save();
             }
     }
 

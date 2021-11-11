@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
     public static int totalScore = 0;
     public static int totalDefeats = 0;
     public static int totalRetry = 0;
-    static public string nowScene = "";
+    public static string nowScene = "";
     static string nextScene;
     // Start is called before the first frame update
     void Start()
@@ -106,6 +106,9 @@ public class GameManager : MonoBehaviour
 
         title.text = "";
         titleText.SetActive(false);
+
+        SaveManager.Save();
+
         if(startWithFade && howManyLoad == 1)
         {
             StartCoroutine("FadeIn");
@@ -151,6 +154,8 @@ public class GameManager : MonoBehaviour
             Pannel1.SetActive(true);
             mainImage.GetComponent<Image>().sprite = gameOverSpr;
             mainImage.SetActive(true);
+
+            SaveManager.Save();
         }
 
         if(bossIsGoal && !goal)
@@ -288,6 +293,8 @@ public class GameManager : MonoBehaviour
         stageScore = 0;
         defeats += stageDefeats;
         stageDefeats = 0;
+
+        SaveManager.Save();
 
         goal = true;
     }

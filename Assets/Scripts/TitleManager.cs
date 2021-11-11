@@ -13,6 +13,8 @@ public class TitleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SaveManager.Load();
+        SaveManager.Show();
         //mainImage = transform.Find("MainImage").gameObject;
         //button = transform.Find("Button").gameObject;
         I = Fade.GetComponent<Image>();
