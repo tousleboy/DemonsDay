@@ -976,7 +976,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
       propertyPath: waitTime
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
       propertyPath: leaveSpeed

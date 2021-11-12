@@ -266,7 +266,6 @@ public class PlayerController : MonoBehaviour
 
         if(life <= 0)
         {
-            gameState = "gameover";
             PunchTriggerOff();
             KickTriggerOff();
             Die();
@@ -650,7 +649,7 @@ public class PlayerController : MonoBehaviour
 
         GameManager.retry += 1;
         GameManager.battleScore = Mathf.Max(GameManager.battleScore - 5, 0);
-
+        gameState = "gameover";
     }
 
     void Goal()

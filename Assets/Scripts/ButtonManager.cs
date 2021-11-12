@@ -12,6 +12,7 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
     bool wait = false;
     bool decided = false;
     float waitTime = 0.3f;
+    public bool circle = false;
 
     // Start is called before the first frame update
     void Start()
@@ -41,8 +42,16 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
                 Color c = buttons[pointer].GetComponent<Button>().colors.normalColor;
                 buttons[pointer].GetComponent<Image>().color = c;
 
-                if(axisV > 0) pointer = (pointer - 1 + buttons.Length) % buttons.Length;
-                else pointer = (pointer + 1) % buttons.Length;
+                if(circle)
+                {
+                    if(axisV > 0) pointer = (pointer - 1 + buttons.Length) % buttons.Length;
+                    else if(axisV < 0) pointer = (pointer + 1) % buttons.Length;
+                }
+                else
+                {
+                    if(axisV > 0) pointer = Mathf.Max(pointer - 1, 0);
+                    else if(axisV < 0) pointer = Mathf.Min(pointer + 1, buttons.Length - 1);
+                }
 
                 Debug.Log(pointer);
 
