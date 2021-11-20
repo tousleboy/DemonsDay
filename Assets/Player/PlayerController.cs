@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour
 
             damage = 0;
         }*/
-        if(!backStepping && !attacking)
+        if(!backStepping && !attacking && !damaged)
         {
             if(cd.nextToEnemy && axisH * transform.localScale.x < 0)
             {
@@ -662,6 +662,11 @@ public class PlayerController : MonoBehaviour
     void Teleport(Vector3 pos)
     {
         gameObject.transform.position = pos;
+    }
+
+    void StopMove()
+    {
+        rbody.velocity = new Vector2(0, rbody.velocity.y);
     }
 
     /*public void DelayAttack()
