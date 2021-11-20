@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler*/
 {
     public GameObject[] buttons;
+    public GameObject cursor;
     public string decisionKey = "Jump";
     int pointer = 0;
     bool wait = false;
@@ -17,8 +18,9 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
     // Start is called before the first frame update
     void Start()
     {
-        Color c = buttons[pointer].GetComponent<Button>().colors.pressedColor;
-        buttons[pointer].GetComponent<Image>().color = c;
+        //Color c = buttons[pointer].GetComponent<Button>().colors.pressedColor;
+        //buttons[pointer].GetComponent<Image>().color = c;
+        if(cursor != null) cursor.transform.position = buttons[pointer].transform.position;
         //Button b = buttons[pointer].GetComponent<Button>();
         //StartCoroutine(WaitTime(waitTime));
         /*wait = true;
@@ -57,10 +59,12 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
 
                 Debug.Log(pointer);
 
-                c = buttons[pointer].GetComponent<Button>().colors.pressedColor;
-                buttons[pointer].GetComponent<Image>().color = c;
+                //c = buttons[pointer].GetComponent<Button>().colors.pressedColor;
+                //buttons[pointer].GetComponent<Image>().color = c;
                 //b = buttons[pointer].GetComponent<Button>();
                 //b.OnPointerEnter(EventSystems.PointerEventData);
+                if(cursor != null) cursor.transform.position = buttons[pointer].transform.position;
+
                 StartCoroutine(WaitTime(waitTime));
                 /*wait = true;
                 Invoke("StopWait", waitTime);*/
