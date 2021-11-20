@@ -32,11 +32,13 @@ public class ChangeScene : MonoBehaviour
             GameManager.fadeInDone = false;
             GameManager.howManyLoad = 0;
         }
+        //StartCoroutine(GoNextScene(delay));
         Invoke("GoNextScene", delay);
     }
 
     void GoNextScene()
     {
+        //yield return new WaitForSecondsRealtime(d);
         if(mp != null)
         {
             /*if(continueMusic) DontDestroyOnLoad(mp);

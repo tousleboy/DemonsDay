@@ -27,6 +27,7 @@ public class ComicCameraController : MonoBehaviour
         soundPlayer = GetComponent<AudioSource>();
 
         cs = GetComponent<ChangeScene>();
+        PlayerController.gameState = "playing";
     }
 
     // Update is called once per frame

@@ -809,9 +809,37 @@ PrefabInstance:
       propertyPath: continueMusic
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1529250529617260047, guid: 156c9dade900945068fccf7708013fad, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 695.45544
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529250529617260047, guid: 156c9dade900945068fccf7708013fad, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 20.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529250529617260047, guid: 156c9dade900945068fccf7708013fad, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -178
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527620332454838204, guid: 156c9dade900945068fccf7708013fad, type: 3}
+      propertyPath: continueMusic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527620332454838204, guid: 156c9dade900945068fccf7708013fad, type: 3}
+      propertyPath: resetProgress
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7441295772253676731, guid: 156c9dade900945068fccf7708013fad, type: 3}
       propertyPath: m_Color.a
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7461978673584141697, guid: 156c9dade900945068fccf7708013fad, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0025634766
+      objectReference: {fileID: 0}
+    - target: {fileID: 7461978673584141697, guid: 156c9dade900945068fccf7708013fad, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 37.200012
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 156c9dade900945068fccf7708013fad, type: 3}

@@ -20,20 +20,22 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
         Color c = buttons[pointer].GetComponent<Button>().colors.pressedColor;
         buttons[pointer].GetComponent<Image>().color = c;
         //Button b = buttons[pointer].GetComponent<Button>();
-        wait = true;
-        Invoke("StopWait", waitTime);
+        //StartCoroutine(WaitTime(waitTime));
+        /*wait = true;
+        Invoke("StopWait", waitTime);*/
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(decided)
+        Debug.Log("wait" + wait);
+        if(decided || !gameObject.activeSelf)
         {
             return;
         }
         if(!wait)
         {
-            if(Input.GetAxis("Vertical") != 0)
+            if(Input.GetAxisRaw("Vertical") != 0)
             {
                 float axisV = Input.GetAxisRaw("Vertical");
 
@@ -59,8 +61,9 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
                 buttons[pointer].GetComponent<Image>().color = c;
                 //b = buttons[pointer].GetComponent<Button>();
                 //b.OnPointerEnter(EventSystems.PointerEventData);
-                wait = true;
-                Invoke("StopWait", waitTime);
+                StartCoroutine(WaitTime(waitTime));
+                /*wait = true;
+                Invoke("StopWait", waitTime);*/
             }
         }
 
@@ -72,9 +75,14 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
             buttons[pointer].GetComponent<Image>().color = c;
             b.onClick.Invoke();
             //b.OnPointerDown(EventSystems.PointerEventData);
-            wait = true;
             decided = true;
         }
+    }
+
+    void OnEnable()
+    {
+        wait = false;
+        decided = false;
     }
 
     void StopWait()
@@ -91,6 +99,15 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
             ret = ret && buttons[i].activeSelf;
         }
         return ret;
+    }
+
+    IEnumerator WaitTime(float t)
+    {
+        Debug.Log("coroutine");
+        wait = true;
+        yield return new WaitForSecondsRealtime(t);
+        Debug.Log("done");
+        wait = false;
     }
 
     /*public void OnPointerEnter(PointerEventData exentData)
