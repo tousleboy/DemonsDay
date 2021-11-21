@@ -25,7 +25,7 @@ public class BossRoomManager : MonoBehaviour
     void Update()
     {
         float x = player.transform.position.x;
-        if(x >= transform.position.x - range && x <= transform.position.x + range && !eventStart && !eventEnd)
+        if(x >= transform.position.x - range && x <= transform.position.x + range && mainCamera.transform.position.x >= transform.position.x &&!eventStart && !eventEnd)
         {
             eventStart = true;
             mainCamera.GetComponent<CameraManager>().locked = true;
