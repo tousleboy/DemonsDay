@@ -6,6 +6,7 @@ public class MovingFloorScript : MonoBehaviour
 {
     public float a = 10f;
     public float w = 5.0f;
+    public MovingFloorToggle togle;
     float theta = 0;
     Vector3 original;
 
@@ -25,6 +26,10 @@ public class MovingFloorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(togle != null && !togle.active)
+        {
+            return;
+        }
         theta = theta + w * Time.deltaTime;
         if(theta >= 360) theta = 0;
 
