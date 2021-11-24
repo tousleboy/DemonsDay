@@ -260,7 +260,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5784901006901450712}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25, y: 0.4, z: -7.261742}
+  m_LocalPosition: {x: 25, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5784901006646950853}
@@ -316,6 +316,7 @@ MonoBehaviour:
   gate3: {fileID: 5784901006598618160}
   wall1: {fileID: 5784901006646950906}
   wall2: {fileID: 5784901005666935396}
+  goal: 0
   enemyBase1: {fileID: 573507578716400027, guid: 8ccee71a88e6b40b692d17d3a24bb632, type: 3}
   comboes:
   - RichmenCombo0
