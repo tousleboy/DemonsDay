@@ -204,7 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 16
   maai: 1.2
-  speed: 6
+  speed: 5
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
