@@ -322,6 +322,10 @@ PrefabInstance:
       propertyPath: mainTheme
       value: 
       objectReference: {fileID: 8300000, guid: 0e8af11c51bde4a5296bbd4ff1b4e598, type: 3}
+    - target: {fileID: 6247755654804179598, guid: b0fa287b5b29c4c018820fe6d40358d4, type: 3}
+      propertyPath: stopOnPause
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0fa287b5b29c4c018820fe6d40358d4, type: 3}
 --- !u!1001 &273920579

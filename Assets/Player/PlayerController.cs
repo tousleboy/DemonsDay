@@ -484,7 +484,7 @@ public class PlayerController : MonoBehaviour
     {
         while(rbody.velocity.y >= 0)
         {
-            rbody.velocity = new Vector2(rbody.velocity.x, rbody.velocity.y - 1.0f);
+            rbody.velocity = new Vector2(rbody.velocity.x, rbody.velocity.y - 60.0f * Time.deltaTime);
             yield return null;
         }
     }

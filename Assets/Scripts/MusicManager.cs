@@ -7,7 +7,9 @@ public class MusicManager : MonoBehaviour
     public AudioClip mainTheme;
     public GameObject musicPlayerPrefab;
     public bool loop = true;
+    public bool stopOnPause = false;
     GameObject mp;
+    AudioSource auds;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +20,7 @@ public class MusicManager : MonoBehaviour
         }
         DontDestroyOnLoad(mp);
 
-        AudioSource auds = mp.GetComponent<AudioSource>();
+        auds = mp.GetComponent<AudioSource>();
         if(auds.clip != mainTheme)
         {
             auds.clip = mainTheme;
@@ -32,6 +34,13 @@ public class MusicManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(stopOnPause)
+        {
+            if(PlayerController.gameState == "pause")
+            {
+                if(auds.isPlaying) auds.Pause();
+            }
+            else if(!auds.isPlaying) auds.Play();
+        }
     }
 }
