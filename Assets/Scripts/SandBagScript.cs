@@ -7,19 +7,37 @@ public class SandBagScript : MonoBehaviour
     public int life = 3;
     public string targetAnime = "SandBagTarget1";
     AudioSource soundPlayer;
+    AudioSource soundPlayerT;
     public GameObject target;
     GameObject player;
-    Animator animator;
+    //Animator animator;
     public AudioClip punchHit;
+    public AudioClip hyun;
     bool damaged = false;
     bool dead = false;
     float length = 4.5f;
+
+    public Sprite j;
+    public Sprite k;
+
+    public enum HITTYPE
+    {
+        j,
+        k
+    }
+    public HITTYPE[] hitType;
+    int pointer = 0;
+
+    Coroutine _currentCoroutine;
+
     // Start is called before the first frame update
     void Start()
     {
         soundPlayer = GetComponent<AudioSource>();
-        animator = target.GetComponent<Animator>();
+        soundPlayerT = target.GetComponent<AudioSource>();
+        //animator = target.GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
+        target.SetActive(false);
     }
 
     // Update is called once per frame
@@ -28,13 +46,18 @@ public class SandBagScript : MonoBehaviour
         if(dead) return;
         if(CheckLength(player.transform.position))
         {
-            if(target.activeSelf == false)
+            if(_currentCoroutine == null)
             {
-                target.SetActive(true);
-                animator.Play(targetAnime);
+                _currentCoroutine = StartCoroutine("Signal");
+                //animator.Play(targetAnime);
             }
         }
-        else target.SetActive(false);
+        else
+        {
+            StopCoroutine("Signal");
+            _currentCoroutine = null;
+            target.SetActive(false);
+        }
 
         if(life <= 0) StartCoroutine("Die");
     }
@@ -84,7 +107,7 @@ public class SandBagScript : MonoBehaviour
         float t;
         float length = 1.0f;
         GetComponent<BoxCollider2D>().enabled = false;
-        target.GetComponent<AudioSource>().volume = 0;
+        soundPlayerT.volume = 0;
         dead = true;
         
         for(t = 0; t < length; t += Time.deltaTime)
@@ -93,5 +116,39 @@ public class SandBagScript : MonoBehaviour
             yield return null;
         }
         Destroy(gameObject);
+    }
+
+    IEnumerator Signal()
+    {
+        target.SetActive(true);
+        SpriteRenderer r = target.GetComponent<SpriteRenderer>();
+        r.color = Color.white;
+        int i;
+        float f = 0;
+        float interval = 0.3f;
+
+        while(true)
+        {
+            for(i = 0; i < hitType.Length; i++)
+            {
+                if(hitType[i] == HITTYPE.j) r.sprite = j;
+                else r.sprite = k;
+
+                r.color = Color.white;
+                soundPlayerT.PlayOneShot(hyun);
+
+                yield return new WaitForSeconds(interval / 2f);
+
+                while(f <= 1f)
+                {
+                    r.color = Color.Lerp(Color.white, Color.clear, f);
+                    f += Time.deltaTime / (interval / 2);
+                    yield return null;
+                }
+                f = 0;
+                r.color = Color.clear;
+            }
+            yield return  new WaitForSeconds(interval);
+        }
     }
 }

@@ -128,6 +128,10 @@ MonoBehaviour:
   targetAnime: SandBagTarget1
   target: {fileID: 2133763748378977666}
   punchHit: {fileID: 8300000, guid: 93825da3ccac04fbfb70141e4918c0ed, type: 3}
+  hyun: {fileID: 8300000, guid: 179233ec772c84f05b00a69053f67137, type: 3}
+  j: {fileID: 21300000, guid: 02d9233cc69bb4f478e413e7070e9bd0, type: 3}
+  k: {fileID: 21300000, guid: 27d35c4c20bf34f36ac2d76e3d9e4c2b, type: 3}
+  hitType: 000000000000000000000000
 --- !u!82 &2133763747112226975
 AudioSource:
   m_ObjectHideFlags: 0
@@ -234,7 +238,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2133763748378977789}
   - component: {fileID: 2133763748378977791}
-  - component: {fileID: 2133763748378977788}
   - component: {fileID: 933592992473087646}
   m_Layer: 0
   m_Name: target_j
@@ -308,25 +311,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &2133763748378977788
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2133763748378977666}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f4d866795435441a3a78eaa8db5b8621, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!82 &933592992473087646
 AudioSource:
   m_ObjectHideFlags: 0
@@ -337,7 +321,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 179233ec772c84f05b00a69053f67137, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
