@@ -57,6 +57,10 @@ public class EnemyController : MonoBehaviour
     int diffence = 1;
     bool dead = false;
 
+    public Transform front;
+    public Transform top;
+    public float jumpPw = 18f;
+
     GameObject attackZone;
     AttackManager am;
     BoxCollider2D abc;
@@ -157,6 +161,10 @@ public class EnemyController : MonoBehaviour
     void FixedUpdate()
     {
         onGround = Physics2D.Linecast(transform.position, transform.position -(transform.up * 0.1f), groundLayer);
+
+        bool isCliff = false;
+        if(front != null) isCliff = !Physics2D.Linecast(front.position, front.position -(transform.up * 10f), groundLayer);
+
         isPlayerNear = CheckLength(playerPos, maai);
 
         animator.SetBool("jump", !onGround);
@@ -169,7 +177,7 @@ public class EnemyController : MonoBehaviour
         if(onGround && attacking) rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
 
         if(PlayerController.gameState != "playing")
-        {
+        {   
             rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
             moving = false;
             animator.SetBool("move", false);
@@ -197,9 +205,9 @@ public class EnemyController : MonoBehaviour
                 Combo();
                 goAttack = false;
             }
-            else if(CheckLength(playerPos, range) && onGround && !attacking && !backStepping)
+            else if(CheckLength(playerPos, range) && !attacking && !backStepping)
             {
-                if(isPlayerNear)
+                if(isPlayerNear && onGround)
                 {
                     rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
                     goAttack = true;
@@ -208,9 +216,35 @@ public class EnemyController : MonoBehaviour
                 }
                 else
                 {
-                    rbody.velocity = new Vector2(speed * transform.localScale.x, rbody.velocity.y);
-                    moving = true;
-                    animator.SetBool("move", true);
+                    if(onGround)
+                    {
+                        if(!isCliff)
+                        {
+                            rbody.velocity = new Vector2(speed * transform.localScale.x, rbody.velocity.y);
+                            moving = true;
+                            animator.SetBool("move", true);
+                        }
+                        else
+                        {
+                            rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
+                            bool jumpAble = false;
+                            if(top != null) jumpAble = Physics2D.Linecast(top.position, top.position -(transform.up * 20f), groundLayer);
+                            
+                            if(jumpAble)
+                            {
+                                rbody.velocity = new Vector2(speed * transform.localScale.x, rbody.velocity.y);
+                                Vector2 jumpForce = new Vector2(0f, jumpPw);
+                                rbody.AddForce(jumpForce, ForceMode2D.Impulse);
+                            }
+                            moving = false;
+                            animator.SetBool("move", false);
+                        }
+                    }
+                    else
+                    {
+                        moving = false;
+                        animator.SetBool("move", false);
+                    }
                 }
             }
         }

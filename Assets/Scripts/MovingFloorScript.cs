@@ -47,7 +47,7 @@ public class MovingFloorScript : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" || collision.gameObject.tag == "Enemy")
         {
             //float x = collision.transform.localScale.x / transform.localScale.x;
             //float y = collision.transform.localScale.y / transform.localScale.y;
@@ -59,7 +59,7 @@ public class MovingFloorScript : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" || collision.gameObject.tag == "Enemy")
         {
             //float x = collision.transform.localScale.x * transform.localScale.x;
             //float y = collision.transform.localScale.y * transform.localScale.y;
@@ -71,7 +71,7 @@ public class MovingFloorScript : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" || collision.gameObject.tag == "Enemy")
         {
             //float x = collision.transform.localScale.x * transform.localScale.x;
             //float y = collision.transform.localScale.y * transform.localScale.y;
