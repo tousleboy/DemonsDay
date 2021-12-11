@@ -534,7 +534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684b54f56422e439b91697c4040a5211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Title
+  sceneName: Stage7
   delay: 5
   resetProgress: 1
   continueMusic: 0

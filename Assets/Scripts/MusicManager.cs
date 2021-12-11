@@ -27,6 +27,7 @@ public class MusicManager : MonoBehaviour
             auds.volume = 1.0f;
             auds.Play();
         }
+        if(!auds.isPlaying) auds.Play();
 
         auds.loop = loop;
     }

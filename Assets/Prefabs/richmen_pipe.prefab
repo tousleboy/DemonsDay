@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1768725063932258572}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.2, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1768725064259600068}
   m_RootOrder: 1
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 16
   maai: 1.2
-  speed: 5
+  speed: 6
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -225,6 +225,9 @@ MonoBehaviour:
   cut: 0
   ducking: 0
   dramaticWhenDie: 0
+  front: {fileID: 0}
+  top: {fileID: 0}
+  jumpPw: 18
   punch: {fileID: 8300000, guid: a9e4595c8eeb24b98b3f22401ea24327, type: 3}
   punchHit: {fileID: 8300000, guid: 93825da3ccac04fbfb70141e4918c0ed, type: 3}
   heavyHit: {fileID: 8300000, guid: 1344645d190ee4b0293bea2811cb4a09, type: 3}
@@ -357,8 +360,8 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 4
+  m_Material: {fileID: 6200000, guid: ecfaf4d7be2a24a83bae5f13ef567095, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
