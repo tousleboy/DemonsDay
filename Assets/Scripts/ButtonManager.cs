@@ -30,7 +30,6 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("wait" + wait);
         if(decided || !gameObject.activeSelf)
         {
             return;
@@ -43,8 +42,8 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
 
                 //Button b = buttons[pointer].GetComponent<Button>();
                 //b.OnPointerExit(EventSystems.PointerEventData);
-                Color c = buttons[pointer].GetComponent<Button>().colors.normalColor;
-                buttons[pointer].GetComponent<Image>().color = c;
+                //Color c = buttons[pointer].GetComponent<Button>().colors.normalColor;
+                //buttons[pointer].GetComponent<Image>().color = c;
 
                 if(circle)
                 {
@@ -75,8 +74,8 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
         {
             Debug.Log("x");
             Button b = buttons[pointer].GetComponent<Button>();
-            Color c = b.colors.pressedColor;
-            buttons[pointer].GetComponent<Image>().color = c;
+            //Color c = b.colors.pressedColor;
+            //buttons[pointer].GetComponent<Image>().color = c;
             b.onClick.Invoke();
             //b.OnPointerDown(EventSystems.PointerEventData);
             decided = true;
@@ -87,6 +86,17 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
     {
         wait = false;
         decided = false;
+        int i;
+        for(i = 0; i < buttons.Length; i++)
+        {
+            buttons[i].GetComponent<Button>().interactable = true;
+        }
+    }
+
+    public void Decided()
+    {
+        decided = true;
+        Debug.Log("decided");
     }
 
     void StopWait()
@@ -103,6 +113,16 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
             ret = ret && buttons[i].activeSelf;
         }
         return ret;
+    }
+
+    public void AllInteractableFalse()
+    {
+        int i;
+        for(i = 0; i < buttons.Length; i++)
+        {
+            buttons[i].GetComponent<Button>().interactable = false;
+        }
+        decided = true;
     }
 
     IEnumerator WaitTime(float t)
