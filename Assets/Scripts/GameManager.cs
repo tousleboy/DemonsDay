@@ -282,7 +282,7 @@ public class GameManager : MonoBehaviour
             auds.volume = 0.0f;
         }
         yield return new WaitForSeconds(1.0f);
-        NextButton.GetComponent<ChangeScene>().Load();
+        NextButton.GetComponent<ChangeScene>().QuickLoad();
     }
 
     IEnumerator GameOver()

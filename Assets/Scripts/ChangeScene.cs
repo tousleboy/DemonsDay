@@ -32,13 +32,25 @@ public class ChangeScene : MonoBehaviour
             GameManager.fadeInDone = false;
             GameManager.howManyLoad = 0;
         }
-        //StartCoroutine(GoNextScene(delay));
-        Invoke("GoNextScene", delay);
+        StartCoroutine(GoNextScene(delay));
+        //Invoke("GoNextScene", delay);
     }
 
-    void GoNextScene()
+    public void QuickLoad()
     {
-        //yield return new WaitForSecondsRealtime(d);
+        if(mp != null)
+        {
+            if(stopMusic)
+            {
+                SceneManager.MoveGameObjectToScene(mp, SceneManager.GetActiveScene());
+            }
+        }
+        SceneManager.LoadScene(sceneName);
+    }
+
+    IEnumerator GoNextScene(float d)
+    {
+        yield return new WaitForSecondsRealtime(d);
         if(mp != null)
         {
             /*if(continueMusic) DontDestroyOnLoad(mp);

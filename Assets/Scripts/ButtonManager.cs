@@ -15,6 +15,9 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
     float waitTime = 0.3f;
     public bool circle = false;
 
+    AudioSource soundPlayer;
+    public AudioClip selectSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,7 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
         //StartCoroutine(WaitTime(waitTime));
         /*wait = true;
         Invoke("StopWait", waitTime);*/
+        soundPlayer = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -65,6 +69,8 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
                 if(cursor != null) cursor.transform.position = buttons[pointer].transform.position;
 
                 StartCoroutine(WaitTime(waitTime));
+
+                soundPlayer.PlayOneShot(selectSound);
                 /*wait = true;
                 Invoke("StopWait", waitTime);*/
             }
