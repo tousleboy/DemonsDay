@@ -149,11 +149,13 @@ public class GameManager : MonoBehaviour
             oldMessages = nowMessages;
         }
 
-        if(PlayerController.gameState == "gameover")
+        if(PlayerController.gameState == "gameover" && !goal)
         {
-            Pannel1.SetActive(true);
+            /*Pannel1.SetActive(true);
             mainImage.GetComponent<Image>().sprite = gameOverSpr;
-            mainImage.SetActive(true);
+            mainImage.SetActive(true);*/
+
+            StartCoroutine("GameOver");
 
             SaveManager.Save();
         }
@@ -176,9 +178,10 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                Pannel2.SetActive(true);
+                /*Pannel2.SetActive(true);
                 mainImage.GetComponent<Image>().sprite = gameClearSpr;
-                mainImage.SetActive(true);
+                mainImage.SetActive(true);*/
+                StartCoroutine("GameClear");
             }
         }
     }
@@ -280,6 +283,35 @@ public class GameManager : MonoBehaviour
         }
         yield return new WaitForSeconds(1.0f);
         NextButton.GetComponent<ChangeScene>().Load();
+    }
+
+    IEnumerator GameOver()
+    {
+        int i;
+        bool on = true;
+        goal = true;
+        mainImage.GetComponent<Image>().sprite = gameOverSpr;
+        for(i = 0; i < 10; i++)
+        {
+            mainImage.SetActive(on);
+            on = !on;
+            yield return new WaitForSeconds(0.05f);
+        }
+        mainImage.SetActive(true);
+
+        yield return new WaitForSeconds(1.0f);
+
+        Pannel1.SetActive(true);
+    }
+
+    IEnumerator GameClear()
+    {
+        mainImage.GetComponent<Image>().sprite = gameClearSpr;
+        mainImage.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
+
+        Pannel2.SetActive(true);
     }
 
     void Goal()
