@@ -3941,6 +3941,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2133763747112226972, guid: fb155e0f582964099b5c9304e12f6aee, type: 3}
+      propertyPath: life
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133763747112226972, guid: fb155e0f582964099b5c9304e12f6aee, type: 3}
+      propertyPath: hitType.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133763747112226972, guid: fb155e0f582964099b5c9304e12f6aee, type: 3}
+      propertyPath: hitType.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2133763747112226973, guid: fb155e0f582964099b5c9304e12f6aee, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -4367,11 +4379,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2133763747112226972, guid: fb155e0f582964099b5c9304e12f6aee, type: 3}
       propertyPath: life
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2133763747112226972, guid: fb155e0f582964099b5c9304e12f6aee, type: 3}
       propertyPath: targetAnime
       value: SandBagTarget1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133763747112226972, guid: fb155e0f582964099b5c9304e12f6aee, type: 3}
+      propertyPath: hitType.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133763747112226972, guid: fb155e0f582964099b5c9304e12f6aee, type: 3}
+      propertyPath: hitType.Array.data[2]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2133763747112226973, guid: fb155e0f582964099b5c9304e12f6aee, type: 3}
       propertyPath: m_RootOrder
