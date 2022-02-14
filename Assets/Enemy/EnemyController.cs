@@ -54,6 +54,7 @@ public class EnemyController : MonoBehaviour
     public bool cut = false;
     public bool ducking = false;
     public bool dramaticWhenDie = false;
+    public bool escapeWhenDie = false;
     int diffence = 1;
     bool dead = false;
 
@@ -356,7 +357,7 @@ public class EnemyController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Attack" && !backStepping)
+        if(collision.gameObject.tag == "Attack" && !backStepping && !dead)
         {
             Debug.Log("hit" + enemyLife);
             AttackManager am = collision.gameObject.GetComponent<AttackManager>();
@@ -434,15 +435,24 @@ public class EnemyController : MonoBehaviour
     {
         dead = true;
         if(dramaticWhenDie) StartCoroutine("SlowMotion");
-        /*GameObject shield = transform.Find("shield").gameObject;
-        Destroy(shield);*/
-        GetComponent<CapsuleCollider2D>().enabled = false;
-        //animator.Play(deadAnime);
-        animator.SetTrigger("die");
+        if(escapeWhenDie)
+        {
+            //animator.SetTrigger("backstep");
+            animator.SetTrigger("escape");
+            Destroy(gameObject, 3.0f);
+        }
+        else
+        {
+            /*GameObject shield = transform.Find("shield").gameObject;
+            Destroy(shield);*/
+            GetComponent<CapsuleCollider2D>().enabled = false;
+            //animator.Play(deadAnime);
+            animator.SetTrigger("die");
+            Destroy(gameObject, 1.0f);
+        }
         PlayerController.concentration = Mathf.Max(PlayerController.concentration - 10, 0);
         GameManager.battleScore = Mathf.Min(GameManager.battleScore + 5, 100);
         GameManager.stageDefeats += 1;
-        Destroy(gameObject, 1.0f);
     }
 
     void ColorReset()
@@ -454,6 +464,17 @@ public class EnemyController : MonoBehaviour
     {
         float d = Vector2.Distance(transform.position, targetPos);
         return d < length && d != 0;
+    }
+
+    void Escape()
+    {
+        rbody.velocity = new Vector2(0.0f, 25.0f);
+        rbody.gravityScale = 0f;
+    }
+
+    void Stop()
+    {
+        rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
     }
 
     public void SetHigh()

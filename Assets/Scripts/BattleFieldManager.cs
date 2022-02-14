@@ -25,20 +25,24 @@ public class BattleFieldManager : MonoBehaviour
     //public GameObject[] enemies;
     public GameObject enemyBase1;
     public string[] comboes;
+    public GameObject[] enemies;
 
     GameObject Player;
     GameObject mainCamera;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         wall1.SetActive(false);
         wall2.SetActive(false);
         gates = new GameObject[4] {gate0, gate1, gate2, gate3};
-        maxRound = comboes.Length;
+        maxRound = enemies.Length;
         Debug.Log(maxRound);
         Player = GameObject.FindGameObjectWithTag("Player");
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+
+        int i;
+        for(i = 0; i < maxRound; i++) enemies[i].SetActive(false);
     }
 
     // Update is called once per frame
@@ -75,8 +79,10 @@ public class BattleFieldManager : MonoBehaviour
                 }
                 int n = Random.Range(0, 4);
                 Vector3 pos = new Vector3(gates[n].transform.position.x, gates[n].transform.position.y, 0.0f);
-                GameObject enemy = Instantiate(enemyBase1, pos, Quaternion.identity);
-                enemy.GetComponent<EnemyController>().comboAnime = comboes[round - 1];
+                /*GameObject enemy = Instantiate(enemyBase1, pos, Quaternion.identity);
+                enemy.GetComponent<EnemyController>().comboAnime = comboes[round - 1];*/
+                enemies[round - 1].transform.position = pos;
+                enemies[round - 1].SetActive(true);
                 roundEnd = false;
             }
         }

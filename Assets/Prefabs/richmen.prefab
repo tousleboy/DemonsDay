@@ -147,7 +147,7 @@ MonoBehaviour:
   backStepping: 0
   goBackStep: 0
   style: swarmer
-  comboAnime: onetwo gap
+  comboAnime: onetwo gap exit
   nextComboAnimes: []
   restraintAnime: 
   warnings:
