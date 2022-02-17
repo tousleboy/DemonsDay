@@ -1073,6 +1073,18 @@ PrefabInstance:
       propertyPath: range
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 8775575347030252590, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
+      propertyPath: comboAnime
+      value: onetwothree lowkick jodankick onetwothree gap exit
+      objectReference: {fileID: 0}
+    - target: {fileID: 8775575347030252590, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
+      propertyPath: nextComboAnimes.Array.data[0]
+      value: onetwo backstep exit onetwo middlekick gap exit
+      objectReference: {fileID: 0}
+    - target: {fileID: 8775575347030252590, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
+      propertyPath: nextComboAnimes.Array.data[1]
+      value: onetwo middlekick backstep exit lowkick onetwothree gap exit
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 391d2c5beb944408cb892ccd8daf34ee, type: 3}
 --- !u!1 &1378578891

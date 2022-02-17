@@ -161,6 +161,7 @@ MonoBehaviour:
   cut: 0
   ducking: 0
   dramaticWhenDie: 0
+  escapeWhenDie: 0
   front: {fileID: 3380704115849286294}
   top: {fileID: 4301939146104259798}
   jumpPw: 12

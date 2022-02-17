@@ -317,6 +317,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 573507578716400024, guid: 8ccee71a88e6b40b692d17d3a24bb632, type: 3}
+      propertyPath: comboAnime
+      value: one chudankick gap exit
+      objectReference: {fileID: 0}
     - target: {fileID: 573507578716400027, guid: 8ccee71a88e6b40b692d17d3a24bb632, type: 3}
       propertyPath: m_Name
       value: richmen (5)
@@ -1399,7 +1403,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 573507578716400024, guid: 8ccee71a88e6b40b692d17d3a24bb632, type: 3}
       propertyPath: comboAnime
-      value: onetwo middlekick gap exit
+      value: lowkick jodankick gap exit
       objectReference: {fileID: 0}
     - target: {fileID: 573507578716400027, guid: 8ccee71a88e6b40b692d17d3a24bb632, type: 3}
       propertyPath: m_Name
@@ -1449,6 +1453,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5040000825501410248, guid: 8ccee71a88e6b40b692d17d3a24bb632, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677129465843421030, guid: 8ccee71a88e6b40b692d17d3a24bb632, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.301
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ccee71a88e6b40b692d17d3a24bb632, type: 3}
 --- !u!1001 &303732578
@@ -1460,7 +1472,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 573507578716400024, guid: 8ccee71a88e6b40b692d17d3a24bb632, type: 3}
       propertyPath: comboAnime
-      value: onetwothree onetwothree gap exit
+      value: onetwothree lowkick jodankick gap exit
       objectReference: {fileID: 0}
     - target: {fileID: 573507578716400025, guid: 8ccee71a88e6b40b692d17d3a24bb632, type: 3}
       propertyPath: m_Color.b
@@ -6172,6 +6184,10 @@ PrefabInstance:
     - target: {fileID: 1768725064259600068, guid: aa33f0a1d891244ce9365428fb687d66, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768725064259600071, guid: aa33f0a1d891244ce9365428fb687d66, type: 3}
+      propertyPath: comboAnime
+      value: slash sweep sweep exit
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa33f0a1d891244ce9365428fb687d66, type: 3}
