@@ -104,9 +104,10 @@ public class PlayerController : MonoBehaviour
         cd = transform.Find("CollisionDetector").gameObject.GetComponent<CollisionDetector>();
         maxcombo = comboAnimes.Length;
         life = maxLife;
+        concentration = 0;
         gameState = "playing";
         soundPlayer = GetComponent<AudioSource>();
-        StartCoroutine("Deconcentration");
+        //StartCoroutine("Deconcentration");
         conEffect = transform.Find("ConcentrationEffect").gameObject;
 
         frontFoot = transform.Find("FrontFoot").gameObject;
@@ -424,7 +425,6 @@ public class PlayerController : MonoBehaviour
             if((damage > 0 || am.knockBack) && !blockSuccess)
             {
                 Damage();
-                concentration = Mathf.Max(concentration - 20, 0);
                 if(damage > 0)
                 {
                     GetComponent<Renderer>().material.color = Color.red;
@@ -623,8 +623,11 @@ public class PlayerController : MonoBehaviour
         soundPlayer.PlayOneShot(punchHit);
         oldAnime = damagedAnime;
         GameManager.battleScore = Mathf.Max(GameManager.battleScore - 3, 0);
+        concentration = Mathf.Max(concentration - 1, 0);
         //animator.Play(damagedAnime);
         animator.SetTrigger("damaged");
+
+        amgr.attackType = AttackManager.ATTACKTYPE.none;
     }
 
     public void Wait()
@@ -697,6 +700,10 @@ public class PlayerController : MonoBehaviour
     public void SetGuardBreak1()
     {
         amgr.state = "guardbreak1";
+    }
+    public void SetAttackType(AttackManager.ATTACKTYPE at)
+    {
+        amgr.attackType = at;
     }
     public void PlaySound()
     {

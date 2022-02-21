@@ -514,12 +514,12 @@ public class EnemyController : MonoBehaviour
             trigger = "exit";
             attacking = false;
         }
-        else if(comboStack[Mathf.Max(0, stackPointer - 1)] == "backstep")
+        /*else if(comboStack[Mathf.Max(0, stackPointer - 1)] == "backstep")
         {
             trigger = "exit";
             Debug.Log("backstep");
             attacking = false;
-        }
+        }*/
         else
         {
             trigger = comboStack[stackPointer];
@@ -532,6 +532,14 @@ public class EnemyController : MonoBehaviour
 
         animator.SetTrigger(trigger);
         stackPointer = (stackPointer + 1) % stackLen;
+    }
+
+    public void ProbabilityCombo()
+    {
+        int p = 15;
+        int n = Random.Range(1, 100);
+        if(p >= n) Combo();
+        else return;
     }
 
     void SetAttacking()

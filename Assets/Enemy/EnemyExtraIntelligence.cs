@@ -9,22 +9,38 @@ public class EnemyExtraIntelligence : MonoBehaviour
     GameObject player;
     PlayerController pc;
     AttackManager pam;
+    BoxCollider2D pamcol;
+    BoxCollider2D eamcol;
 
     bool wait = false;
 
-    int punchP = 70;
-    int kickP = 90;
+    AttackManager.ATTACKTYPE nowat;
+    AttackManager.ATTACKTYPE pastat;
+    bool nowPamcol;
+    bool pastPamcol;
+    bool pulse = false;
+
+    int punchP = 100;
+    int kickP = 100;
     //int bodyP = 90;
     //int highP = 90;
-    int breakP = 0;
+    int stepP = 15;
+    int duckP = 0;
     // Start is called before the first frame update
     void Start()
     {
         ec = GetComponent<EnemyController>();
+        eamcol = transform.Find("AttackZone").gameObject.GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
         pc = player.GetComponent<PlayerController>();
-        pam = player.transform.Find("AttackZone").gameObject.GetComponent<AttackManager>(); 
+        pam = player.transform.Find("AttackZone").gameObject.GetComponent<AttackManager>();
+        pamcol = player.transform.Find("AttackZone").gameObject.GetComponent<BoxCollider2D>();
+
+        nowat = pam.attackType;
+        pastat = pam.attackType;
+        nowPamcol = pamcol.enabled;
+        pastPamcol = nowPamcol;
     }
 
     // Update is called once per frame
@@ -35,7 +51,7 @@ public class EnemyExtraIntelligence : MonoBehaviour
             return;
         }
 
-        if(pc.attacking && !pc.parry && !pc.cut && ec.isPlayerNear && (ec.gap || ec.parry || ec.cut) && !pam.guardBreak && !ec.backStepping && !ec.damaged)
+        /*if(pc.attacking && !pc.parry && !pc.cut && ec.isPlayerNear && (ec.gap || ec.parry || ec.cut) && !pam.guardBreak && !ec.backStepping && !ec.damaged)
         {
             if(!ec.parry && !ec.cut && Probability(50))
             {
@@ -52,39 +68,99 @@ public class EnemyExtraIntelligence : MonoBehaviour
         }
         if(pc.attacking && pam.guardBreak && pam.state == "high" && !ec.damaged && Probability(breakP)) animator.SetTrigger("duck");
 
-        if(ec.damaged && pam.guardBreak && pam.state == "high" && breakP == 0) breakP = 80;
+        if(ec.damaged && pam.guardBreak && pam.state == "high" && breakP == 0) breakP = 80;*/
+
+        nowat = pam.attackType;
+        nowPamcol = pamcol.enabled;
+        if(nowat != pastat)
+        {
+            if(nowat != AttackManager.ATTACKTYPE.none)
+            {
+                pulse = true;
+                Debug.Log("pulse");
+            }
+            pastat = nowat;
+        }
+        else if(pulse) pulse = false;
+
+
+        if(ec.isPlayerNear && pulse && !ec.damaged && !eamcol.enabled)
+        {
+            if(Probability(duckP) && pam.attackType == AttackManager.ATTACKTYPE.kick)
+            {
+                Escape();
+            }
+            else if(Probability(stepP) && (pam.attackType == AttackManager.ATTACKTYPE.jab || pam.attackType == AttackManager.ATTACKTYPE.lowkick))
+            {
+                Escape();
+            }
+            
+            else
+            {
+                if(pam.attackType == AttackManager.ATTACKTYPE.jab || pam.attackType == AttackManager.ATTACKTYPE.upper || pam.attackType == AttackManager.ATTACKTYPE.jodankick || pam.attackType == AttackManager.ATTACKTYPE.kick)
+                {
+                    if(Probability(punchP)) animator.SetTrigger("parry1");
+                }
+                else if(pam.attackType == AttackManager.ATTACKTYPE.straight)
+                {
+                    if(Probability(punchP)) animator.SetTrigger("parry2");
+                }
+                
+                if(pam.attackType == AttackManager.ATTACKTYPE.lowkick || pam.attackType == AttackManager.ATTACKTYPE.middlekick || pam.attackType == AttackManager.ATTACKTYPE.chudankick)
+                {
+                    if(Probability(kickP)) animator.SetTrigger("cut");
+                }
+            }
+
+            pulse = false;
+
+            
+        }
 
 
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        int i = 10;
-        int j = 10;
+        int i = 15;
+        int j = 30;
         if(collision.gameObject.tag == "Attack")
         {
             if(!ec.parry && !ec.cut)
             {
-                punchP = Mathf.Min(punchP + 100, 100);
-                kickP = Mathf.Min(kickP + 100, 100);
+                punchP = Mathf.Min(punchP + 50, 100);
+                kickP = Mathf.Min(kickP + 50, 100);
+                if(pam.attackType == AttackManager.ATTACKTYPE.kick) duckP = 70;
             }
-            if(ec.parry)
+            else
             {
-                punchP = Mathf.Min(punchP + i, 100);
-                kickP = Mathf.Max(kickP - j, 0);
+                if(ec.parry)
+                {
+                    punchP = Mathf.Min(punchP + i, 100);
+                    kickP = Mathf.Max(kickP - j, 0);
+                }
+                if(ec.cut)
+                {
+                    punchP = Mathf.Max(punchP - j, 0);
+                    kickP = Mathf.Min(kickP + i, 100);
+                }
             }
-            if(ec.cut)
+
+            if(pam.knockBack && ec.gap && !ec.damaged)
             {
-                punchP = Mathf.Max(punchP - j, 0);
-                kickP = Mathf.Min(kickP + i, 100);
+                Invoke("Escape", 0.2f);
             }
+
+            Debug.Log(punchP);
+            Debug.Log(kickP);
+
+            PlayerController.concentration += 1;
         }
     }
 
     bool Probability(int p)
     {
         int n = Random.Range(1, 100);
-        Debug.Log(n);
         if(p >= n) return true;
         else
         {
@@ -97,5 +173,10 @@ public class EnemyExtraIntelligence : MonoBehaviour
     void Restart()
     {
         wait = false;
+    }
+
+    void Escape()
+    {
+        if(!ec.damaged) animator.SetTrigger("backstep");
     }
 }

@@ -291,6 +291,7 @@ GameObject:
   - component: {fileID: 9178597983845763293}
   - component: {fileID: 9178597983845763288}
   - component: {fileID: 9178597983845763271}
+  - component: {fileID: 3548527926445256061}
   m_Layer: 13
   m_Name: richion
   m_TagString: Enemy
@@ -569,6 +570,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3548527926445256061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9178597983845763294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0770c63d1b9fb4135bbdec3b697b9784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9178597983670623416
 PrefabInstance:
   m_ObjectHideFlags: 0

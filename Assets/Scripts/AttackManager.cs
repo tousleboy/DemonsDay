@@ -12,6 +12,20 @@ public class AttackManager : MonoBehaviour
     public bool guardBreak = false;
     public float hmkb = 0.0f; //how many knockback
 
+    public enum ATTACKTYPE{
+        none,
+        jab,
+        straight,
+        upper,
+        lowkick,
+        middlekick,
+        chudankick,
+        jodankick,
+        kick
+    }
+
+    public ATTACKTYPE attackType = ATTACKTYPE.none;
+
     // Start is called before the first frame update
     void Start()
     {

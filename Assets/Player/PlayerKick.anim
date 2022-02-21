@@ -666,6 +666,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0
+    functionName: SetAttackType
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 8
+    messageOptions: 0
   - time: 0.25
     functionName: PlaySound
     data: 
@@ -682,6 +689,13 @@ AnimationClip:
     messageOptions: 0
   - time: 0.5833333
     functionName: KickTriggerOff
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.5833333
+    functionName: SetAttackType
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
