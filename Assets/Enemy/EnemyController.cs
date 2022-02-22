@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
 
     public bool backStepping = false;
     public bool goBackStep = false;
-    float backStep = 6.0f;
+    public float backStep = 6.0f;
 
     Animator animator;
     //public string stopAnime = "RichmenIdle";

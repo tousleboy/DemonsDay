@@ -92,6 +92,8 @@ public class PlayerController : MonoBehaviour
 
     GameObject frontFoot;
     GameObject backFoot;
+    GameObject backP;
+    bool back = false;
 
     // Start is called before the first frame update
     void Start()
@@ -112,6 +114,7 @@ public class PlayerController : MonoBehaviour
 
         frontFoot = transform.Find("FrontFoot").gameObject;
         backFoot = transform.Find("BackFoot").gameObject;
+        backP = transform.Find("Back").gameObject;
     }
 
     // Update is called once per frame
@@ -161,7 +164,7 @@ public class PlayerController : MonoBehaviour
         }*/
         if(!backStepping && !attacking && !damaged)
         {
-            if(cd.nextToEnemy && axisH * transform.localScale.x < 0)
+            if(cd.nextToEnemy && axisH * transform.localScale.x < 0 && back)
             {
                 goBackStep = true;
             }
@@ -282,13 +285,15 @@ public class PlayerController : MonoBehaviour
 
         Vector3 frontFootPos = frontFoot.transform.position;
         Vector3 backFootPos = backFoot.transform.position;
+        Vector3 backPos = backP.transform.position;
         bool center = Physics2D.Linecast(transform.position, transform.position -(transform.up * 0.1f), groundLayer);
-        bool front = Physics2D.Linecast(frontFootPos, frontFootPos -(transform.up * 0.1f), groundLayer);
-        bool back = Physics2D.Linecast(backFootPos, backFootPos -(transform.up * 0.1f), groundLayer);
+        bool frontf = Physics2D.Linecast(frontFootPos, frontFootPos -(transform.up * 0.1f), groundLayer);
+        bool backf = Physics2D.Linecast(backFootPos, backFootPos -(transform.up * 0.1f), groundLayer);
+        back = Physics2D.Linecast(backPos, backPos -(transform.up * 0.1f), groundLayer);
         //Debug.Log("center" + center + "vector" + transform.position);
         //Debug.Log("front" + front + "vector" + frontFootPos);
         //Debug.Log("back" + back + "vector" + backFootPos);
-        onGround = center || front || back; 
+        onGround = center || frontf || backf; 
         //onGround = Physics2D.Linecast(transform.position, transform.position -(transform.up * 0.1f), groundLayer);
 
         if(damaged)

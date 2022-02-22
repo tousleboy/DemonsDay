@@ -12,11 +12,14 @@ public class MovingFloorScript : MonoBehaviour
 
     public enum DIRECTION
     {
-        holizontal,
+        holizontal,//horizontal
         vertical
     }
 
     public DIRECTION direction = DIRECTION.vertical;
+
+    GameObject player;
+    Rigidbody2D rbodyP;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +46,12 @@ public class MovingFloorScript : MonoBehaviour
             float x = original.x + a * Mathf.Sin(Mathf.Deg2Rad * theta);
             transform.position = new Vector2(x, transform.position.y);
         }
+
+        /*if(rbodyP != null && direction == DIRECTION.holizontal)
+        {
+            if(rbodyP.velocity.x != 0) player.transform.SetParent(null);
+            else player.transform.SetParent(transform);
+        }*/
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -54,6 +63,11 @@ public class MovingFloorScript : MonoBehaviour
             //float z = collision.transform.localScale.z / transform.localScale.z;
             collision.transform.SetParent(transform);
             //collision.transform.localScale = new Vector3(x, y, z);
+            if(collision.gameObject.tag == "Player")
+            {
+                player = collision.gameObject;
+                rbodyP = player.GetComponent<Rigidbody2D>();
+            }
         }
     }
 
@@ -78,6 +92,9 @@ public class MovingFloorScript : MonoBehaviour
             //float z = collision.transform.localScale.z * transform.localScale.z;
             collision.transform.SetParent(null);
             //collision.transform.localScale = new Vector3(x, y, z);
+
+            player = null;
+            rbodyP = null;
         }
     }
 }

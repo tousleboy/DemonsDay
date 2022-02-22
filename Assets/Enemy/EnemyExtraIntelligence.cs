@@ -130,7 +130,7 @@ public class EnemyExtraIntelligence : MonoBehaviour
             {
                 punchP = Mathf.Min(punchP + 50, 100);
                 kickP = Mathf.Min(kickP + 50, 100);
-                if(pam.attackType == AttackManager.ATTACKTYPE.kick) duckP = 70;
+                if(pam.attackType == AttackManager.ATTACKTYPE.kick) duckP = 80;
             }
             else
             {
@@ -154,7 +154,7 @@ public class EnemyExtraIntelligence : MonoBehaviour
             Debug.Log(punchP);
             Debug.Log(kickP);
 
-            PlayerController.concentration += 1;
+            //PlayerController.concentration += 1;
         }
     }
 
