@@ -146,6 +146,7 @@ MonoBehaviour:
   isPlayerNear: 0
   backStepping: 0
   goBackStep: 0
+  backStep: 6
   style: swarmer
   comboAnime: onetwo gap exit
   nextComboAnimes: []

@@ -396,6 +396,7 @@ MonoBehaviour:
   isPlayerNear: 0
   backStepping: 0
   goBackStep: 0
+  backStep: 6
   style: swarmer
   comboAnime: onetwothree lowkick middlekick onetwothree gap exit
   nextComboAnimes:
@@ -413,7 +414,10 @@ MonoBehaviour:
   cut: 0
   ducking: 0
   dramaticWhenDie: 1
+  escapeWhenDie: 0
   front: {fileID: 6000172210282924041}
+  top: {fileID: 0}
+  jumpPw: 18
   punch: {fileID: 8300000, guid: a9e4595c8eeb24b98b3f22401ea24327, type: 3}
   punchHit: {fileID: 8300000, guid: 93825da3ccac04fbfb70141e4918c0ed, type: 3}
   heavyHit: {fileID: 8300000, guid: 1344645d190ee4b0293bea2811cb4a09, type: 3}

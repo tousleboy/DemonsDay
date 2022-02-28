@@ -427,6 +427,7 @@ MonoBehaviour:
   isPlayerNear: 0
   backStepping: 0
   goBackStep: 0
+  backStep: 6
   style: swarmer
   comboAnime: onetwothree lowkick middlekick onetwothree gap exit
   nextComboAnimes:
