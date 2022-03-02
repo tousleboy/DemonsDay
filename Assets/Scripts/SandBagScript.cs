@@ -66,7 +66,8 @@ public class SandBagScript : MonoBehaviour
     {
         if(collision.gameObject.tag == "Attack" && !damaged)
         {
-            life -= collision.gameObject.GetComponent<AttackManager>().val;
+            AttackManager am = collision.gameObject.GetComponent<AttackManager>();
+            life -= am.val;
             soundPlayer.PlayOneShot(punchHit);
             if(!damaged) StartCoroutine("Swing");
         }

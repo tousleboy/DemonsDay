@@ -25,6 +25,7 @@ public class LesserEnemyController : MonoBehaviour
 
     AudioSource soundPlayer;
     public AudioClip punchHit;
+
     // Start is called before the first frame update
     void Start()
     {

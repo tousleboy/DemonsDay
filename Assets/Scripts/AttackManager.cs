@@ -26,6 +26,8 @@ public class AttackManager : MonoBehaviour
 
     public ATTACKTYPE attackType = ATTACKTYPE.none;
 
+    public EffectScript efs;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +38,31 @@ public class AttackManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            PlayerController pc = collision.gameObject.GetComponent<PlayerController>();
+            if(pc != null)
+            {
+                if((state == "high" && pc.parry || state == "low" && pc.cut) && !guardBreak) efs.ParryEffect();
+                else efs.AttackEffect();
+            }
+            else efs.AttackEffect();
+        }
+        else if(collision.gameObject.tag == "Enemy")
+        {
+            EnemyController ec = collision.gameObject.GetComponent<EnemyController>();
+            if(ec != null)
+            {
+                if((state == "high" && ec.parry || state == "low" && ec.cut) && !guardBreak) efs.ParryEffect();
+                else efs.AttackEffect();
+            }
+            else efs.AttackEffect();
+        }
+        //else efs.AttackEffect();
     }
 
     public void KnockBack(GameObject target)

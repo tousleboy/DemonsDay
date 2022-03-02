@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 3539719332970295002}
   m_Layer: 8
   m_Name: pitching_machine
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

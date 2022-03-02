@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2133763747112226975}
   m_Layer: 0
   m_Name: sand_bag
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
