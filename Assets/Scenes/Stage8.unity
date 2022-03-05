@@ -765,6 +765,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MusicChanger
       objectReference: {fileID: 0}
+    - target: {fileID: 5941643197149186102, guid: 1a846f180dd58434da5f77b248e09bd8, type: 3}
+      propertyPath: music
+      value: 
+      objectReference: {fileID: 8300000, guid: ee39af0ddc3474d11b05d6348cad1722, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a846f180dd58434da5f77b248e09bd8, type: 3}
 --- !u!1 &138424406
@@ -2557,7 +2561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4887978831935329884, guid: 7eec6099813aa4bce8569a927b1ae213, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 108.18137
+      value: 110.12
       objectReference: {fileID: 0}
     - target: {fileID: 4887978831935329884, guid: 7eec6099813aa4bce8569a927b1ae213, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4411,7 +4415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1633810840854677120, guid: e88e93566f2b04cdba3e2eb8df1dc079, type: 3}
       propertyPath: texts
-      value: "\u305D\u3053\u306B\u3055\u3063\u304D\u307E\u3067\u6575\u304C\u6F5C\u3093\u3067\u305F"
+      value: "\u305D\u3053\u306B\u3055\u3063\u304D\u307E\u3067\u6575\u304C1\u4EBA\u6F5C\u3093\u3067\u305F"
       objectReference: {fileID: 0}
     - target: {fileID: 1633810840854677121, guid: e88e93566f2b04cdba3e2eb8df1dc079, type: 3}
       propertyPath: m_RootOrder
@@ -6081,6 +6085,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1768725064259600071, guid: aa33f0a1d891244ce9365428fb687d66, type: 3}
+      propertyPath: maxLife
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768725064259600071, guid: aa33f0a1d891244ce9365428fb687d66, type: 3}
       propertyPath: comboAnime
       value: slash sweep sweep exit
       objectReference: {fileID: 0}
@@ -6099,7 +6107,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4887978831935329884, guid: 7eec6099813aa4bce8569a927b1ae213, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 123.35
+      value: 121.64
       objectReference: {fileID: 0}
     - target: {fileID: 4887978831935329884, guid: 7eec6099813aa4bce8569a927b1ae213, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6156,7 +6164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4887978831935329884, guid: 7eec6099813aa4bce8569a927b1ae213, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 102.604385
+      value: 101.99
       objectReference: {fileID: 0}
     - target: {fileID: 4887978831935329884, guid: 7eec6099813aa4bce8569a927b1ae213, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7281,6 +7289,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1768725064259600071, guid: aa33f0a1d891244ce9365428fb687d66, type: 3}
+      propertyPath: maxLife
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa33f0a1d891244ce9365428fb687d66, type: 3}
 --- !u!1 &1571947087 stripped
@@ -8226,6 +8238,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1768725064259600071, guid: aa33f0a1d891244ce9365428fb687d66, type: 3}
+      propertyPath: maxLife
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa33f0a1d891244ce9365428fb687d66, type: 3}
 --- !u!1001 &1710258784
@@ -9067,7 +9083,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4887978831935329884, guid: 7eec6099813aa4bce8569a927b1ae213, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 114.1
+      value: 115.93
       objectReference: {fileID: 0}
     - target: {fileID: 4887978831935329884, guid: 7eec6099813aa4bce8569a927b1ae213, type: 3}
       propertyPath: m_LocalPosition.y
