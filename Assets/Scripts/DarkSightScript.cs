@@ -16,13 +16,13 @@ public class DarkSightScript : MonoBehaviour
         prevD = GameManager.stageDefeats;
         nowD = GameManager.stageDefeats;
         transform.localScale = new Vector3(maxScale, maxScale, transform.localScale.z);
-        StartCoroutine("Moyamoya");
+        //StartCoroutine("Moyamoya");
     }
 
     // Update is called once per frame
     void Update()
     {
-        nowD = GameManager.stageDefeats;
+        nowD = Mathf.Min(GameManager.stageDefeats, maxEnemy);
         if(nowD != prevD)
         {
             prevD = nowD;
