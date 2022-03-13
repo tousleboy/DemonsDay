@@ -22,7 +22,7 @@ public class DarkSightScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        nowD = Mathf.Min(GameManager.stageDefeats, maxEnemy);
+        if(PlayerController.gameState == "playing") nowD = Mathf.Min(GameManager.stageDefeats, maxEnemy);
         if(nowD != prevD)
         {
             prevD = nowD;

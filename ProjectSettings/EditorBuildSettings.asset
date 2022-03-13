@@ -78,6 +78,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Result3.unity
     guid: e077bab51d21d4257a46ee537486ff06
   - enabled: 1
+    path: Assets/Scenes/movie11.unity
+    guid: d81ff251808054b9e95d27563c1326d2
+  - enabled: 1
     path: Assets/Scenes/Stage10.unity
     guid: 57970412eb6ff49d586af4d5294b33f7
+  - enabled: 1
+    path: Assets/Scenes/movie12.unity
+    guid: 5b9c00f165814402f8fd4b59f592927a
   m_configObjects: {}
