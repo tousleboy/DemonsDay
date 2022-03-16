@@ -204,7 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 16
   maai: 1.2
-  speed: 6
+  speed: 7
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -213,6 +213,7 @@ MonoBehaviour:
   isPlayerNear: 0
   backStepping: 0
   goBackStep: 0
+  backStep: 6
   style: swarmer
   comboAnime: sweep sweep exit
   nextComboAnimes: []
@@ -225,6 +226,7 @@ MonoBehaviour:
   cut: 0
   ducking: 0
   dramaticWhenDie: 0
+  escapeWhenDie: 0
   front: {fileID: 0}
   top: {fileID: 0}
   jumpPw: 18

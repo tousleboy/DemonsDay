@@ -11,6 +11,7 @@ public class AttackManager : MonoBehaviour
     public bool knockBack = false;
     public bool guardBreak = false;
     public float hmkb = 0.0f; //how many knockback
+    public float hmlc = 0.0f; //how many launch
 
     public enum ATTACKTYPE{
         none,
@@ -72,8 +73,8 @@ public class AttackManager : MonoBehaviour
         
         Vector2 direction = Direction(targetPos);
         Debug.Log(direction);
-        rbody.velocity = new Vector2(0.0f, 0.0f);
-        rbody.AddForce(direction, ForceMode2D.Impulse);
+        rbody.velocity = direction;//new Vector2(0.0f, 0.0f);
+        //rbody.AddForce(direction, ForceMode2D.Impulse);
     }
 
     Vector2 Direction(Vector3 targetPos)
@@ -81,12 +82,12 @@ public class AttackManager : MonoBehaviour
         Vector3 OwnPos = transform.parent.transform.position;
         if(OwnPos.x - targetPos.x > 0)
         {
-            Vector2 direction = new Vector2(hmkb * -1, 0.0f);
+            Vector2 direction = new Vector2(hmkb * -1, hmlc);
             return direction;
         }
         else
         {
-            Vector2 direction = new Vector2(hmkb, 0.0f);
+            Vector2 direction = new Vector2(hmkb, hmlc);
             return direction;
         }
     }

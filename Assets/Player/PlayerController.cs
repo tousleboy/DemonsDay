@@ -422,7 +422,7 @@ public class PlayerController : MonoBehaviour
                 damage -= diffence;
                 blockSuccess = true;
                 soundPlayer.PlayOneShot(guardHit);
-                concentration += 1;
+                concentration += 2;
             }
 
             life -= damage;
@@ -628,7 +628,7 @@ public class PlayerController : MonoBehaviour
         soundPlayer.PlayOneShot(punchHit);
         oldAnime = damagedAnime;
         GameManager.battleScore = Mathf.Max(GameManager.battleScore - 3, 0);
-        concentration = Mathf.Max(concentration - 1, 0);
+        concentration = Mathf.Max(concentration - 10, 0);
         //animator.Play(damagedAnime);
         animator.SetTrigger("damaged");
 
