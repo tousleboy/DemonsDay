@@ -714,7 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684b54f56422e439b91697c4040a5211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Stage1
+  sceneName: Stage11
   delay: 0
   resetProgress: 1
   continueMusic: 1
@@ -1194,6 +1194,10 @@ PrefabInstance:
       propertyPath: next
       value: 
       objectReference: {fileID: 2141056246}
+    - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
+      propertyPath: sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 23cdbe31a76754b9ead5fc02e4747a49, type: 3}
     - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
       propertyPath: waitTime
       value: 2
@@ -2392,7 +2396,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3145610925783066298, guid: a1e2cfd0cd871401aac99a447cd79ba4, type: 3}
       propertyPath: sceneName
-      value: Stage1
+      value: Stage11
       objectReference: {fileID: 0}
     - target: {fileID: 5351346956627176280, guid: a1e2cfd0cd871401aac99a447cd79ba4, type: 3}
       propertyPath: m_Camera
@@ -2869,6 +2873,10 @@ PrefabInstance:
       propertyPath: next
       value: 
       objectReference: {fileID: 1345749093}
+    - target: {fileID: 2764323594754967083, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
+      propertyPath: newMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: ec08dc4bc26a04272b69750fa23a8a1e, type: 3}
     - target: {fileID: 3896682775488044532, guid: c3d969f1e537c455bbec89fcda034f19, type: 3}
       propertyPath: m_Name
       value: ComicAnchor (20)

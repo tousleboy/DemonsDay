@@ -422,7 +422,7 @@ public class PlayerController : MonoBehaviour
                 damage -= diffence;
                 blockSuccess = true;
                 soundPlayer.PlayOneShot(guardHit);
-                concentration += 3;
+                concentration += 2;
             }
 
             life -= damage;

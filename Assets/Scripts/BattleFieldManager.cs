@@ -17,7 +17,7 @@ public class BattleFieldManager : MonoBehaviour
     bool eventEnd = false;
     bool playerIn = false;
     bool roundEnd = true;
-    bool autoLock = true;
+    public bool autoLock = true;
 
     int round = 0;
     int maxRound = 0;

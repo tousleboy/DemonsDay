@@ -8,10 +8,12 @@ public class RunningManScript : MonoBehaviour
     public float speed = 2.0f;
     float howfar = 0.0f;
     bool activated = false;
+
+    public Sprite[] sprites;
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine("RunningAnimation");
     }
 
     // Update is called once per frame
@@ -27,5 +29,17 @@ public class RunningManScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player" && !activated) activated = true;
+    }
+
+    IEnumerator RunningAnimation()
+    {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        int i = 0;
+        while(true)
+        {
+            sr.sprite = sprites[i];
+            i = (i + 1) % sprites.Length;
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }

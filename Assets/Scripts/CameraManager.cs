@@ -12,54 +12,61 @@ public class CameraManager : MonoBehaviour
     public bool locked = false;
     public bool resetPos = false;
     public bool cannotGoBack = false;
+    public bool forceScroll = false;
+    public float scrollSpeed = 0f;
+
+    GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
         if(player != null)
         {
-            float x = player.transform.position.x;
-            float y = player.transform.position.y;
-            float z = transform.position.z;
-
-            if(resetPos)
+            if(!forceScroll)
             {
-                float range = 0.1f;
-                float speed = 20f;
-                if(x - transform.position.x > range)
-                {
-                    transform.Translate(speed * Time.deltaTime, 0, 0);
-                }
-                else if(x - transform.position.x < range * -1)
-                {
-                    transform.Translate(-1f * speed * Time.deltaTime, 0, 0);
-                }
-                else
-                {
-                    locked = false;
-                    resetPos = false;
-                }
-            }
-            if(locked)
-            {
-                return;
-            }
+                float x = player.transform.position.x;
+                float y = player.transform.position.y;
+                float z = transform.position.z;
 
-            x = System.Math.Max(x, leftLimit);
-            x = System.Math.Min(x, rightLimit);
-            y = System.Math.Max(y, bottomLimit);
-            y = System.Math.Min(y, topLimit);
+                if(resetPos)
+                {
+                    float range = 0.1f;
+                    float speed = 20f;
+                    if(x - transform.position.x > range)
+                    {
+                        transform.Translate(speed * Time.deltaTime, 0, 0);
+                    }
+                    else if(x - transform.position.x < range * -1)
+                    {
+                        transform.Translate(-1f * speed * Time.deltaTime, 0, 0);
+                    }
+                    else
+                    {
+                        locked = false;
+                        resetPos = false;
+                    }
+                }
+                if(locked)
+                {
+                    return;
+                }
 
-            Vector3 v3 = new Vector3(x, y, z);
-            transform.position = v3;
-            if(cannotGoBack) leftLimit = x;
+                x = System.Math.Max(x, leftLimit);
+                x = System.Math.Min(x, rightLimit);
+                y = System.Math.Max(y, bottomLimit);
+                y = System.Math.Min(y, topLimit);
+
+                Vector3 v3 = new Vector3(x, y, z);
+                transform.position = v3;
+                if(cannotGoBack) leftLimit = x;
+            }
+            else if(PlayerController.gameState == "playing") transform.position = transform.position + Vector3.right * Mathf.Max(Mathf.Min(scrollSpeed * Time.deltaTime, rightLimit), leftLimit);
         } 
     }
 }

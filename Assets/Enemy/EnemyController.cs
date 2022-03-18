@@ -248,6 +248,7 @@ public class EnemyController : MonoBehaviour
                     }
                 }
             }
+            else rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
         }
         else if(style == "slugger")
         {
