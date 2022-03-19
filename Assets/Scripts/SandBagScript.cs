@@ -26,7 +26,7 @@ public class SandBagScript : MonoBehaviour
         k
     }
     public HITTYPE[] hitType;
-    int pointer = 0;
+    public AttackManager.ATTACKTYPE strikeZone = AttackManager.ATTACKTYPE.upper;
 
     Coroutine _currentCoroutine;
 
@@ -67,9 +67,10 @@ public class SandBagScript : MonoBehaviour
         if(collision.gameObject.tag == "Attack" && !damaged)
         {
             AttackManager am = collision.gameObject.GetComponent<AttackManager>();
-            life -= am.val;
             soundPlayer.PlayOneShot(punchHit);
             if(!damaged) StartCoroutine("Swing");
+
+            if(am.attackType == strikeZone) life = 0;
         }
     }
 

@@ -747,6 +747,8 @@ MonoBehaviour:
   locked: 0
   resetPos: 0
   cannotGoBack: 0
+  forceScroll: 0
+  scrollSpeed: 0
 --- !u!1001 &139651821
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2494,6 +2496,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2133763747112226972, guid: fb155e0f582964099b5c9304e12f6aee, type: 3}
+      propertyPath: strikeZone
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133763747112226972, guid: fb155e0f582964099b5c9304e12f6aee, type: 3}
       propertyPath: hitType.Array.data[2]
       value: 1
       objectReference: {fileID: 0}
@@ -3401,6 +3407,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2133763747112226972, guid: fb155e0f582964099b5c9304e12f6aee, type: 3}
+      propertyPath: strikeZone
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2133763747112226972, guid: fb155e0f582964099b5c9304e12f6aee, type: 3}
       propertyPath: hitType.Array.size
       value: 2

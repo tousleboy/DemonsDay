@@ -688,6 +688,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2133763747112226972, guid: fb155e0f582964099b5c9304e12f6aee, type: 3}
+      propertyPath: strikeZone
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133763747112226972, guid: fb155e0f582964099b5c9304e12f6aee, type: 3}
       propertyPath: targetAnime
       value: SandBagTarget5
       objectReference: {fileID: 0}
@@ -4907,6 +4911,8 @@ MonoBehaviour:
   locked: 0
   resetPos: 0
   cannotGoBack: 0
+  forceScroll: 0
+  scrollSpeed: 0
 --- !u!1001 &939116978
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6303,7 +6309,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 610632371622978093, guid: 156c9dade900945068fccf7708013fad, type: 3}
       propertyPath: m_RootOrder
-      value: 165
+      value: 168
       objectReference: {fileID: 0}
     - target: {fileID: 610632371622978093, guid: 156c9dade900945068fccf7708013fad, type: 3}
       propertyPath: m_AnchorMax.x
@@ -10440,6 +10446,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2133763747112226972, guid: fb155e0f582964099b5c9304e12f6aee, type: 3}
       propertyPath: life
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133763747112226972, guid: fb155e0f582964099b5c9304e12f6aee, type: 3}
+      propertyPath: strikeZone
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2133763747112226972, guid: fb155e0f582964099b5c9304e12f6aee, type: 3}
