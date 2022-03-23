@@ -430,6 +430,8 @@ public class EnemyController : MonoBehaviour
                 comboChangeNum += 1;
             }
         }
+
+        PlayerController.concentration += 5;
     }
 
     void Dead()

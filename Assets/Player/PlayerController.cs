@@ -422,7 +422,6 @@ public class PlayerController : MonoBehaviour
                 damage -= diffence;
                 blockSuccess = true;
                 soundPlayer.PlayOneShot(guardHit);
-                concentration += 2;
             }
 
             life -= damage;
@@ -571,6 +570,9 @@ public class PlayerController : MonoBehaviour
                         attackTrigger = "cut";
                     }
 
+                    if(concentration >= ConcentrateGaugeManager.maxCon) animator.SetBool("counter", true);
+                    else animator.SetBool("counter", false);
+
                     cd.beingAttacked = false;
                 }
                 else
@@ -591,7 +593,7 @@ public class PlayerController : MonoBehaviour
                     if(mode == "kick" && concentration >= ConcentrateGaugeManager.maxCon)
                     {
                         attackTrigger = "con1";
-                        concentration = concentration / 3 * 2;
+                        concentration = concentration / 2;
                     }
                     /*else if((mode == "kick" && Input.GetAxisRaw("Vertical") > 0) ||(mode == "punch" && Input.GetAxisRaw("Vertical") <0))
                     {
@@ -690,7 +692,7 @@ public class PlayerController : MonoBehaviour
     }*/
     void BackStep()
     {
-        concentration = Mathf.Max(concentration - 5, 0);
+        //concentration = Mathf.Max(concentration - 5, 0);
         rbody.velocity = new Vector2(0f, rbody.velocity.y);
         Vector2 backStepPw = new Vector2(backStep * transform.localScale.x * -1, 0);
         rbody.AddForce(backStepPw, ForceMode2D.Impulse);
