@@ -419,7 +419,7 @@ public class PlayerController : MonoBehaviour
 
             if((collisionState == "high" && parry || collisionState == "low" && cut) && !am.guardBreak)
             {
-                damage -= diffence;
+                damage = 0;
                 blockSuccess = true;
                 soundPlayer.PlayOneShot(guardHit);
             }

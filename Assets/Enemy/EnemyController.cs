@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour
     public bool backStepping = false;
     public bool goBackStep = false;
     public float backStep = 6.0f;
+    bool goJump = false;
 
     Animator animator;
     //public string stopAnime = "RichmenIdle";
@@ -175,7 +176,7 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-        if(onGround && attacking) rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
+        if(onGround && attacking && !goJump) rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
 
         if(PlayerController.gameState != "playing")
         {   
@@ -208,7 +209,7 @@ public class EnemyController : MonoBehaviour
             }
             else if(CheckLength(playerPos, range) && !attacking && !backStepping)
             {
-                if(isPlayerNear && onGround)
+                if((isPlayerNear || (comboStack[stackPointer] == "jumpup" && CheckLength(playerPos, maai * 5f))) && onGround)
                 {
                     rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
                     goAttack = true;
@@ -227,7 +228,7 @@ public class EnemyController : MonoBehaviour
                         }
                         else
                         {
-                            rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
+                            //rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
                             bool jumpAble = false;
                             if(top != null) jumpAble = Physics2D.Linecast(top.position, top.position -(transform.up * 20f), groundLayer);
                             
@@ -248,7 +249,11 @@ public class EnemyController : MonoBehaviour
                     }
                 }
             }
-            else rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
+            else
+            {
+                //if(onGround || !goJump) rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
+            }
+            
         }
         else if(style == "slugger")
         {
@@ -506,6 +511,21 @@ public class EnemyController : MonoBehaviour
     {
         Vector2 backStepPw = new Vector2(backStep * transform.localScale.x * -1, 0);
         rbody.AddForce(backStepPw, ForceMode2D.Impulse);
+    }
+
+    public void Jump()
+    {
+        float j = 15f;
+        goJump = true;
+        Vector3 jumpV = new Vector3(j * transform.localScale.x, j, 0);
+        rbody.velocity = jumpV;
+        Debug.Log(rbody.velocity);
+        Invoke("GoJumpFalse", 0.1f);
+    }
+
+    void GoJumpFalse()
+    {
+        goJump = false;
     }
 
     public void Combo()
