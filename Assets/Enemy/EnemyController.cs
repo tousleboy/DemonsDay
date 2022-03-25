@@ -515,9 +515,10 @@ public class EnemyController : MonoBehaviour
 
     public void Jump()
     {
-        float j = 15f;
+        float jx = 10f;
+        float jy = 20f;
         goJump = true;
-        Vector3 jumpV = new Vector3(j * transform.localScale.x, j, 0);
+        Vector3 jumpV = new Vector3(jx * transform.localScale.x, jy, 0);
         rbody.velocity = jumpV;
         Debug.Log(rbody.velocity);
         Invoke("GoJumpFalse", 0.1f);

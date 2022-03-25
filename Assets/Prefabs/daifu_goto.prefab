@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 16
-  maai: 1.2
+  maai: 3
   speed: 7
   groundLayer:
     serializedVersion: 2
@@ -532,7 +532,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5102029811756208503, guid: 12c5eaf435d4d4f8199ea74a6ad015ae, type: 3}
       propertyPath: val
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5102029811756208503, guid: 12c5eaf435d4d4f8199ea74a6ad015ae, type: 3}
       propertyPath: hmkb
