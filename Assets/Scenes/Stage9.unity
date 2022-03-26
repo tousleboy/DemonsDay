@@ -455,6 +455,8 @@ MonoBehaviour:
   locked: 0
   resetPos: 0
   cannotGoBack: 0
+  forceScroll: 0
+  scrollSpeed: 0
 --- !u!1001 &139651821
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1530,6 +1532,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1166666368, guid: 156c9dade900945068fccf7708013fad, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 288.99988
+      objectReference: {fileID: 0}
+    - target: {fileID: 1371603001, guid: 156c9dade900945068fccf7708013fad, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 307.31995
+      objectReference: {fileID: 0}
     - target: {fileID: 610632371622978000, guid: 156c9dade900945068fccf7708013fad, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -1645,6 +1655,10 @@ PrefabInstance:
     - target: {fileID: 6969407495800740607, guid: 156c9dade900945068fccf7708013fad, type: 3}
       propertyPath: sceneName
       value: Stage9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083313566246837007, guid: 156c9dade900945068fccf7708013fad, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -245.66003
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 156c9dade900945068fccf7708013fad, type: 3}
@@ -3371,11 +3385,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9178597983845763293, guid: d0aa93970c30a4241826b109a0ee28e6, type: 3}
       propertyPath: speed
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9178597983845763293, guid: d0aa93970c30a4241826b109a0ee28e6, type: 3}
       propertyPath: maxLife
-      value: 16
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 9178597983845763293, guid: d0aa93970c30a4241826b109a0ee28e6, type: 3}
       propertyPath: backStep

@@ -238,6 +238,7 @@ public class EnemyController : MonoBehaviour
                                 Vector2 jumpForce = new Vector2(0f, jumpPw);
                                 rbody.AddForce(jumpForce, ForceMode2D.Impulse);
                             }
+                            else rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
                             moving = false;
                             animator.SetBool("move", false);
                         }
@@ -251,7 +252,7 @@ public class EnemyController : MonoBehaviour
             }
             else
             {
-                //if(onGround || !goJump) rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
+                if(onGround && !goJump) rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
             }
             
         }
@@ -515,7 +516,7 @@ public class EnemyController : MonoBehaviour
 
     public void Jump()
     {
-        float jx = 10f;
+        float jx = 5f;
         float jy = 20f;
         goJump = true;
         Vector3 jumpV = new Vector3(jx * transform.localScale.x, jy, 0);
@@ -560,7 +561,7 @@ public class EnemyController : MonoBehaviour
 
     public void ProbabilityCombo()
     {
-        int p = 15;
+        int p = 5;
         int n = Random.Range(1, 100);
         if(p >= n) Combo();
         else return;
