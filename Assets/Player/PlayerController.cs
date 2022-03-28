@@ -692,7 +692,7 @@ public class PlayerController : MonoBehaviour
     }*/
     void BackStep()
     {
-        //concentration = Mathf.Max(concentration - 5, 0);
+        concentration = Mathf.Max(concentration - 1, 0);
         rbody.velocity = new Vector2(0f, rbody.velocity.y);
         Vector2 backStepPw = new Vector2(backStep * transform.localScale.x * -1, 0);
         rbody.AddForce(backStepPw, ForceMode2D.Impulse);
