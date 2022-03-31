@@ -3397,7 +3397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9178597983845763293, guid: d0aa93970c30a4241826b109a0ee28e6, type: 3}
       propertyPath: comboAnime
-      value: onetwothree one chudankick gap exit
+      value: onetwothree one chudankick gap idle exit
       objectReference: {fileID: 0}
     - target: {fileID: 9178597983845763293, guid: d0aa93970c30a4241826b109a0ee28e6, type: 3}
       propertyPath: warnings.Array.data[0]

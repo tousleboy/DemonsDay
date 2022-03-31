@@ -554,6 +554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -1094,7 +1095,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 744.12, y: -439.17}
+  m_AnchoredPosition: {x: 744.12, y: -439.17004}
   m_SizeDelta: {x: 431.77032, y: 77.173065}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1290740021
@@ -1615,6 +1616,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -2033,7 +2035,7 @@ MonoBehaviour:
   B: {fileID: 21300000, guid: c2bb8bae18ee24c32827a5586113710f, type: 3}
   C: {fileID: 21300000, guid: d7edc7745dbbe46758095ef8d94c996e, type: 3}
   D: {fileID: 21300000, guid: d6cd39875fa4847b99a4a24fd7ed049f, type: 3}
-  end: 1
+  end: 0
   drum: {fileID: 8300000, guid: e058610182ed74006afc9924c42d3b2e, type: 3}
   pecha: {fileID: 8300000, guid: b9931f62b3c314c1d923d4753bdf40a4, type: 3}
 --- !u!114 &1756853022
@@ -2075,6 +2077,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &1756853024
 Canvas:
   m_ObjectHideFlags: 0
