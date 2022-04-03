@@ -84,6 +84,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip guardHit;
     public AudioClip moneySound;
     public AudioClip eat;
+    public AudioClip slow;
+    public AudioClip quitSlow;
     public AudioClip concentrationSound;
 
     public static string messages = ""; //recieve message from talk event. default should be "not recieved" 
@@ -177,7 +179,7 @@ public class PlayerController : MonoBehaviour
                 transform.localScale = new Vector2(-1, 1);
             }
 
-            if(Input.GetButtonDown("Jump"))
+            if(Input.GetButtonDown("Jump") && onGround)
             {
                 Jump();
             }
@@ -564,14 +566,18 @@ public class PlayerController : MonoBehaviour
                         attackTrigger = "parry";
                         animator.SetInteger("chain", cd.chain);
                     }
-                    else if(mode == "kick")
+                    else if(mode == "kick" && concentration < ConcentrateGaugeManager.maxCon)
                     {
                         //Action(cutAnimes[(combocount - 1) % 1] , "attack");
                         attackTrigger = "cut";
                     }
 
-                    if(concentration >= ConcentrateGaugeManager.maxCon) animator.SetBool("counter", true);
-                    else animator.SetBool("counter", false);
+                    /*if(concentration >= ConcentrateGaugeManager.maxCon)
+                    {
+                        animator.SetBool("counter", true);
+                        SlowMotion();
+                    }
+                    else animator.SetBool("counter", false);*/
 
                     cd.beingAttacked = false;
                 }
@@ -593,7 +599,7 @@ public class PlayerController : MonoBehaviour
                     if(mode == "kick" && concentration >= ConcentrateGaugeManager.maxCon)
                     {
                         attackTrigger = "con1";
-                        concentration = concentration / 2;
+                        concentration = concentration / 4;
                     }
                     /*else if((mode == "kick" && Input.GetAxisRaw("Vertical") > 0) ||(mode == "punch" && Input.GetAxisRaw("Vertical") <0))
                     {
@@ -629,12 +635,13 @@ public class PlayerController : MonoBehaviour
         damaged = true;
         soundPlayer.PlayOneShot(punchHit);
         oldAnime = damagedAnime;
-        GameManager.battleScore = Mathf.Max(GameManager.battleScore - 3, 0);
-        concentration = Mathf.Max(concentration - 10, 0);
+        GameManager.battleScore = Mathf.Max(GameManager.battleScore - 1, 0);
+        concentration = Mathf.Max(concentration - 20, 0);
         //animator.Play(damagedAnime);
         animator.SetTrigger("damaged");
 
         amgr.attackType = AttackManager.ATTACKTYPE.none;
+        QuitSlowMotion();
     }
 
     public void Wait()
@@ -658,7 +665,7 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("die");
 
         GameManager.retry += 1;
-        GameManager.battleScore = Mathf.Max(GameManager.battleScore - 5, 0);
+        GameManager.battleScore = Mathf.Max(GameManager.battleScore - 3, 0);
         gameState = "gameover";
     }
 
@@ -679,6 +686,18 @@ public class PlayerController : MonoBehaviour
         rbody.velocity = new Vector2(0, rbody.velocity.y);
     }
 
+    void SlowMotion()
+    {
+        soundPlayer.PlayOneShot(slow);
+        Time.timeScale = 0.5f;
+    }
+
+    void QuitSlowMotion()
+    {
+        //soundPlayer.PlayOneShot(quitSlow);
+        Time.timeScale = 1f;
+    }
+
     /*public void DelayAttack()
     {
         delay = true;
@@ -692,7 +711,7 @@ public class PlayerController : MonoBehaviour
     }*/
     void BackStep()
     {
-        concentration = Mathf.Max(concentration - 1, 0);
+        //concentration = Mathf.Max(concentration - 1, 0);
         rbody.velocity = new Vector2(0f, rbody.velocity.y);
         Vector2 backStepPw = new Vector2(backStep * transform.localScale.x * -1, 0);
         rbody.AddForce(backStepPw, ForceMode2D.Impulse);

@@ -910,6 +910,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 6
     messageOptions: 0
+  - time: 0.25
+    functionName: QuitSlowMotion
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.28333333
     functionName: PlaySound
     data: 

@@ -79,9 +79,9 @@ public class ResultManager : MonoBehaviour
 
         yield return new WaitForSeconds(interval2);
         int bs = GameManager.battleScore;
-        if(bs >= 90) battleRankImage.GetComponent<Image>().sprite = A;
-        else if(bs >= 70) battleRankImage.GetComponent<Image>().sprite = B;
-        else if(bs >= 50) battleRankImage.GetComponent<Image>().sprite = C;
+        if(bs >= 95) battleRankImage.GetComponent<Image>().sprite = A;
+        else if(bs >= 85) battleRankImage.GetComponent<Image>().sprite = B;
+        else if(bs >= 30) battleRankImage.GetComponent<Image>().sprite = C;
         else battleRankImage.GetComponent<Image>().sprite = D;
         battleRankImage.SetActive(true);
         soundPlayer.PlayOneShot(pecha);

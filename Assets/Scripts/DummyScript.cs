@@ -6,7 +6,7 @@ public class DummyScript : MonoBehaviour
 {
     public float minY = 0f;
     public LayerMask groundLayer;
-    bool onGround = false;
+    //bool onGround = false;
     Transform player;
     Rigidbody2D rbody;
     // Start is called before the first frame update

@@ -438,6 +438,8 @@ public class EnemyController : MonoBehaviour
         }
 
         PlayerController.concentration += 5;
+
+        ScaleFree();
     }
 
     void Dead()

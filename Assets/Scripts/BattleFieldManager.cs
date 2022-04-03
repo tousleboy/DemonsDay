@@ -52,6 +52,7 @@ public class BattleFieldManager : MonoBehaviour
         {
             eventStart = true;
             mainCamera.GetComponent<CameraManager>().locked = true;
+            PlayerController.concentration += 1;
         }
 
         if(eventStart)
@@ -105,6 +106,7 @@ public class BattleFieldManager : MonoBehaviour
         if(collision.gameObject.tag == "Player" && eventEnd)
         {
             mainCamera.GetComponent<CameraManager>().resetPos = true;
+            PlayerController.concentration -= 1;
         }
     }
 }
