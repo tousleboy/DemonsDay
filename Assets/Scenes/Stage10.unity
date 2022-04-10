@@ -829,6 +829,8 @@ MonoBehaviour:
   locked: 0
   resetPos: 0
   cannotGoBack: 0
+  forceScroll: 0
+  scrollSpeed: 0
 --- !u!1001 &139651821
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3615,7 +3617,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6788897430476397916, guid: 0457d9a51300a4b618c6ace3f3e42c73, type: 3}
       propertyPath: comboAnime
-      value: slash sweep exit
+      value: slash sweep gap exit
       objectReference: {fileID: 0}
     - target: {fileID: 6788897430476397919, guid: 0457d9a51300a4b618c6ace3f3e42c73, type: 3}
       propertyPath: m_RootOrder
@@ -7246,6 +7248,10 @@ PrefabInstance:
     - target: {fileID: 1768725064259600071, guid: aa33f0a1d891244ce9365428fb687d66, type: 3}
       propertyPath: maxLife
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768725064259600071, guid: aa33f0a1d891244ce9365428fb687d66, type: 3}
+      propertyPath: comboAnime
+      value: sweep sweep gap exit
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa33f0a1d891244ce9365428fb687d66, type: 3}

@@ -4138,7 +4138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4887978831935329884, guid: 7eec6099813aa4bce8569a927b1ae213, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 93.85
+      value: 92.78
       objectReference: {fileID: 0}
     - target: {fileID: 4887978831935329884, guid: 7eec6099813aa4bce8569a927b1ae213, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4841,7 +4841,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1768725064259600071, guid: aa33f0a1d891244ce9365428fb687d66, type: 3}
       propertyPath: comboAnime
-      value: slash sweep exit
+      value: slash sweep gap exit
       objectReference: {fileID: 0}
     - target: {fileID: 2342739222680095520, guid: aa33f0a1d891244ce9365428fb687d66, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4932,15 +4932,15 @@ PrefabInstance:
     - target: {fileID: 520927208643812198, guid: d15e0c523542644938d20c468c3689ac, type: 3}
       propertyPath: sprites.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: 27232eefaac92440280b4781f3e37d71, type: 3}
+      objectReference: {fileID: 21300000, guid: 7c32e5627e2f24f6ea035eef85b5ded9, type: 3}
     - target: {fileID: 520927208643812198, guid: d15e0c523542644938d20c468c3689ac, type: 3}
       propertyPath: sprites.Array.data[2]
       value: 
-      objectReference: {fileID: 21300000, guid: 27232eefaac92440280b4781f3e37d71, type: 3}
+      objectReference: {fileID: 21300000, guid: fb5e432b4c34e4c4cb27b87424ea5099, type: 3}
     - target: {fileID: 520927208643812198, guid: d15e0c523542644938d20c468c3689ac, type: 3}
       propertyPath: sprites.Array.data[3]
       value: 
-      objectReference: {fileID: 21300000, guid: 27232eefaac92440280b4781f3e37d71, type: 3}
+      objectReference: {fileID: 21300000, guid: 98a5d6166366a49008f45b11243a0848, type: 3}
     - target: {fileID: 520927208643812199, guid: d15e0c523542644938d20c468c3689ac, type: 3}
       propertyPath: m_Size.x
       value: 0.1

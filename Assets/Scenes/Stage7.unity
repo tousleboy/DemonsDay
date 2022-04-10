@@ -483,6 +483,10 @@ PrefabInstance:
       propertyPath: maxLife
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1768725064259600071, guid: aa33f0a1d891244ce9365428fb687d66, type: 3}
+      propertyPath: comboAnime
+      value: slash sweep gap exit
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa33f0a1d891244ce9365428fb687d66, type: 3}
 --- !u!1 &103709180 stripped
@@ -6453,6 +6457,10 @@ PrefabInstance:
       propertyPath: maxLife
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1768725064259600071, guid: aa33f0a1d891244ce9365428fb687d66, type: 3}
+      propertyPath: comboAnime
+      value: sweep sweep gap exit
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa33f0a1d891244ce9365428fb687d66, type: 3}
 --- !u!1 &1385379926 stripped
@@ -10206,7 +10214,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6788897430476397916, guid: 0457d9a51300a4b618c6ace3f3e42c73, type: 3}
       propertyPath: comboAnime
-      value: slash sweep exit
+      value: slash sweep gap exit
       objectReference: {fileID: 0}
     - target: {fileID: 6788897430476397916, guid: 0457d9a51300a4b618c6ace3f3e42c73, type: 3}
       propertyPath: dramaticWhenDie

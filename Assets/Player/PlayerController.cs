@@ -566,7 +566,7 @@ public class PlayerController : MonoBehaviour
                         attackTrigger = "parry";
                         animator.SetInteger("chain", cd.chain);
                     }
-                    else if(mode == "kick" && concentration < ConcentrateGaugeManager.maxCon)
+                    else if(mode == "kick")
                     {
                         //Action(cutAnimes[(combocount - 1) % 1] , "attack");
                         attackTrigger = "cut";
