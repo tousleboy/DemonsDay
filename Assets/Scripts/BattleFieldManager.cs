@@ -18,6 +18,7 @@ public class BattleFieldManager : MonoBehaviour
     bool playerIn = false;
     bool roundEnd = true;
     public bool autoLock = true;
+    public bool random = true;
 
     int round = 0;
     int maxRound = 0;
@@ -78,8 +79,27 @@ public class BattleFieldManager : MonoBehaviour
                     }
                     return;
                 }
-                int n = Random.Range(0, 4);
-                Vector3 pos = new Vector3(gates[n].transform.position.x, gates[n].transform.position.y, 0.0f);
+
+                Vector3 pos;
+                if(random)
+                {
+                    int n = Random.Range(0, 4);
+                    pos = new Vector3(gates[n].transform.position.x, gates[n].transform.position.y, 0.0f);
+                }
+                else
+                {
+                    pos = gates[0].transform.position;
+                    float d = 0f;
+                    int i ;
+                    for(i = 0; i < gates.Length; i++)
+                    {
+                        if(Vector3.Distance(Player.transform.position, gates[i].transform.position) > d)
+                        {
+                            pos = new Vector3(gates[i].transform.position.x, gates[i].transform.position.y, 0.0f);
+                            d = Vector3.Distance(Player.transform.position, gates[i].transform.position);
+                        }
+                    }
+                }
                 /*GameObject enemy = Instantiate(enemyBase1, pos, Quaternion.identity);
                 enemy.GetComponent<EnemyController>().comboAnime = comboes[round - 1];*/
                 enemies[round - 1].transform.position = pos;
