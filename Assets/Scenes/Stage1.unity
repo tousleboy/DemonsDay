@@ -10379,9 +10379,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1633810840854677120, guid: e88e93566f2b04cdba3e2eb8df1dc079, type: 3}
       propertyPath: texts
-      value: "\u3082\u3057\u3082\u30FC\u3057\u805E\u3053\u3048\u3066\u308B\u306D\uFF1F
+      value: "\u3082\u3057\u3082\u30FC\u3057\u6F84\u6B69\u30FC\uFF1F \u3053\u3061\u3089\u7167\u3001\u805E\u3053\u3048\u3066\u308B\u306D\uFF1F
         \u826F\u3044\uFF1F\u30DC\u30B9\u306E\u6551\u51FA\u304C\u6700\u512A\u5148
-        \u30EA\u30C3\u30C1\u30E1\u30F3\u3069\u3082\u3092\u8E74\u6563\u3089\u3057\u3066\u9032\u3080\u3088"
+        \u30C1\u30F3\u30D4\u30E9\u3069\u3082\u3092\u8E74\u6563\u3089\u3057\u3066\u9032\u3080\u3088"
       objectReference: {fileID: 0}
     - target: {fileID: 1633810840854677120, guid: e88e93566f2b04cdba3e2eb8df1dc079, type: 3}
       propertyPath: isEvent
