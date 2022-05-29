@@ -8,6 +8,7 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
 {
     public GameObject[] buttons;
     public GameObject cursor;
+    EventSystem eventSystem;
     public string decisionKey = "Jump";
     int pointer = 0;
     bool wait = false;
@@ -18,17 +19,13 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
     AudioSource soundPlayer;
     public AudioClip selectSound;
 
+    GameObject nowSelected;
+    GameObject pastSelected;
+
     // Start is called before the first frame update
     void Start()
     {
-        //Color c = buttons[pointer].GetComponent<Button>().colors.pressedColor;
-        //buttons[pointer].GetComponent<Image>().color = c;
-        if(cursor != null) cursor.transform.position = buttons[pointer].transform.position;
-        //Button b = buttons[pointer].GetComponent<Button>();
-        //StartCoroutine(WaitTime(waitTime));
-        /*wait = true;
-        Invoke("StopWait", waitTime);*/
-        soundPlayer = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -60,36 +57,33 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
                     else if(axisV < 0) pointer = Mathf.Min(pointer + 1, buttons.Length - 1);
                 }
 
+                //StartCoroutine(WaitTime(waitTime));
+
+                //buttons[pointer].GetComponent<Button>().Select();
+
                 Debug.Log(pointer);
-
-                //c = buttons[pointer].GetComponent<Button>().colors.pressedColor;
-                //buttons[pointer].GetComponent<Image>().color = c;
-                //b = buttons[pointer].GetComponent<Button>();
-                //b.OnPointerEnter(EventSystems.PointerEventData);
-                if(cursor != null) cursor.transform.position = buttons[pointer].transform.position;
-
-                StartCoroutine(WaitTime(waitTime));
-
-                soundPlayer.PlayOneShot(selectSound);
-                /*wait = true;
-                Invoke("StopWait", waitTime);*/
             }
         }
 
-        if(Input.GetButtonDown(decisionKey))
+        if(eventSystem.currentSelectedGameObject != null) nowSelected = eventSystem.currentSelectedGameObject.gameObject;
+        else
         {
-            Debug.Log("x");
-            Button b = buttons[pointer].GetComponent<Button>();
-            //Color c = b.colors.pressedColor;
-            //buttons[pointer].GetComponent<Image>().color = c;
-            b.onClick.Invoke();
-            //b.OnPointerDown(EventSystems.PointerEventData);
-            decided = true;
+            Debug.Log("null selection");
+            nowSelected.GetComponent<Button>().Select();
+        }
+        if(nowSelected != pastSelected)
+        {
+            pastSelected = nowSelected;
+            if(cursor != null) cursor.transform.position = nowSelected.transform.position;
+            soundPlayer.PlayOneShot(selectSound);
         }
     }
 
     void OnEnable()
     {
+        soundPlayer = GetComponent<AudioSource>();
+
+        eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
         wait = false;
         decided = false;
         int i;
@@ -97,6 +91,12 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
         {
             buttons[i].GetComponent<Button>().interactable = true;
         }
+        pointer = 0;
+        if(cursor != null) cursor.transform.position = buttons[pointer].transform.position;
+        buttons[pointer].GetComponent<Button>().Select();
+
+        nowSelected = buttons[pointer];
+        pastSelected = nowSelected; 
     }
 
     public void Decided()
@@ -124,6 +124,7 @@ public class ButtonManager : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
     public void AllInteractableFalse()
     {
         int i;
+        decided = true;
         for(i = 0; i < buttons.Length; i++)
         {
             buttons[i].GetComponent<Button>().interactable = false;

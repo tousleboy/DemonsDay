@@ -437,8 +437,10 @@ GameObject:
   - component: {fileID: 8319004749163226547}
   - component: {fileID: 652199898746592252}
   - component: {fileID: 7053967204882895453}
+  - component: {fileID: 3470610197494954221}
+  - component: {fileID: 5245176203100620074}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -516,6 +518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -598,6 +601,45 @@ MonoBehaviour:
   resetProgress: 0
   continueMusic: 0
   stopMusic: 0
+--- !u!61 &3470610197494954221
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6801408071289996132}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 585, y: 80}
+  m_EdgeRadius: 0
+--- !u!114 &5245176203100620074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6801408071289996132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c290259de3a14a90a74e1e6fbf9d9f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entered: 0
 --- !u!1 &6812841992303271700
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,6 +707,8 @@ GameObject:
   - component: {fileID: 4179861264179282696}
   - component: {fileID: 3370993973058518110}
   - component: {fileID: 5084436433195132123}
+  - component: {fileID: 4557518031462604120}
+  - component: {fileID: 6289382438075993799}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -744,6 +788,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -814,6 +859,45 @@ MonoBehaviour:
   resetProgress: 1
   continueMusic: 1
   stopMusic: 0
+--- !u!61 &4557518031462604120
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7867204843480352727}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 585, y: 80}
+  m_EdgeRadius: 0
+--- !u!114 &6289382438075993799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7867204843480352727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c290259de3a14a90a74e1e6fbf9d9f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entered: 0
 --- !u!1 &7936139202144232015
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,7 +976,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Skip
+  m_Text: Back to Title
 --- !u!1 &8491596018376237355
 GameObject:
   m_ObjectHideFlags: 0
