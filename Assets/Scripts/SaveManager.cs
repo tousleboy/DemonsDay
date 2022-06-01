@@ -71,4 +71,22 @@ public class SaveManager : MonoBehaviour
         Debug.Log(GameManager.nowScene);
 
     }
+
+    public void Reset()
+    {
+        GameManager.battleScore = 100;
+        GameManager.score = 0;
+        GameManager.defeats = 0;
+        GameManager.retry = 0;
+        GameManager.howManyLoad = 0;
+        //GameManager.stageScore = PlayerPrefs.GetInt("", );
+        //GameManager.stageDefeats = PlayerPrefs.GetInt("", );
+        GameManager.totalBattleScore = 0;
+        GameManager.totalScore = 0;
+        GameManager.totalDefeats = 0;
+        GameManager.totalRetry = 0;
+        CheckPointManager.progress = 0;
+        GameManager.nowScene = "";
+
+    }
 }

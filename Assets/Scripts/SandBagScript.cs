@@ -87,25 +87,33 @@ public class SandBagScript : MonoBehaviour
 
     IEnumerator Swing()
     {
-        float speed = -200f;
+        float speed = 15f;
         damaged = true;
         Quaternion now = transform.rotation;
-        while(Quaternion.Angle(now, transform.rotation) < 10)
+        Quaternion aim = Quaternion.Euler(0, 0, 20f);
+        float t = 0;
+        while(t <= 1f)
         {
-            transform.Rotate(new Vector3(0, 0, -speed * Time.deltaTime));
+            transform.rotation = Quaternion.Lerp(now, aim, t);
+            t += speed * Time.deltaTime;
+            if(dead) yield break;
+            else yield return null;
+        }
+        transform.rotation = Quaternion.Lerp(now, aim, 1.0f);
+        t = 0f;
+        while(t <= 1f)
+        {
+            transform.rotation = Quaternion.Lerp(aim, now, t);
+            t += speed * Time.deltaTime;
             yield return null;
         }
-        while(Quaternion.Angle(transform.rotation, now) > 2.0)
-        {
-            transform.Rotate(new Vector3(0, 0, speed * Time.deltaTime));
-            yield return null;
-        }
+        transform.rotation = Quaternion.Lerp(aim, now, 1f);
         damaged = false;
     }
 
     IEnumerator Die()
     {
-        Vector2 direction = new Vector2(5, -10);
+        Vector2 direction = new Vector2(0, -20);
         float t;
         float length = 1.0f;
         GetComponent<BoxCollider2D>().enabled = false;
