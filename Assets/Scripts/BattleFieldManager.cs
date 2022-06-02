@@ -19,6 +19,7 @@ public class BattleFieldManager : MonoBehaviour
     bool roundEnd = true;
     public bool autoLock = true;
     public bool random = true;
+    public bool autoDeconcentrate = true;
 
     int round = 0;
     int maxRound = 0;
@@ -126,7 +127,7 @@ public class BattleFieldManager : MonoBehaviour
         if(collision.gameObject.tag == "Player" && eventEnd)
         {
             mainCamera.GetComponent<CameraManager>().resetPos = true;
-            PlayerController.concentration -= 1;
+            if(autoDeconcentrate) PlayerController.concentration -= 1;
         }
     }
 }

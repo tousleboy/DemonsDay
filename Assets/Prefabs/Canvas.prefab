@@ -1669,6 +1669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c290259de3a14a90a74e1e6fbf9d9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entered: 0
 --- !u!1 &2648071426196283242
 GameObject:
   m_ObjectHideFlags: 0
@@ -2132,6 +2133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c290259de3a14a90a74e1e6fbf9d9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entered: 0
 --- !u!1 &3702591234851473396
 GameObject:
   m_ObjectHideFlags: 0
@@ -2951,6 +2953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c290259de3a14a90a74e1e6fbf9d9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entered: 0
 --- !u!1 &6337208381504452115
 GameObject:
   m_ObjectHideFlags: 0
@@ -3417,6 +3420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c290259de3a14a90a74e1e6fbf9d9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entered: 0
 --- !u!1 &7927281596060095146
 GameObject:
   m_ObjectHideFlags: 0
@@ -3646,8 +3650,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0025635, y: -0.000015259}
-  m_SizeDelta: {x: 1919.9874, y: 300.79626}
+  m_AnchoredPosition: {x: -0.0025635, y: 1.2252}
+  m_SizeDelta: {x: 1919.9874, y: 420.8604}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1878964351355997984
 CanvasRenderer:
@@ -3678,7 +3682,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 9192f50e8e9cc4a16868d1130bde1799, type: 3}
     m_FontSize: 256
     m_FontStyle: 0
     m_BestFit: 0
