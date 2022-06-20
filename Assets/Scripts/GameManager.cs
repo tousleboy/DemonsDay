@@ -206,7 +206,7 @@ public class GameManager : MonoBehaviour
                 soundPlayer.PlayOneShot(piron);
             }
             message.text = messages[i];
-            yield return new WaitForSeconds(messages[i].Length / 5.0f);
+            yield return new WaitForSecondsRealtime(messages[i].Length / 5.0f);
             if(recieved != nowMessages)
             {
                 yield break;

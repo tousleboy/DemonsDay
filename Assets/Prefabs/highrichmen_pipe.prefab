@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 16
-  maai: 1.2
+  maai: 1.6
   speed: 7
   groundLayer:
     serializedVersion: 2
