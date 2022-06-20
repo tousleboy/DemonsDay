@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
     CollisionDetector cd;
 
     public static int life;
-    public static int maxLife = 6;
+    public static int maxLife = 12;
     public int damage;
     public int diffence = 1;
     public bool damaged = false;
@@ -426,7 +426,7 @@ public class PlayerController : MonoBehaviour
                 soundPlayer.PlayOneShot(guardHit);
             }
 
-            life -= damage;
+            life = Mathf.Max(life - damage, 0);
 
             if((damage > 0 || am.knockBack) && !blockSuccess)
             {

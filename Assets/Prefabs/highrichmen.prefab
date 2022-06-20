@@ -654,6 +654,10 @@ PrefabInstance:
       value: 0.0057816505
       objectReference: {fileID: 0}
     - target: {fileID: 5102029811756208503, guid: 12c5eaf435d4d4f8199ea74a6ad015ae, type: 3}
+      propertyPath: val
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5102029811756208503, guid: 12c5eaf435d4d4f8199ea74a6ad015ae, type: 3}
       propertyPath: hmkb
       value: 8
       objectReference: {fileID: 0}

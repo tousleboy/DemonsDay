@@ -3619,6 +3619,10 @@ PrefabInstance:
       propertyPath: comboAnime
       value: slash sweep gap exit
       objectReference: {fileID: 0}
+    - target: {fileID: 6788897430476397916, guid: 0457d9a51300a4b618c6ace3f3e42c73, type: 3}
+      propertyPath: dramaticWhenDie
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6788897430476397919, guid: 0457d9a51300a4b618c6ace3f3e42c73, type: 3}
       propertyPath: m_RootOrder
       value: 6
