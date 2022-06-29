@@ -6,7 +6,9 @@ public class TutorialScript : MonoBehaviour
 {
     public SpriteRenderer j;
     public SpriteRenderer k;
+    public GameObject slowLogo;
     public EnemyController ec;
+    public PlayerController pc;
     bool active = false;
     bool finish = false;
     int mode = 0;
@@ -15,6 +17,10 @@ public class TutorialScript : MonoBehaviour
     public string[] whenKick;
     public string gogo;
     public string end;
+
+    public static bool onceCalled = false;
+
+    public GameObject talkE;
 
     int plen;
     int klen;
@@ -25,6 +31,8 @@ public class TutorialScript : MonoBehaviour
     {
         plen = whenPunch.Length;
         klen = whenKick.Length;
+        slowLogo.SetActive(false);
+        if(onceCalled) talkE.SetActive(false);
     }
 
     // Update is called once per frame
@@ -43,6 +51,12 @@ public class TutorialScript : MonoBehaviour
             PlayerController.messages = gogo;
         }
 
+        if(pc.damaged)
+        {
+            Time.timeScale = 1.0f;
+            slowLogo.SetActive(false);
+        }
+
         if(active)
         {
             if(mode == 0)
@@ -54,8 +68,9 @@ public class TutorialScript : MonoBehaviour
                     if(n < plen)
                     {
                         PlayerController.messages = whenPunch[n];
-                        n += 1;
+                        n = (n + 1) % plen;
                     }
+                    slowLogo.SetActive(true);
                 }
                 else if(k.color == Color.white)
                 {
@@ -64,14 +79,19 @@ public class TutorialScript : MonoBehaviour
                     if(m < klen)
                     {
                         PlayerController.messages = whenKick[m];
-                        m += 1;
+                        m = (m + 1) % klen;
                     }
+                    slowLogo.SetActive(true);
                 }
             }
         }
         else
         {
-            if(Time.timeScale != 0) Time.timeScale = 1;
+            if(Time.timeScale != 0)
+            {
+                Time.timeScale = 1;
+                slowLogo.SetActive(false);
+            }
             mode = 0;
         }
 
@@ -80,6 +100,7 @@ public class TutorialScript : MonoBehaviour
             if(Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire2"))
             {
                 Time.timeScale = 1f;
+                slowLogo.SetActive(false);
                 mode = 3;
             }
         }
@@ -88,6 +109,7 @@ public class TutorialScript : MonoBehaviour
             if(Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire2"))
             {
                 Time.timeScale = 1f;
+                slowLogo.SetActive(false);
                 mode = 4;
             }
         }
@@ -107,6 +129,7 @@ public class TutorialScript : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             active = true;
+            onceCalled = true;
         }
     }
 
@@ -115,6 +138,7 @@ public class TutorialScript : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             active = false;
+            slowLogo.SetActive(false);
         }
     }
 

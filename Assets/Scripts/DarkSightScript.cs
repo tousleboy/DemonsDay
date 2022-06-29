@@ -13,8 +13,8 @@ public class DarkSightScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        prevD = GameManager.stageDefeats;
-        nowD = GameManager.stageDefeats;
+        prevD = GameManager.stageDefeats + GameManager.defeats;
+        nowD = prevD;
         transform.localScale = new Vector3(maxScale, maxScale, transform.localScale.z);
         //StartCoroutine("Moyamoya");
     }
@@ -22,7 +22,7 @@ public class DarkSightScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(PlayerController.gameState == "playing") nowD = Mathf.Min(GameManager.stageDefeats, maxEnemy);
+        if(PlayerController.gameState == "playing") nowD = Mathf.Min(GameManager.stageDefeats + GameManager.defeats, maxEnemy);
         if(nowD != prevD)
         {
             prevD = nowD;

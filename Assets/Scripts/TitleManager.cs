@@ -25,6 +25,8 @@ public class TitleManager : MonoBehaviour
 
         panel.SetActive(false);
         StartCoroutine("TurnOn");
+
+        TutorialScript.onceCalled = false;
     }
 
     // Update is called once per frame
