@@ -17,3 +17,7 @@ https://github.com/tousleboy/SideViewBattle/assets/63148826/dd84fef0-fa83-4cec-b
 <p>
   全ての攻撃を華麗に捌き、渾身のコンボを叩き込みましょう！
 </p>
+
+<h1>公開URL</h1>
+
+https://unityroom.com/games/demonsday
