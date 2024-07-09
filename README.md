@@ -2,7 +2,7 @@
 
 <h1>ゲーム内容</h1>
 
-https://github.com/tousleboy/SideViewBattle/assets/63148826/dd84fef0-fa83-4cec-b96f-c9548f42d7a8
+https://github.com/tousleboy/DemonsDay/assets/63148826/29713d5f-72a3-46ed-ab7a-d0f51da7ec88
 
 <p>
   Demons Dayは、道行く先での不良たちとの喧嘩を重視した、横スクロールアクションゲームです。
