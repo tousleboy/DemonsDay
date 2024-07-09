@@ -1,6 +1,9 @@
 ![poster_sumiho_gc](https://github.com/tousleboy/SideViewBattle/assets/63148826/9faeb0ea-44ff-4b08-9a8e-bced191089b2)
 
 <h1>ゲーム内容</h1>
+
+https://github.com/tousleboy/SideViewBattle/assets/63148826/dd84fef0-fa83-4cec-b96f-c9548f42d7a8
+
 <p>
   Demons Dayは、道行く先での不良たちとの喧嘩を重視した、横スクロールアクションゲームです。
   ジャンプアクションで夜のダウンタウンを駆け巡り、出会う敵にはパンチとキックで立ち向かいましょう。
@@ -14,6 +17,3 @@
 <p>
   全ての攻撃を華麗に捌き、渾身のコンボを叩き込みましょう！
 </p>
-
-https://github.com/tousleboy/SideViewBattle/assets/63148826/dd84fef0-fa83-4cec-b96f-c9548f42d7a8
-
