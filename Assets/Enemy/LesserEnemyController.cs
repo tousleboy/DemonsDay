@@ -56,7 +56,7 @@ public class LesserEnemyController : MonoBehaviour
         {
             if(passedTimes == 0)
             {
-                rbody.velocity = new Vector2(0.0f, 0.0f);
+                rbody.linearVelocity = new Vector2(0.0f, 0.0f);
             }
             passedTimes += Time.deltaTime;
             animator.Play(stopAnime);

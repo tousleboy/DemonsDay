@@ -73,7 +73,7 @@ public class AttackManager : MonoBehaviour
         
         Vector2 direction = Direction(targetPos);
         Debug.Log(direction);
-        rbody.velocity = direction;//new Vector2(0.0f, 0.0f);
+        rbody.linearVelocity = direction;//new Vector2(0.0f, 0.0f);
         //rbody.AddForce(direction, ForceMode2D.Impulse);
     }
 

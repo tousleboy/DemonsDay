@@ -176,11 +176,11 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-        if(onGround && attacking && !goJump) rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
+        if(onGround && attacking && !goJump) rbody.linearVelocity = new Vector2(0.0f, rbody.linearVelocity.y);
 
         if(PlayerController.gameState != "playing")
         {   
-            rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
+            rbody.linearVelocity = new Vector2(0.0f, rbody.linearVelocity.y);
             moving = false;
             animator.SetBool("move", false);
             if(style == "slugger")
@@ -211,7 +211,7 @@ public class EnemyController : MonoBehaviour
             {
                 if((isPlayerNear || (comboStack[stackPointer] == "jumpup" && CheckLength(playerPos, maai * 5f))) && onGround)
                 {
-                    rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
+                    rbody.linearVelocity = new Vector2(0.0f, rbody.linearVelocity.y);
                     goAttack = true;
                     moving = false;
                     animator.SetBool("move", false);
@@ -222,7 +222,7 @@ public class EnemyController : MonoBehaviour
                     {
                         if(!isCliff)
                         {
-                            rbody.velocity = new Vector2(speed * transform.localScale.x, rbody.velocity.y);
+                            rbody.linearVelocity = new Vector2(speed * transform.localScale.x, rbody.linearVelocity.y);
                             moving = true;
                             animator.SetBool("move", true);
                         }
@@ -234,11 +234,11 @@ public class EnemyController : MonoBehaviour
                             
                             if(jumpAble)
                             {
-                                rbody.velocity = new Vector2(speed * transform.localScale.x, rbody.velocity.y);
+                                rbody.linearVelocity = new Vector2(speed * transform.localScale.x, rbody.linearVelocity.y);
                                 Vector2 jumpForce = new Vector2(0f, jumpPw);
                                 rbody.AddForce(jumpForce, ForceMode2D.Impulse);
                             }
-                            else rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
+                            else rbody.linearVelocity = new Vector2(0.0f, rbody.linearVelocity.y);
                             moving = false;
                             animator.SetBool("move", false);
                         }
@@ -252,7 +252,7 @@ public class EnemyController : MonoBehaviour
             }
             else
             {
-                if(onGround && !goJump) rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
+                if(onGround && !goJump) rbody.linearVelocity = new Vector2(0.0f, rbody.linearVelocity.y);
             }
             
         }
@@ -270,7 +270,7 @@ public class EnemyController : MonoBehaviour
             }
             if(moving)
             {
-                rbody.velocity = new Vector2(speed * transform.localScale.x, rbody.velocity.y);
+                rbody.linearVelocity = new Vector2(speed * transform.localScale.x, rbody.linearVelocity.y);
             }
 
             if(!isPlayerNear)//restraint
@@ -283,14 +283,14 @@ public class EnemyController : MonoBehaviour
 
                 if(moving)//tackle
                 {
-                    rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
+                    rbody.linearVelocity = new Vector2(0.0f, rbody.linearVelocity.y);
                     moving = false;
                     animator.SetBool("move", false);
                     animator.SetTrigger("charge");
                 }
                 else//kick or upper
                 {
-                    rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
+                    rbody.linearVelocity = new Vector2(0.0f, rbody.linearVelocity.y);
                     goAttack = true;
                     moving = false;
                     animator.SetBool("move", false);
@@ -479,13 +479,13 @@ public class EnemyController : MonoBehaviour
 
     void Escape()
     {
-        rbody.velocity = new Vector2(0.0f, 25.0f);
+        rbody.linearVelocity = new Vector2(0.0f, 25.0f);
         rbody.gravityScale = 0f;
     }
 
     void Stop()
     {
-        rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
+        rbody.linearVelocity = new Vector2(0.0f, rbody.linearVelocity.y);
     }
 
     public void SetHigh()
@@ -522,8 +522,8 @@ public class EnemyController : MonoBehaviour
         float jy = 20f;
         goJump = true;
         Vector3 jumpV = new Vector3(jx * transform.localScale.x, jy, 0);
-        rbody.velocity = jumpV;
-        Debug.Log(rbody.velocity);
+        rbody.linearVelocity = jumpV;
+        Debug.Log(rbody.linearVelocity);
         Invoke("GoJumpFalse", 0.1f);
     }
 
@@ -602,7 +602,7 @@ public class EnemyController : MonoBehaviour
 
         if(trigger == "idle")
         {
-            rbody.velocity = new Vector2(0.0f, rbody.velocity.y);
+            rbody.linearVelocity = new Vector2(0.0f, rbody.linearVelocity.y);
             moving = false;
             animator.SetBool("move", false);
         }

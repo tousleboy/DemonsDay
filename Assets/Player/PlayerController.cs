@@ -183,7 +183,7 @@ public class PlayerController : MonoBehaviour
             {
                 Jump();
             }
-            if(Input.GetButtonUp("Jump") && !onGround && rbody.velocity.y > 0)
+            if(Input.GetButtonUp("Jump") && !onGround && rbody.linearVelocity.y > 0)
             {
                 jumpStop = true;
             }
@@ -312,7 +312,7 @@ public class PlayerController : MonoBehaviour
 
         if((onGround || axisH != 0) && !backStepping)//走り
         {
-            rbody.velocity = new Vector2(axisH * runSpeed, rbody.velocity.y);
+            rbody.linearVelocity = new Vector2(axisH * runSpeed, rbody.linearVelocity.y);
         }
 
         /*if(goBackStep)
@@ -383,7 +383,7 @@ public class PlayerController : MonoBehaviour
             {
                 goAttack = false;
                 animator.SetBool("onground", false);
-                if(rbody.velocity.y > 0)
+                if(rbody.linearVelocity.y > 0)
                 {
                     animator.SetTrigger("jumpup");
                     //nowAnime = jumpUpAnime;
@@ -488,9 +488,9 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator JumpStop()
     {
-        while(rbody.velocity.y >= 0)
+        while(rbody.linearVelocity.y >= 0)
         {
-            rbody.velocity = new Vector2(rbody.velocity.x, rbody.velocity.y - 60.0f * Time.deltaTime);
+            rbody.linearVelocity = new Vector2(rbody.linearVelocity.x, rbody.linearVelocity.y - 60.0f * Time.deltaTime);
             yield return null;
         }
     }
@@ -649,7 +649,7 @@ public class PlayerController : MonoBehaviour
         gameState = "waiting";
         //animator.Play(stopAnime);
         animator.SetBool("wait", true);
-        rbody.velocity = new Vector2(0, rbody.velocity.y);
+        rbody.linearVelocity = new Vector2(0, rbody.linearVelocity.y);
     }
     public void StopWait()
     {
@@ -659,7 +659,7 @@ public class PlayerController : MonoBehaviour
 
     void Die()
     {
-        rbody.velocity = new Vector2(0, 0);
+        rbody.linearVelocity = new Vector2(0, 0);
         rbody.simulated = false;
         GetComponent<BoxCollider2D>().enabled = false;
         animator.SetTrigger("die");
@@ -673,7 +673,7 @@ public class PlayerController : MonoBehaviour
     {
         gameState = "gameclear";
         //animator.Play(stopAnime);
-        rbody.velocity = new Vector2(0, rbody.velocity.y);
+        rbody.linearVelocity = new Vector2(0, rbody.linearVelocity.y);
     }
 
     void Teleport(Vector3 pos)
@@ -683,7 +683,7 @@ public class PlayerController : MonoBehaviour
 
     void StopMove()
     {
-        rbody.velocity = new Vector2(0, rbody.velocity.y);
+        rbody.linearVelocity = new Vector2(0, rbody.linearVelocity.y);
     }
 
     void SlowMotion()
@@ -712,7 +712,7 @@ public class PlayerController : MonoBehaviour
     void BackStep()
     {
         //concentration = Mathf.Max(concentration - 1, 0);
-        rbody.velocity = new Vector2(0f, rbody.velocity.y);
+        rbody.linearVelocity = new Vector2(0f, rbody.linearVelocity.y);
         Vector2 backStepPw = new Vector2(backStep * transform.localScale.x * -1, 0);
         rbody.AddForce(backStepPw, ForceMode2D.Impulse);
     }
